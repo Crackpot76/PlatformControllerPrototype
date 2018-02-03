@@ -16,7 +16,7 @@ namespace PlayerStates {
                 return PlayerStateMachine.runningState;
             }
 
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetKeyDown(KeyCode.Space) && playerController.IsJumpingPossible()) {
                 return PlayerStateMachine.preJumpIdleState;
             }
             return null;

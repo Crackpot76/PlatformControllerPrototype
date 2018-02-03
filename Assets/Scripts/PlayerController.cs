@@ -19,6 +19,7 @@ public class PlayerController: MonoBehaviour {
 
     // move variables for next update
     float targetVelocityX;
+    float targetVelocityY;
     float accelerationTime;
 
     // 2D Environment Controller
@@ -27,11 +28,10 @@ public class PlayerController: MonoBehaviour {
     // SpriteRenderer 
     SpriteRenderer spriteRenderer;
 
+    //TODO Wohl falsch hier aufgehoben
     // Effects
     SpriteFlashing spriteFlashingEffect;
-
-    // actual state variables of Player
-    bool disableInput = false;
+    
 
 
 
@@ -39,8 +39,9 @@ public class PlayerController: MonoBehaviour {
     void Start() {
         controller = GetComponent<Controller2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteFlashingEffect = new SpriteFlashing(spriteRenderer);
-        
+
+        // Effect initialisation
+        spriteFlashingEffect = new SpriteFlashing(spriteRenderer);        
 
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
     }
@@ -49,6 +50,7 @@ public class PlayerController: MonoBehaviour {
 
     void Update() {
         spriteFlashingEffect.Update();
+
         CalculateVelocity();
 
         controller.Move(velocity * Time.deltaTime);
@@ -60,23 +62,22 @@ public class PlayerController: MonoBehaviour {
                 velocity.y = 0;
             }
         }
-        if (!disableInput) {
-            targetVelocityX = 0;
-        } else {
-            disableInput = false;
-        }
+        targetVelocityY = 0;
+        targetVelocityX = 0;
     }
 
 
-    public void ReceiveDamage(float directionHitX) {
-        
-            Debug.Log("Taking Damage!");
-            spriteFlashingEffect.StartFlashing(.3f);
-            OnMoving(-directionHitX, 0f, 5f); // Push back in oposite direction
-            disableInput = true;
-       
+    // Interfaces for external Interaction
+    public void ReceiveDamage(float directionHitX) {        
+        Debug.Log("Taking Damage!");
+        spriteFlashingEffect.StartFlashing(.3f);
+        OnMoving(-directionHitX, 0f, 2f); // Push back in oposite direction       
     }
 
+
+    // --------------------------------------------------------------------------
+    //  Player Controller Commands for Input
+    // --------------------------------------------------------------------------
 
     public void OnJumpInputDown() {
         // start counting timer for force jump
@@ -86,54 +87,40 @@ public class PlayerController: MonoBehaviour {
     // if bool = false, jump is not possible
     public bool OnJumpInputUp() {
         if (IsJumpingPossible()) {
-            float newJumpVelocity = CalculateJumpVelocity();
-            velocity.y = newJumpVelocity;
+            float jumpForceTimerEnd = Time.time;
+            float jumpForceTime = jumpForceTimerEnd - jumpForceTimerStart;
+            Debug.Log(jumpForceTime);
+
+            // formula for calculating height where 0.1 ms = minJumpHeight und 0.6 ms = maxJumpHeght
+            float targetJumpHeight = 4 * jumpForceTime + 2.1f;
+            Debug.Log("TargetJumpHeight:" + targetJumpHeight);
+            if (targetJumpHeight < minJumpHeight) {
+                targetJumpHeight = minJumpHeight;
+            }
+
+            if (targetJumpHeight > maxJumpHeight) {
+                targetJumpHeight = maxJumpHeight;
+            }
+
+            float calculatedGravity = -(2 * targetJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
+
+            targetVelocityY = Mathf.Abs(calculatedGravity) * timeToJumpApex;
             return true;
         } else {
             return false;
         }        
     }
 
-    private float CalculateJumpVelocity() {
-        float jumpForceTimerEnd = Time.time;
-        float jumpForceTime = jumpForceTimerEnd - jumpForceTimerStart;
-        Debug.Log(jumpForceTime);
-
-        // formula for calculating height where 0.1 ms = minJumpHeight und 0.6 ms = maxJumpHeght
-        float targetJumpHeight = 4 * jumpForceTime + 2.1f;
-        Debug.Log("TargetJumpHeight:" + targetJumpHeight);
-        if (targetJumpHeight < minJumpHeight) {
-            targetJumpHeight = minJumpHeight;
-        }
-
-        if (targetJumpHeight > maxJumpHeight) {
-            targetJumpHeight = maxJumpHeight;
-        }
-
-        float calculatedGravity = -(2 * targetJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
-
-        return Mathf.Abs(calculatedGravity) * timeToJumpApex;
-    }
-
-    private bool IsJumpingPossible() {
-        if (!disableInput) {
-            if (controller.collisions.below) {
-                if (!controller.collisions.slidingDownMaxSlope) {  // no jumping while sliding down                    
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     public void OnMoving(float directionX, float accelerationTime, float moveSpeedFactor) {
-        if (!disableInput) {
-            this.targetVelocityX = directionX * moveSpeed * moveSpeedFactor;
-            this.accelerationTime = accelerationTime;
-        }
+        this.targetVelocityX = directionX * moveSpeed * moveSpeedFactor;
+        this.accelerationTime = accelerationTime;
     }
 
 
+
+    // --------------------------------------------------------------------------
+    // State checker
+    // --------------------------------------------------------------------------
     public bool IsGrounded() {
         if (controller.collisions.below) {
             return true;
@@ -149,15 +136,28 @@ public class PlayerController: MonoBehaviour {
         }
     }
 
+    public bool IsJumpingPossible() {
+        if (controller.collisions.below) {
+            if (!controller.collisions.slidingDownMaxSlope) {  // no jumping while sliding down                    
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+
     void CalculateVelocity() {
 
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelerationTime);
-
         
-        velocity.y += gravity * Time.deltaTime;
+        velocity.y += targetVelocityY + gravity * Time.deltaTime;
 
-        // hier ggf. schnelleres Fallen an velocity.y manipulieren.
-        if (velocity.y < 0 && !controller.collisions.below) {
+        // hier schnelleres Fallen an velocity.y manipulieren.
+        if (IsFalling()) {
             velocity.y *= comicFallFactor;
         }
     }

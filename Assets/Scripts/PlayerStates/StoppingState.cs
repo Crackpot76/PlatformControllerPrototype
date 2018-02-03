@@ -13,7 +13,7 @@ namespace PlayerStates {
         }
 
         public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController)
-        {            
+        {
             if (animationHasStopped) {
         
                 float directionX = Input.GetAxisRaw("Horizontal");
