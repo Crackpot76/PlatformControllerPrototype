@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Controller2D: RaycastController {
+public class MovementController: RaycastController {
 
     public float maxSlopeAngle = 45;
 

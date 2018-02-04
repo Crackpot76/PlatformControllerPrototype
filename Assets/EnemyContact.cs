@@ -38,7 +38,7 @@ public class EnemyContact : MonoBehaviour {
                 // WEIRD!
             }
 
-            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+            PlayerMovementController playerController = collision.gameObject.GetComponent<PlayerMovementController>();
 
             if (playerController) {
                 playerController.ReceiveDamage(directionHitX);

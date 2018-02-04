@@ -6,13 +6,13 @@ namespace PlayerStates {
 
         bool animationHasStopped;
 
-        public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController)
+        public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController)
         {
             animationHasStopped = false;
             animator.SetTrigger(AnimPlayerParamters.STOPPING_TRIGGER);
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController)
+        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController)
         {
             if (animationHasStopped) {
         
@@ -26,7 +26,7 @@ namespace PlayerStates {
             return null;
         }
 
-        public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController) {
+        public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
         }
 
         public void OnAnimEvent(string parameter) {

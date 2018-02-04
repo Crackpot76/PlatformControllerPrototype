@@ -2,13 +2,15 @@ using UnityEngine;
 using System.Collections;
 
 namespace PlayerStates {
-    [RequireComponent(typeof(Animator), typeof(SpriteRenderer), typeof(PlayerController))]
+    [RequireComponent(typeof(Animator), typeof(SpriteRenderer), typeof(PlayerMovementController))]
     class PlayerStateMachine : MonoBehaviour {
 
         public static IdleState idleState = new IdleState();
         public static PreJumpIdleState preJumpIdleState = new PreJumpIdleState();
         public static JumpStartIdleState jumpStartIdleState = new JumpStartIdleState();
         public static JumpAirState jumpAirState = new JumpAirState();
+        public static PreJumpRunningState preJumpRunningState = new PreJumpRunningState();
+        public static JumpStartRunningState jumpStartRunningState = new JumpStartRunningState();
         public static FallingState fallingState = new FallingState();
         public static LandingIdleState landingIdleState = new LandingIdleState();
         public static RunningState runningState = new RunningState();
@@ -21,13 +23,13 @@ namespace PlayerStates {
 
         Animator animator;
         SpriteRenderer spriteRenderer;
-        PlayerController playerController;
+        PlayerMovementController playerController;
 
 
         void Start() {
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
-            playerController = GetComponent<PlayerController>();
+            playerController = GetComponent<PlayerMovementController>();
             currentState = idleState;            
             currentDirectionX = 1;
         }

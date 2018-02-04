@@ -6,7 +6,7 @@ namespace PlayerStates {
 
         const float accelerationTime = 0.04f;
 
-        public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController)
+        public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController)
         {
 
             animator.SetBool(AnimPlayerParamters.RUNNING, true);
@@ -14,27 +14,31 @@ namespace PlayerStates {
             Move(directionX, stateMachine, ref playerController);
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController)
+        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController)
         {
             float directionX = Input.GetAxisRaw("Horizontal");
             if (directionX == 0 || directionX != stateMachine.currentDirectionX) {
                 // Stopping
                 return PlayerStateMachine.stoppingState;
-            } else {
-                // continue moving
-                Move(directionX, stateMachine, ref playerController);
+            } 
+
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                return PlayerStateMachine.preJumpRunningState;
             }
+
+            // continue moving
+            Move(directionX, stateMachine, ref playerController);
             return null;
         }
 
 
 
-        private void Move(float directionX, PlayerStateMachine stateMachine, ref PlayerController playerController) {
+        private void Move(float directionX, PlayerStateMachine stateMachine, ref PlayerMovementController playerController) {
             stateMachine.FlipSprite(directionX);
-            playerController.OnMoving(directionX, accelerationTime, 1);            
+            playerController.OnMoving(directionX, accelerationTime, 0);            
         }
 
-        public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController)
+        public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController)
         {
             animator.SetBool(AnimPlayerParamters.RUNNING, false);
         }

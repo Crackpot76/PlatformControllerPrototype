@@ -10,24 +10,20 @@ namespace PlayerStates {
 
         const float accelerationTime = 0.1f;
 
-        public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController) {
+        public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
             animationHasStopped = false;
             animator.SetBool(AnimPlayerParamters.JUMP_START_IDLE, true);
             
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController) {
+        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
 
             if (playerController.IsGrounded()) {
                // Debug.Log("Allready grounded!!!");
             }
 
-
-
             // Move while jumping
             Move(stateMachine, ref playerController);
-
-
 
             if (animationHasStopped) {
                 return PlayerStateMachine.jumpAirState;
@@ -35,13 +31,13 @@ namespace PlayerStates {
             return null;
         }
 
-        private void Move(PlayerStateMachine stateMachine, ref PlayerController playerController) {
+        private void Move(PlayerStateMachine stateMachine, ref PlayerMovementController playerController) {
             float directionX = Input.GetAxisRaw("Horizontal");
             stateMachine.FlipSprite(directionX);
-            playerController.OnMoving(directionX, accelerationTime, 1);
+            playerController.OnMoving(directionX, accelerationTime, 0);
         }
 
-        public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController) {
+        public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
             animator.SetBool(AnimPlayerParamters.JUMP_START_IDLE, false);
         }
 

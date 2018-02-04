@@ -1,29 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Controller2D))]
-public class PlayerController: MonoBehaviour {
+public class PlayerMovementController: MovementController {
 
-    public float moveSpeed = 6;
+    public float maxMoveSpeed = 7;
+    public float minMoveSpeed = 5;
     public float maxJumpHeight = 4;
     public float minJumpHeight = 1;
     public float timeToJumpApex = .4f;
     public float comicFallFactor = 1.08f;
 
-
     // calculated move variables
     float gravity;
-    float jumpForceTimerStart;
+    
     Vector3 velocity;
     float velocityXSmoothing;
 
     // move variables for next update
     float targetVelocityX;
     float targetVelocityY;
-    float accelerationTime;
-
-    // 2D Environment Controller
-    Controller2D controller;
+    float accelerationTime; 
 
     // SpriteRenderer 
     SpriteRenderer spriteRenderer;
@@ -31,13 +27,11 @@ public class PlayerController: MonoBehaviour {
     //TODO Wohl falsch hier aufgehoben
     // Effects
     SpriteFlashing spriteFlashingEffect;
-    
 
 
 
-
-    void Start() {
-        controller = GetComponent<Controller2D>();
+    public override void Start() {
+        base.Start();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         // Effect initialisation
@@ -53,11 +47,11 @@ public class PlayerController: MonoBehaviour {
 
         CalculateVelocity();
 
-        controller.Move(velocity * Time.deltaTime);
+        Move(velocity * Time.deltaTime);
 
-        if (controller.collisions.above || controller.collisions.below) {
-            if (controller.collisions.slidingDownMaxSlope) {
-                velocity.y += controller.collisions.slopeNormal.y * -gravity * Time.deltaTime;
+        if (collisions.above || collisions.below) {
+            if (collisions.slidingDownMaxSlope) {
+                velocity.y += collisions.slopeNormal.y * -gravity * Time.deltaTime;
             } else {
                 velocity.y = 0;
             }
@@ -71,7 +65,7 @@ public class PlayerController: MonoBehaviour {
     public void ReceiveDamage(float directionHitX) {        
         Debug.Log("Taking Damage!");
         spriteFlashingEffect.StartFlashing(.3f);
-        OnMoving(-directionHitX, 0f, 2f); // Push back in oposite direction       
+        OnMoving(-directionHitX, 0f, 1); // Push back in oposite direction       
     }
 
 
@@ -79,30 +73,15 @@ public class PlayerController: MonoBehaviour {
     //  Player Controller Commands for Input
     // --------------------------------------------------------------------------
 
-    public void OnJumpInputDown() {
-        // start counting timer for force jump
-        jumpForceTimerStart = Time.time;
-    }
-
     // if bool = false, jump is not possible
-    public bool OnJumpInputUp() {
+    public bool OnJumping(float jumpForcePercent) {
         if (IsJumpingPossible()) {
-            float jumpForceTimerEnd = Time.time;
-            float jumpForceTime = jumpForceTimerEnd - jumpForceTimerStart;
-            Debug.Log(jumpForceTime);
+            float possibleJumpingHeightRange = maxJumpHeight - minJumpHeight;
+            float newJumpingHeight = minJumpHeight + possibleJumpingHeightRange * jumpForcePercent;
 
-            // formula for calculating height where 0.1 ms = minJumpHeight und 0.6 ms = maxJumpHeght
-            float targetJumpHeight = 4 * jumpForceTime + 2.1f;
-            Debug.Log("TargetJumpHeight:" + targetJumpHeight);
-            if (targetJumpHeight < minJumpHeight) {
-                targetJumpHeight = minJumpHeight;
-            }
+            Debug.Log(newJumpingHeight);
 
-            if (targetJumpHeight > maxJumpHeight) {
-                targetJumpHeight = maxJumpHeight;
-            }
-
-            float calculatedGravity = -(2 * targetJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
+            float calculatedGravity = -(2 * newJumpingHeight) / Mathf.Pow(timeToJumpApex, 2);
 
             targetVelocityY = Mathf.Abs(calculatedGravity) * timeToJumpApex;
             return true;
@@ -111,8 +90,12 @@ public class PlayerController: MonoBehaviour {
         }        
     }
 
-    public void OnMoving(float directionX, float accelerationTime, float moveSpeedFactor) {
-        this.targetVelocityX = directionX * moveSpeed * moveSpeedFactor;
+    public void OnMoving(float directionX, float accelerationTime, float moveAddonSpeedPercent) {
+
+        float possibleMovementRange = maxMoveSpeed - minMoveSpeed;
+        float newMoveSpeed = minMoveSpeed + possibleMovementRange * moveAddonSpeedPercent;
+
+        this.targetVelocityX += directionX * newMoveSpeed;
         this.accelerationTime = accelerationTime;
     }
 
@@ -122,14 +105,14 @@ public class PlayerController: MonoBehaviour {
     // State checker
     // --------------------------------------------------------------------------
     public bool IsGrounded() {
-        if (controller.collisions.below) {
+        if (collisions.below) {
             return true;
         } else {
             return false;
         }
     }
     public bool IsFalling() {
-        if (velocity.y < 0 && !controller.collisions.below) {
+        if (velocity.y < 0 && !collisions.below) {
             return true;
         } else {
             return false;
@@ -137,16 +120,21 @@ public class PlayerController: MonoBehaviour {
     }
 
     public bool IsJumpingPossible() {
-        if (controller.collisions.below) {
-            if (!controller.collisions.slidingDownMaxSlope) {  // no jumping while sliding down                    
+        if (collisions.below) {
+            if (!collisions.slidingDownMaxSlope) {  // no jumping while sliding down                    
                 return true;
             }
         }
         return false;
     }
 
-
-
+    public bool IsSlidingSlope() {
+        if (collisions.slidingDownMaxSlope) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 

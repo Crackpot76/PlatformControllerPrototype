@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
+using Cinemachine;
 using System.Collections;
 
 public class Cam : MonoBehaviour {
 
 	
 	private float lastHeight = 0;
-	//private Camera cam;
+	private CinemachineVirtualCamera cam;
 	// Use this for initialization
 	void Start () {
-		//cam = GetComponent<Camera>();
+		cam = GetComponent<CinemachineVirtualCamera>();
+        if (cam) {
+            Debug.Log("GEFUNDEN!");
+        }
+        
 	}
 	
 	// Update is called once per frame
@@ -31,12 +36,15 @@ public class Cam : MonoBehaviour {
 //			erg = Mathf.Round(erg);
 //			erg = erg / 10f;
 			
-			//Debug.Log("Erg:" + erg);
-			Camera.main.orthographicSize = erg;
-			
-			
-			//Camera.main.orthographicSize = 5.73f;
-		}	
+			Debug.Log("Erg:" + erg);
+
+            cam.m_Lens.OrthographicSize = erg;
+
+            //Camera.main.orthographicSize = erg;
+            //Debug.Log("Act:" + Camera.main.orthographicSize);
+
+            //Camera.main.orthographicSize = 5.73f;
+        }	
 	}
 	
 

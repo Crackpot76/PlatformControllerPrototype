@@ -6,29 +6,53 @@ namespace PlayerStates {
 
 
         const float accelerationTime = 0.1f;
+        const float maxJumpTime = 0.6f;
+        float jumpTimerStart;
 
-        public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController) {
+        public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
             animator.SetBool(AnimPlayerParamters.PRE_JUMP_IDLE, true);
-            playerController.OnJumpInputDown();
+            jumpTimerStart = Time.time;
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController) {
+        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
+
+            if (!playerController.IsJumpingPossible()) {
+                Debug.Log("In PreJumpIdleState: Irgendwas hat sich verändert, springen nicht mehr möglich!");
+                return PlayerStateMachine.idleState;
+            }
 
             if (Input.GetKeyUp(KeyCode.Space)) {
-                playerController.OnJumpInputUp(); //TODO hier muss noch gebastelt werden
-                return PlayerStateMachine.jumpStartIdleState;
+                float jumpTime = Time.time - jumpTimerStart;
+                float jumpForcePercent = CalculatePercentFromJumpTimer(jumpTime);
+
+                if (jumpForcePercent > 0) {
+                    // JUMP NOW!
+                    playerController.OnJumping(jumpForcePercent);
+                    return PlayerStateMachine.jumpStartIdleState;
+                } else {
+                    Debug.LogError("Error in PreJumpIdleState: JumpForce <= 0, also kein Sprung möglich!"); 
+                    return PlayerStateMachine.idleState;
+                }            
+
+            } else {
+                if (!Input.GetKey(KeyCode.Space)) {
+                    Debug.LogError("Error in PreJumpIdleState: Space Taste nicht mehr gedrückt, aber kein KeyUp!");
+                    return PlayerStateMachine.idleState;
+                }
             }
             
             return null;
         }
 
-        private void Move(PlayerStateMachine stateMachine, ref PlayerController playerController) {
-            float directionX = Input.GetAxisRaw("Horizontal");
-            stateMachine.FlipSprite(directionX);
-            playerController.OnMoving(directionX, accelerationTime, 1);
+        // Calculates percent of jump force from prepared jumping time
+        private float CalculatePercentFromJumpTimer(float jumpTime) {
+            float result = 0;
+            float clampedJumpTime = Mathf.Clamp(jumpTime, 0, maxJumpTime);
+            result = (clampedJumpTime * (100 / maxJumpTime)) / 100;
+            return result;
         }
 
-        public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController) {
+        public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
             animator.SetBool(AnimPlayerParamters.PRE_JUMP_IDLE, false);
         }
 

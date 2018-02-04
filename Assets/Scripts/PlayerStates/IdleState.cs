@@ -4,12 +4,12 @@ using System.Collections;
 namespace PlayerStates {
     class IdleState : IStateInterface {
 
-        public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController)
+        public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController)
         {
             animator.SetBool(AnimPlayerParamters.IDLE, true);
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController)
+        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController)
         {
             float directionX = Input.GetAxisRaw("Horizontal");
             if (directionX != 0) {
@@ -22,7 +22,7 @@ namespace PlayerStates {
             return null;
         }
 
-        public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerController playerController)
+        public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController)
         {
             animator.SetBool(AnimPlayerParamters.IDLE, false);
         }
