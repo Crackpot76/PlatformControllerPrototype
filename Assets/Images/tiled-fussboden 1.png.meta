@@ -1,0 +1,1453 @@
+fileFormatVersion: 2
+guid: a5b7628e9066c55469e636f93c0309a4
+timeCreated: 1517944300
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: tiled-fussboden 1_0
+    21300002: tiled-fussboden 1_1
+    21300004: tiled-fussboden 1_2
+    21300006: tiled-fussboden 1_3
+    21300008: tiled-fussboden 1_4
+    21300010: tiled-fussboden 1_5
+    21300012: tiled-fussboden 1_6
+    21300014: tiled-fussboden 1_7
+    21300016: tiled-fussboden 1_8
+    21300018: tiled-fussboden 1_9
+    21300020: tiled-fussboden 1_10
+    21300022: tiled-fussboden 1_11
+    21300024: tiled-fussboden 1_12
+    21300026: tiled-fussboden 1_13
+    21300028: tiled-fussboden 1_14
+    21300030: tiled-fussboden 1_15
+    21300032: tiled-fussboden 1_16
+    21300034: tiled-fussboden 1_17
+    21300036: tiled-fussboden 1_18
+    21300038: tiled-fussboden 1_19
+    21300040: tiled-fussboden 1_20
+    21300042: tiled-fussboden 1_21
+    21300044: tiled-fussboden 1_22
+    21300046: tiled-fussboden 1_23
+    21300048: tiled-fussboden 1_24
+    21300050: tiled-fussboden 1_25
+    21300052: tiled-fussboden 1_26
+    21300054: tiled-fussboden 1_27
+    21300056: tiled-fussboden 1_28
+    21300058: tiled-fussboden 1_29
+    21300060: tiled-fussboden 1_30
+    21300062: tiled-fussboden 1_31
+    21300064: tiled-fussboden 1_32
+    21300066: tiled-fussboden 1_33
+    21300068: tiled-fussboden 1_34
+    21300070: tiled-fussboden 1_35
+    21300072: tiled-fussboden 1_36
+    21300074: tiled-fussboden 1_37
+    21300076: tiled-fussboden 1_38
+    21300078: tiled-fussboden 1_39
+    21300080: tiled-fussboden 1_40
+    21300082: tiled-fussboden 1_41
+    21300084: tiled-fussboden 1_42
+    21300086: tiled-fussboden 1_43
+    21300088: tiled-fussboden 1_44
+    21300090: tiled-fussboden 1_45
+    21300092: tiled-fussboden 1_46
+    21300094: tiled-fussboden 1_47
+    21300096: tiled-fussboden 1_48
+    21300098: tiled-fussboden 1_49
+    21300100: tiled-fussboden 1_50
+    21300102: tiled-fussboden 1_51
+    21300104: tiled-fussboden 1_52
+    21300106: tiled-fussboden 1_53
+    21300108: tiled-fussboden 1_54
+    21300110: tiled-fussboden 1_55
+    21300112: tiled-fussboden 1_56
+    21300114: tiled-fussboden 1_57
+    21300116: tiled-fussboden 1_58
+    21300118: tiled-fussboden 1_59
+    21300120: tiled-fussboden 1_60
+    21300122: tiled-fussboden 1_61
+    21300124: tiled-fussboden 1_62
+    21300126: tiled-fussboden 1_63
+    21300128: tiled-fussboden 1_64
+    21300130: tiled-fussboden 1_65
+    21300132: tiled-fussboden 1_66
+    21300134: tiled-fussboden 1_67
+    21300136: tiled-fussboden 1_68
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 25
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tiled-fussboden 1_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 300
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 3.5}
+        - {x: -4.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 300
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: -9.5}
+        - {x: -12.5, y: 2.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_2
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 300
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 2.5}
+        - {x: -12.5, y: -9.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_3
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 300
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 6.5, y: 12.5}
+        - {x: -12.5, y: 2.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_4
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 300
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_5
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 300
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 0.5, y: 12.5}
+        - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 6.5}
+        - {x: 3.5, y: 11.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_6
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 300
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 2.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: -1.5}
+        - {x: -3.5, y: 2.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_7
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 300
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 2.5, y: 2.5}
+        - {x: -12.5, y: -5.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 2.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_8
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 300
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -0.5, y: 12.5}
+        - {x: -12.5, y: 8.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_9
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 300
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_10
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 275
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_11
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 275
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_12
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 275
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_13
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 275
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_14
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 275
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_15
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 275
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_16
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 225
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 8.479294}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 8.479294}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_17
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 225
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_18
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 225
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_19
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 225
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_20
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 225
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_21
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 225
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_22
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 225
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_23
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 225
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_24
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 225
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_25
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 225
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_26
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 175
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_27
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 175
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_28
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 175
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_29
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 175
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_30
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 175
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_31
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 175
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_32
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 175
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_33
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 175
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_34
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 175
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_35
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 175
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_36
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 125
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_37
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 125
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_38
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 125
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_39
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 125
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_40
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 125
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_41
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 125
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_42
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 125
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_43
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 125
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_44
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 125
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_45
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 100
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_46
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 100
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_47
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 100
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_48
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 100
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_49
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 100
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_50
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 100
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_51
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 100
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_52
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 100
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_53
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 100
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 4.5}
+        - {x: -12.5, y: 4.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_54
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 75
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 3.5, y: 12.5}
+        - {x: -6.5, y: 3.5}
+        - {x: -12.5, y: -3.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_55
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 75
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_56
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 75
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -3.5, y: 12.5}
+        - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -12.5}
+        - {x: 12.5, y: -12.5}
+        - {x: 12.5, y: -4.5}
+        - {x: 1.5, y: 8.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_57
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 50
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -5.5}
+        - {x: -10.5, y: -7.5}
+        - {x: 11.5, y: -7.5}
+        - {x: 12.5, y: -6.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_58
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 50
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -5.5}
+        - {x: -10.5, y: -7.5}
+        - {x: 11.5, y: -7.5}
+        - {x: 12.5, y: -6.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_59
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 50
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -5.5}
+        - {x: -10.5, y: -7.5}
+        - {x: 11.5, y: -7.5}
+        - {x: 12.5, y: -6.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_60
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 50
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -5.5}
+        - {x: -10.5, y: -7.5}
+        - {x: 11.5, y: -7.5}
+        - {x: 12.5, y: -6.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_61
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 50
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -5.5}
+        - {x: -10.5, y: -7.5}
+        - {x: 11.5, y: -7.5}
+        - {x: 12.5, y: -6.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_62
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 50
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -5.5}
+        - {x: -10.5, y: -7.5}
+        - {x: 11.5, y: -7.5}
+        - {x: 12.5, y: -6.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_63
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 50
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -2.5}
+        - {x: -6.5, y: -7.5}
+        - {x: 11.5, y: -7.5}
+        - {x: 12.5, y: -6.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_64
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 50
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -5.5}
+        - {x: -10.5, y: -7.5}
+        - {x: 11.5, y: -7.5}
+        - {x: 12.5, y: -6.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_65
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 50
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -5.5}
+        - {x: -11.5, y: -7.5}
+        - {x: 10.5, y: -7.5}
+        - {x: 12.5, y: -1.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_66
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 25
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -2.5}
+        - {x: -6.5, y: -7.5}
+        - {x: 11.5, y: -7.5}
+        - {x: 12.5, y: -6.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_67
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 25
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -5.5}
+        - {x: -10.5, y: -7.5}
+        - {x: 11.5, y: -7.5}
+        - {x: 12.5, y: -6.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tiled-fussboden 1_68
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 25
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12.5, y: 12.5}
+        - {x: -12.5, y: -5.5}
+        - {x: -11.5, y: -7.5}
+        - {x: 10.5, y: -7.5}
+        - {x: 12.5, y: -1.5}
+        - {x: 12.5, y: 12.5}
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
