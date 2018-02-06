@@ -12,6 +12,14 @@ public class Cam : MonoBehaviour {
 		cam = GetComponent<CinemachineVirtualCamera>();
         if (cam) {
             Debug.Log("GEFUNDEN!");
+
+            // Shake
+            CinemachineBasicMultiChannelPerlin test = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            if (test) {
+                Debug.Log("Gefunden Component!");
+                //test.m_AmplitudeGain = 0.05f;
+                //test.m_FrequencyGain = 0.1f;
+            }
         }
         
 	}
@@ -39,6 +47,7 @@ public class Cam : MonoBehaviour {
 			Debug.Log("Erg:" + erg);
 
             cam.m_Lens.OrthographicSize = erg;
+            
 
             //Camera.main.orthographicSize = erg;
             //Debug.Log("Act:" + Camera.main.orthographicSize);

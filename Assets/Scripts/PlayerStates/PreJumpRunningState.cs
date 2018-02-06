@@ -5,10 +5,10 @@ namespace PlayerStates {
     class PreJumpRunningState: IStateInterface {
 
 
-        const float accelerationTime = 0.1f;
+        const float accelerationTime = 0.2f;
         const float maxJumpTime = 0.6f;
         const float maxJumpPercent = 90;
-        const float moveAddonPercent = 0.9f;
+        const float moveFactor = 1.3f;
 
         float jumpTimerStart;
         
@@ -26,7 +26,7 @@ namespace PlayerStates {
             float directionX = Input.GetAxisRaw("Horizontal");
             if (directionX == 0 || directionX != stateMachine.currentDirectionX || !playerController.IsJumpingPossible()) {
                 // Stopping
-                return PlayerStateMachine.runningState;
+                return PlayerStateMachine.stoppingState;
             }
 
             
@@ -38,7 +38,7 @@ namespace PlayerStates {
                 if (jumpForcePercent > 0) {
                     // JUMP NOW!
                     playerController.OnJumping(jumpForcePercent);
-                    PlayerStateMachine.jumpStartRunningState.SetMoveAddonPercent(jumpForcePercent);
+                    PlayerStateMachine.jumpStartRunningState.InitParameters(directionX);
                     return PlayerStateMachine.jumpStartRunningState;
                 } else {
                     Debug.LogError("Error in PreJumpIdleState: JumpForce <= 0, also kein Sprung möglich!");
@@ -60,7 +60,7 @@ namespace PlayerStates {
 
         private void Move(float directionX, PlayerStateMachine stateMachine, ref PlayerMovementController playerController) {
             stateMachine.FlipSprite(directionX);
-            playerController.OnMoving(directionX, accelerationTime, moveAddonPercent);
+            playerController.OnMoving(directionX, accelerationTime, moveFactor);
         }
 
         // Calculates percent of jump force y from prepared jumping time

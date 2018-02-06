@@ -2,9 +2,8 @@
 using System.Collections;
 
 public class PlayerMovementController: MovementController {
-
-    public float maxMoveSpeed = 7;
-    public float minMoveSpeed = 5;
+    
+    public float moveSpeed = 5;
     public float maxJumpHeight = 4;
     public float minJumpHeight = 1;
     public float timeToJumpApex = .4f;
@@ -63,7 +62,6 @@ public class PlayerMovementController: MovementController {
 
     // Interfaces for external Interaction
     public void ReceiveDamage(float directionHitX) {        
-        Debug.Log("Taking Damage!");
         spriteFlashingEffect.StartFlashing(.3f);
         OnMoving(-directionHitX, 0f, 1); // Push back in oposite direction       
     }
@@ -90,12 +88,13 @@ public class PlayerMovementController: MovementController {
         }        
     }
 
-    public void OnMoving(float directionX, float accelerationTime, float moveAddonSpeedPercent) {
+    public void OnMoving(float directionX, float accelerationTime) {
+        OnMoving(directionX, accelerationTime, 1f);
+    }
 
-        float possibleMovementRange = maxMoveSpeed - minMoveSpeed;
-        float newMoveSpeed = minMoveSpeed + possibleMovementRange * moveAddonSpeedPercent;
+    public void OnMoving(float directionX, float accelerationTime, float moveMultiplier) {
 
-        this.targetVelocityX += directionX * newMoveSpeed;
+        this.targetVelocityX += directionX * moveSpeed * moveMultiplier;
         this.accelerationTime = accelerationTime;
     }
 
@@ -139,7 +138,6 @@ public class PlayerMovementController: MovementController {
 
 
     void CalculateVelocity() {
-
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelerationTime);
         
         velocity.y += targetVelocityY + gravity * Time.deltaTime;

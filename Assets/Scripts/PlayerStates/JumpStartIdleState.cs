@@ -22,19 +22,20 @@ namespace PlayerStates {
                // Debug.Log("Allready grounded!!!");
             }
 
+            if (animationHasStopped) {
+                return PlayerStateMachine.jumpAirState;
+            }
+
             // Move while jumping
             Move(stateMachine, ref playerController);
 
-            if (animationHasStopped) {
-                return PlayerStateMachine.jumpAirState;
-            } 
             return null;
         }
 
         private void Move(PlayerStateMachine stateMachine, ref PlayerMovementController playerController) {
             float directionX = Input.GetAxisRaw("Horizontal");
             stateMachine.FlipSprite(directionX);
-            playerController.OnMoving(directionX, accelerationTime, 0);
+            playerController.OnMoving(directionX, accelerationTime, 1.4f);
         }
 
         public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {

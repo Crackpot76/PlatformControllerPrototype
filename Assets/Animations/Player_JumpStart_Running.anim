@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Player_Stopping
+  m_Name: Player_JumpStart_Running
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,11 +19,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 0abd5c4230b29944c964b42dc2d3ca2c, type: 3}
+      value: {fileID: 21300000, guid: 767a6f8a8bc697c4ab5d43708f75076b, type: 3}
     - time: 0.1
-      value: {fileID: 21300000, guid: 0abd5c4230b29944c964b42dc2d3ca2c, type: 3}
+      value: {fileID: 21300002, guid: 767a6f8a8bc697c4ab5d43708f75076b, type: 3}
     - time: 0.2
-      value: {fileID: 21300002, guid: 0abd5c4230b29944c964b42dc2d3ca2c, type: 3}
+      value: {fileID: 21300004, guid: 767a6f8a8bc697c4ab5d43708f75076b, type: 3}
+    - time: 0.3
+      value: {fileID: 21300006, guid: 767a6f8a8bc697c4ab5d43708f75076b, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -43,15 +45,16 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 0abd5c4230b29944c964b42dc2d3ca2c, type: 3}
-    - {fileID: 21300000, guid: 0abd5c4230b29944c964b42dc2d3ca2c, type: 3}
-    - {fileID: 21300002, guid: 0abd5c4230b29944c964b42dc2d3ca2c, type: 3}
+    - {fileID: 21300000, guid: 767a6f8a8bc697c4ab5d43708f75076b, type: 3}
+    - {fileID: 21300002, guid: 767a6f8a8bc697c4ab5d43708f75076b, type: 3}
+    - {fileID: 21300004, guid: 767a6f8a8bc697c4ab5d43708f75076b, type: 3}
+    - {fileID: 21300006, guid: 767a6f8a8bc697c4ab5d43708f75076b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.3
+    m_StopTime: 0.4
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -72,7 +75,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 0.2
+  - time: 0.3
     functionName: EventTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

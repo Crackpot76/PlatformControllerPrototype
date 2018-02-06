@@ -26,6 +26,11 @@ namespace PlayerStates {
                 return PlayerStateMachine.preJumpRunningState;
             }
 
+            if (playerController.IsFalling()) {
+                PlayerStateMachine.fallingRunningState.InitParameter(directionX, 1f);
+                return PlayerStateMachine.fallingRunningState;
+            }
+
             // continue moving
             Move(directionX, stateMachine, ref playerController);
             return null;
@@ -35,7 +40,7 @@ namespace PlayerStates {
 
         private void Move(float directionX, PlayerStateMachine stateMachine, ref PlayerMovementController playerController) {
             stateMachine.FlipSprite(directionX);
-            playerController.OnMoving(directionX, accelerationTime, 0);            
+            playerController.OnMoving(directionX, accelerationTime);            
         }
 
         public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController)

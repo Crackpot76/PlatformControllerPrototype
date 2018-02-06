@@ -11,8 +11,10 @@ namespace PlayerStates {
         public static JumpAirState jumpAirState = new JumpAirState();
         public static PreJumpRunningState preJumpRunningState = new PreJumpRunningState();
         public static JumpStartRunningState jumpStartRunningState = new JumpStartRunningState();
-        public static FallingState fallingState = new FallingState();
+        public static FallingIdleState fallingIdleState = new FallingIdleState();
+        public static FallingRunningState fallingRunningState = new FallingRunningState();
         public static LandingIdleState landingIdleState = new LandingIdleState();
+        public static LandingRunningState landingRunningState = new LandingRunningState();
         public static RunningState runningState = new RunningState();
         public static StoppingState stoppingState = new StoppingState();
 

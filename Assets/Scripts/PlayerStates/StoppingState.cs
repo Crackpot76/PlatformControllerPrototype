@@ -9,7 +9,7 @@ namespace PlayerStates {
         public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController)
         {
             animationHasStopped = false;
-            animator.SetTrigger(AnimPlayerParamters.STOPPING_TRIGGER);
+            animator.SetBool(AnimPlayerParamters.STOPPING, true);
         }
 
         public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController)
@@ -27,6 +27,7 @@ namespace PlayerStates {
         }
 
         public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
+            animator.SetBool(AnimPlayerParamters.STOPPING, false);
         }
 
         public void OnAnimEvent(string parameter) {

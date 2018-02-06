@@ -4,12 +4,11 @@ using System.Collections;
 namespace PlayerStates {
     class LandingIdleState: IStateInterface {
 
-        const float accelerationTime = 0.1f;
         bool animationHasStopped;
 
         public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
             animationHasStopped = false;
-            animator.SetTrigger(AnimPlayerParamters.LANDING_IDLE_TRIGGER);
+            animator.SetBool(AnimPlayerParamters.LANDING_IDLE, true);
         }
 
         public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
@@ -25,10 +24,12 @@ namespace PlayerStates {
         }
 
         public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
+            animator.SetBool(AnimPlayerParamters.LANDING_IDLE, false);
         }
 
         public void OnAnimEvent(string parameter) {
             animationHasStopped = true;
         }
+        
     }
 }

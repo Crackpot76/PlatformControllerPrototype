@@ -2,35 +2,38 @@
 using System.Collections;
 
 namespace PlayerStates {
-    class JumpAirState: IStateInterface {
-        
+    class FallingRunningState: IStateInterface {
+
         const float accelerationTime = 0.1f;
 
         float runJumpDirectionX = 0f;
         float moveMultiplierAir = 1f;
 
         public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
-            animator.SetBool(AnimPlayerParamters.JUMP_AIR, true);
-            
+            animator.SetBool(AnimPlayerParamters.FALLING_RUNNING, true);
             Move(stateMachine, ref playerController);
         }
 
         public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
-            
-            if (playerController.IsFalling() || playerController.IsGrounded()) {
-                float directionX = Input.GetAxisRaw("Horizontal");
 
+            float directionX = Input.GetAxisRaw("Horizontal");
+
+            if (playerController.IsGrounded()) {               
                 if (directionX == 0) {
-                    PlayerStateMachine.fallingIdleState.InitParameter(runJumpDirectionX, moveMultiplierAir);
-                    return PlayerStateMachine.fallingIdleState;
+                    return PlayerStateMachine.landingIdleState;
                 } else {
-                    PlayerStateMachine.fallingRunningState.InitParameter(runJumpDirectionX, moveMultiplierAir);
-                    return PlayerStateMachine.fallingRunningState;
-                }
+                    PlayerStateMachine.landingRunningState.InitParameter(runJumpDirectionX);
+                    return PlayerStateMachine.landingRunningState;
+                }                
+            } 
+
+            if (directionX == 0) {
+                return PlayerStateMachine.fallingIdleState;
             }
 
             // Move while jumping
             Move(stateMachine, ref playerController);
+
             return null;
         }
 
@@ -44,7 +47,7 @@ namespace PlayerStates {
         }
 
         public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
-            animator.SetBool(AnimPlayerParamters.JUMP_AIR, false);
+            animator.SetBool(AnimPlayerParamters.FALLING_RUNNING, false);
             runJumpDirectionX = 0f;
             moveMultiplierAir = 1f;
         }
