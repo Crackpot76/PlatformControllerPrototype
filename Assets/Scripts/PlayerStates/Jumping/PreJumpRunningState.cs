@@ -2,44 +2,39 @@
 using System.Collections;
 
 namespace PlayerStates {
-    class PreJumpRunningState: IStateInterface {
+    public class PreJumpRunningState: AbstractState {
 
-
-        const float accelerationTime = 0.2f;
         const float maxJumpTime = 0.6f;
-        const float maxJumpPercent = 90;
-        const float moveFactor = 1.4f;
-        const float moveFactorAir = 2f;
+        const float maxJumpPercent = 75f;
+        const float moveFactorGrounded = 1.4f;
 
         float jumpTimerStart;
         
 
-        public void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-            animator.SetBool(AnimPlayerParamters.PRE_JUMP_RUNNING, true);
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+            animator.SetBool(AnimPlayerParameters.PRE_JUMP_RUNNING, true);
             jumpTimerStart = Time.time;
 
-            float directionX = Input.GetAxisRaw("Horizontal");
-            Move(directionX, stateMachine, playerController);
+            MoveXGrounded(stateMachine, playerController, moveFactorGrounded);
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
 
             float directionX = Input.GetAxisRaw("Horizontal");
             if (directionX == 0 || directionX != stateMachine.currentDirectionX || !playerController.IsJumpingPossible()) {
                 // Stopping
                 return PlayerStateMachine.stoppingState;
             }
-
-            
+                   
 
             if (Input.GetKeyUp(KeyCode.Space)) {
                 float jumpTime = Time.time - jumpTimerStart;
                 float jumpForcePercent = CalculatePercentFromJumpTimer(jumpTime);
+                float moveFactorAirborne = CalculateMoveFactorFromJumpTimer(jumpTime);
 
                 if (jumpForcePercent > 0) {
-                    // JUMP NOW!
-                    playerController.OnJumping(jumpForcePercent);
-                    PlayerStateMachine.jumpStartRunningState.InitParameters(directionX, moveFactorAir);
+                    playerController.OnJumping(jumpForcePercent);                    
+                    PlayerStateMachine.jumpStartRunningState.InitParameters(directionX, moveFactorAirborne);
                     return PlayerStateMachine.jumpStartRunningState;
                 } else {
                     Debug.LogError("Error in PreJumpIdleState: JumpForce <= 0, also kein Sprung möglich!");
@@ -54,15 +49,15 @@ namespace PlayerStates {
             }
 
             // continue moving
-            Move(directionX, stateMachine, playerController);
+            MoveXGrounded(stateMachine, playerController, moveFactorGrounded);
 
             return null;
         }
 
-        private void Move(float directionX, PlayerStateMachine stateMachine, PlayerMovementController playerController) {
-            stateMachine.FlipSprite(directionX);
-            playerController.OnMoving(directionX, accelerationTime, moveFactor);
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+            animator.SetBool(AnimPlayerParameters.PRE_JUMP_RUNNING, false);
         }
+        
 
         // Calculates percent of jump force y from prepared jumping time
         private float CalculatePercentFromJumpTimer(float jumpTime) {
@@ -73,12 +68,13 @@ namespace PlayerStates {
         }
 
 
-        public void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-            animator.SetBool(AnimPlayerParamters.PRE_JUMP_RUNNING, false);
+        private float CalculateMoveFactorFromJumpTimer(float jumpTime) {
+            float result = 0;
+            float clampedJumpTime = Mathf.Clamp(jumpTime, 0, maxJumpTime);
+            float differenceMoveAir = MAX_MOVE_FACTOR_AIR - MIN_MOVE_FACTOR_AIR;
+            result = (clampedJumpTime * differenceMoveAir / maxJumpTime) + MIN_MOVE_FACTOR_AIR;            
+            return result;
         }
 
-        public void OnAnimEvent(string parameter) {
-            // not implemented
-        }
     }
 }

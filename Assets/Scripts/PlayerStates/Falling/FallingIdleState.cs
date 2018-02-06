@@ -2,29 +2,27 @@
 using System.Collections;
 
 namespace PlayerStates {
-    class FallingIdleState: IStateInterface {
+    public  class FallingIdleState: AbstractStateAir {   
 
-        const float accelerationTime = 0.1f;
-
-        float runJumpDirectionX = 0f;
-        float moveMultiplierAir = 1f;
-
-        public void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-            animator.SetBool(AnimPlayerParamters.FALLING_IDLE, true);
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+            animator.SetBool(AnimPlayerParameters.FALLING_IDLE, true);
             Move(stateMachine, playerController);
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-                        
-            if (playerController.IsGrounded()) {
-                float directionX = Input.GetAxisRaw("Horizontal");
+        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
 
-                if (directionX == 0 || moveMultiplierAir < 2f) {
+            float directionX = Input.GetAxisRaw("Horizontal");
+
+            if (playerController.IsGrounded()) {
+                if (directionX == 0 || moveMultiplierAir < MIDDLE_MOVE_FACTOR_AIR) {
                     return PlayerStateMachine.landingIdleState;
                 } else {
-                    PlayerStateMachine.landingRunningState.InitParameter(runJumpDirectionX);
                     return PlayerStateMachine.landingRunningState;
                 }
+            }
+
+            if (directionX != 0) {
+                return PlayerStateMachine.fallingRunningState;
             }
 
             // Move while jumping
@@ -33,28 +31,10 @@ namespace PlayerStates {
             return null;
         }
 
-        private void Move(PlayerStateMachine stateMachine, PlayerMovementController playerController) {
-            if (runJumpDirectionX != Input.GetAxisRaw("Horizontal")) {
-                runJumpDirectionX = Input.GetAxisRaw("Horizontal");
-                stateMachine.FlipSprite(runJumpDirectionX);
-                moveMultiplierAir = 1f; // wieder initialisieren da Initialrichtung gewechselt
-            }
-            playerController.OnMoving(runJumpDirectionX, accelerationTime, moveMultiplierAir);
-        }
 
-        public void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-            animator.SetBool(AnimPlayerParamters.FALLING_IDLE, false);
-            runJumpDirectionX = 0f;
-            moveMultiplierAir = 1f;
-        }
-
-        public void OnAnimEvent(string parameter) {
-            // not implemented
-        }
-
-        public void InitParameter(float runJumpDirectionX, float moveMultiplierAir) {
-            this.runJumpDirectionX = runJumpDirectionX;
-            this.moveMultiplierAir = moveMultiplierAir;
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+            animator.SetBool(AnimPlayerParameters.FALLING_IDLE, false);
+            ResetStateAir();
         }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 
 namespace PlayerStates {
-    static class AnimPlayerParamters{
+    static class AnimPlayerParameters{
 
         public static string IDLE = "IDLE";
         public static string RUNNING = "RUNNING";

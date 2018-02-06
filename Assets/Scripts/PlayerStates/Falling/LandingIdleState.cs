@@ -2,16 +2,16 @@
 using System.Collections;
 
 namespace PlayerStates {
-    class LandingIdleState: IStateInterface {
+    public class LandingIdleState: AbstractState {
 
         bool animationHasStopped;
 
-        public void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animationHasStopped = false;
-            animator.SetBool(AnimPlayerParamters.LANDING_IDLE, true);
+            animator.SetBool(AnimPlayerParameters.LANDING_IDLE, true);
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
 
             if (Input.GetKeyDown(KeyCode.Space)) {
                 return PlayerStateMachine.preJumpIdleState;
@@ -23,11 +23,11 @@ namespace PlayerStates {
             return null;
         }
 
-        public void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-            animator.SetBool(AnimPlayerParamters.LANDING_IDLE, false);
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+            animator.SetBool(AnimPlayerParameters.LANDING_IDLE, false);
         }
 
-        public void OnAnimEvent(string parameter) {
+        public override void OnAnimEvent(string parameter) {
             animationHasStopped = true;
         }
         

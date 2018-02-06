@@ -2,22 +2,21 @@
 using System.Collections;
 
 namespace PlayerStates {
-    class PreJumpIdleState: IStateInterface {
+    public class PreJumpIdleState: AbstractState {
 
 
         const float accelerationTime = 0.1f;
         const float maxJumpTime = 0.6f;
-        const float moveFactorAir = 1.5f;
 
         float jumpTimerStart;
 
 
-        public void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-            animator.SetBool(AnimPlayerParamters.PRE_JUMP_IDLE, true);
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+            animator.SetBool(AnimPlayerParameters.PRE_JUMP_IDLE, true);
             jumpTimerStart = Time.time;
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
 
             if (!playerController.IsJumpingPossible()) {
                 Debug.Log("In PreJumpIdleState: Irgendwas hat sich verändert, springen nicht mehr möglich!");
@@ -37,7 +36,7 @@ namespace PlayerStates {
                     if (directionX != 0) {
                         // Spieler will sich beim springen bewegen
                         stateMachine.FlipSprite(directionX);
-                        PlayerStateMachine.jumpStartRunningState.InitParameters(directionX, moveFactorAir);
+                        PlayerStateMachine.jumpStartRunningState.InitParameters(directionX);
                         return PlayerStateMachine.jumpStartRunningState;
                     } else {
                         return PlayerStateMachine.jumpStartIdleState;
@@ -58,20 +57,18 @@ namespace PlayerStates {
             return null;
         }
 
+
+
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+            animator.SetBool(AnimPlayerParameters.PRE_JUMP_IDLE, false);
+        }
+
         // Calculates percent of jump force from prepared jumping time
         private float CalculatePercentFromJumpTimer(float jumpTime) {
             float result = 0;
             float clampedJumpTime = Mathf.Clamp(jumpTime, 0, maxJumpTime);
             result = (clampedJumpTime * (100 / maxJumpTime)) / 100;
             return result;
-        }
-
-        public void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-            animator.SetBool(AnimPlayerParamters.PRE_JUMP_IDLE, false);
-        }
-
-        public void OnAnimEvent(string parameter) {
-            // not implemented
         }
     }
 }

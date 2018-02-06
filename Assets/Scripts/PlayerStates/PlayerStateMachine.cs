@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace PlayerStates {
     [RequireComponent(typeof(Animator), typeof(SpriteRenderer), typeof(PlayerMovementController))]
-    class PlayerStateMachine : MonoBehaviour {
+    public class PlayerStateMachine : MonoBehaviour {
 
         public static IdleState idleState = new IdleState();
         public static PreJumpIdleState preJumpIdleState = new PreJumpIdleState();
@@ -19,7 +19,7 @@ namespace PlayerStates {
         public static StoppingState stoppingState = new StoppingState();
 
         // current States
-        IStateInterface currentState;
+        AbstractState currentState;
         [HideInInspector]
         public float currentDirectionX;
 
@@ -37,7 +37,7 @@ namespace PlayerStates {
         }
 
         void Update() {
-            IStateInterface newState = currentState.HandleUpdate(this, animator, playerController);
+            AbstractState newState = currentState.HandleUpdate(this, animator, playerController);
             if (newState != null) {
                 currentState.OnExit(this, animator, playerController);
                 currentState = newState;

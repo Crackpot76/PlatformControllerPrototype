@@ -2,17 +2,17 @@ using UnityEngine;
 using System.Collections;
 
 namespace PlayerStates {
-    class StoppingState : IStateInterface {
+    public class StoppingState : AbstractState {
 
         bool animationHasStopped;
 
-        public void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
         {
             animationHasStopped = false;
-            animator.SetBool(AnimPlayerParamters.STOPPING, true);
+            animator.SetBool(AnimPlayerParameters.STOPPING, true);
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
+        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
         {
             if (animationHasStopped) {
         
@@ -26,11 +26,11 @@ namespace PlayerStates {
             return null;
         }
 
-        public void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-            animator.SetBool(AnimPlayerParamters.STOPPING, false);
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+            animator.SetBool(AnimPlayerParameters.STOPPING, false);
         }
 
-        public void OnAnimEvent(string parameter) {
+        public override void OnAnimEvent(string parameter) {
             animationHasStopped = true;
         }
     }

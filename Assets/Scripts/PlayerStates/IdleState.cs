@@ -2,21 +2,21 @@ using UnityEngine;
 using System.Collections;
 
 namespace PlayerStates {
-    class IdleState : IStateInterface {
+    public class IdleState : AbstractState {
 
-        public void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
         {
-            animator.SetBool(AnimPlayerParamters.IDLE, true);
+            animator.SetBool(AnimPlayerParameters.IDLE, true);
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
+        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
         {
-            float directionX = Input.GetAxisRaw("Horizontal");
+            
             if (Input.GetKey(KeyCode.Space) && playerController.IsJumpingPossible()) {
                 return PlayerStateMachine.preJumpIdleState;
             }
-
-            if (directionX != 0) {
+            
+            if (Input.GetAxisRaw("Horizontal") != 0) {
                 return PlayerStateMachine.runningState;
             }
 
@@ -26,13 +26,9 @@ namespace PlayerStates {
             return null;
         }
 
-        public void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
         {
-            animator.SetBool(AnimPlayerParamters.IDLE, false);
-        }
-
-        public void OnAnimEvent(string parameter) {
-            // not implemented
-        }
+            animator.SetBool(AnimPlayerParameters.IDLE, false);
+        }        
     }
 }

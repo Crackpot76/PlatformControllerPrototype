@@ -2,21 +2,18 @@
 using System.Collections;
 
 namespace PlayerStates {
-    class JumpStartIdleState: IStateInterface {
+    public class JumpStartIdleState: AbstractState {
 
         bool animationHasStopped;
         bool animationIsAirborne;
-        bool onJumpDownTriggered;
 
-        const float accelerationTime = 0.1f;
-
-        public void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animationHasStopped = false;
-            animator.SetBool(AnimPlayerParamters.JUMP_START_IDLE, true);
-            Move(stateMachine, playerController);
+            animator.SetBool(AnimPlayerParameters.JUMP_START_IDLE, true);
+            MoveXAirborne(stateMachine, playerController);
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
 
             if (playerController.IsGrounded()) {
                // Debug.Log("Allready grounded!!!");
@@ -27,22 +24,16 @@ namespace PlayerStates {
             }
 
             // Move while jumping
-            Move(stateMachine, playerController);
+            MoveXAirborne(stateMachine, playerController);
 
             return null;
         }
 
-        private void Move(PlayerStateMachine stateMachine, PlayerMovementController playerController) {
-            float directionX = Input.GetAxisRaw("Horizontal");
-            stateMachine.FlipSprite(directionX);
-            playerController.OnMoving(directionX, accelerationTime, 1.4f);
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+            animator.SetBool(AnimPlayerParameters.JUMP_START_IDLE, false);
         }
 
-        public void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-            animator.SetBool(AnimPlayerParamters.JUMP_START_IDLE, false);
-        }
-
-        public void OnAnimEvent(string parameter) {
+        public override void OnAnimEvent(string parameter) {
             animationHasStopped = true;
         }
     }
