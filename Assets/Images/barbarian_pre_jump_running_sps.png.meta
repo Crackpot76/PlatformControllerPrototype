@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 48fbab9267e826647934a824bcb7b29f
-timeCreated: 1517778123
+guid: e6588c18f97e1fe48a5ac148efe48bfd
+timeCreated: 1517954180
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: barbarian_run_fast_sps_0
-    21300002: barbarian_run_fast_sps_1
-    21300004: barbarian_run_fast_sps_2
-    21300006: barbarian_run_fast_sps_3
-    21300008: barbarian_run_fast_sps_4
-    21300010: barbarian_run_fast_sps_5
-    21300012: barbarian_run_fast_sps_6
-    21300014: barbarian_run_fast_sps_7
+    21300000: barbarian_pre_jump_running_sps_0
+    21300002: barbarian_pre_jump_running_sps_1
+    21300004: barbarian_pre_jump_running_sps_2
+    21300006: barbarian_pre_jump_running_sps_3
+    21300008: barbarian_pre_jump_running_sps_4
+    21300010: barbarian_pre_jump_running_sps_5
+    21300012: barbarian_pre_jump_running_sps_6
+    21300014: barbarian_pre_jump_running_sps_7
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -108,7 +108,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: barbarian_run_fast_sps_0
+      name: barbarian_pre_jump_running_sps_0
       rect:
         serializedVersion: 2
         x: 0
@@ -122,7 +122,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_run_fast_sps_1
+      name: barbarian_pre_jump_running_sps_1
       rect:
         serializedVersion: 2
         x: 50
@@ -136,7 +136,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_run_fast_sps_2
+      name: barbarian_pre_jump_running_sps_2
       rect:
         serializedVersion: 2
         x: 100
@@ -150,7 +150,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_run_fast_sps_3
+      name: barbarian_pre_jump_running_sps_3
       rect:
         serializedVersion: 2
         x: 150
@@ -164,7 +164,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_run_fast_sps_4
+      name: barbarian_pre_jump_running_sps_4
       rect:
         serializedVersion: 2
         x: 200
@@ -178,7 +178,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_run_fast_sps_5
+      name: barbarian_pre_jump_running_sps_5
       rect:
         serializedVersion: 2
         x: 250
@@ -192,7 +192,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_run_fast_sps_6
+      name: barbarian_pre_jump_running_sps_6
       rect:
         serializedVersion: 2
         x: 300
@@ -206,7 +206,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_run_fast_sps_7
+      name: barbarian_pre_jump_running_sps_7
       rect:
         serializedVersion: 2
         x: 350
