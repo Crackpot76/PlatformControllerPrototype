@@ -36,12 +36,12 @@ namespace PlayerStates {
             currentDirectionX = 1;
         }
 
-        void Update() {    
-            IStateInterface newState = currentState.HandleUpdate(this, ref animator, ref playerController);
+        void Update() {
+            IStateInterface newState = currentState.HandleUpdate(this, animator, playerController);
             if (newState != null) {
-                currentState.OnExit(this, ref animator, ref playerController);
+                currentState.OnExit(this, animator, playerController);
                 currentState = newState;
-                currentState.OnEnter(this, ref animator, ref playerController);
+                currentState.OnEnter(this, animator, playerController);
             }
 
         }

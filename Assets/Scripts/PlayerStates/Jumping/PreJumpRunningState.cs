@@ -8,20 +8,21 @@ namespace PlayerStates {
         const float accelerationTime = 0.2f;
         const float maxJumpTime = 0.6f;
         const float maxJumpPercent = 90;
-        const float moveFactor = 1.3f;
+        const float moveFactor = 1.4f;
+        const float moveFactorAir = 2f;
 
         float jumpTimerStart;
         
 
-        public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
+        public void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animator.SetBool(AnimPlayerParamters.PRE_JUMP_RUNNING, true);
             jumpTimerStart = Time.time;
 
             float directionX = Input.GetAxisRaw("Horizontal");
-            Move(directionX, stateMachine, ref playerController);
+            Move(directionX, stateMachine, playerController);
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
+        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
 
             float directionX = Input.GetAxisRaw("Horizontal");
             if (directionX == 0 || directionX != stateMachine.currentDirectionX || !playerController.IsJumpingPossible()) {
@@ -38,7 +39,7 @@ namespace PlayerStates {
                 if (jumpForcePercent > 0) {
                     // JUMP NOW!
                     playerController.OnJumping(jumpForcePercent);
-                    PlayerStateMachine.jumpStartRunningState.InitParameters(directionX);
+                    PlayerStateMachine.jumpStartRunningState.InitParameters(directionX, moveFactorAir);
                     return PlayerStateMachine.jumpStartRunningState;
                 } else {
                     Debug.LogError("Error in PreJumpIdleState: JumpForce <= 0, also kein Sprung möglich!");
@@ -53,28 +54,26 @@ namespace PlayerStates {
             }
 
             // continue moving
-            Move(directionX, stateMachine, ref playerController);
+            Move(directionX, stateMachine, playerController);
 
             return null;
         }
 
-        private void Move(float directionX, PlayerStateMachine stateMachine, ref PlayerMovementController playerController) {
+        private void Move(float directionX, PlayerStateMachine stateMachine, PlayerMovementController playerController) {
             stateMachine.FlipSprite(directionX);
             playerController.OnMoving(directionX, accelerationTime, moveFactor);
         }
 
         // Calculates percent of jump force y from prepared jumping time
         private float CalculatePercentFromJumpTimer(float jumpTime) {
-            Debug.Log("JumpTime:" + jumpTime);
             float result = 0;
             float clampedJumpTime = Mathf.Clamp(jumpTime, 0, maxJumpTime);
             result = (clampedJumpTime * (maxJumpPercent / maxJumpTime)) / 100;
-            Debug.Log("JumpPercent:" + result);
             return result;
         }
 
 
-        public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
+        public void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animator.SetBool(AnimPlayerParamters.PRE_JUMP_RUNNING, false);
         }
 

@@ -6,12 +6,12 @@ namespace PlayerStates {
 
         bool animationHasStopped;
 
-        public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
+        public void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animationHasStopped = false;
             animator.SetBool(AnimPlayerParamters.LANDING_IDLE, true);
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
+        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
 
             if (Input.GetKeyDown(KeyCode.Space)) {
                 return PlayerStateMachine.preJumpIdleState;
@@ -23,7 +23,7 @@ namespace PlayerStates {
             return null;
         }
 
-        public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
+        public void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animator.SetBool(AnimPlayerParamters.LANDING_IDLE, false);
         }
 

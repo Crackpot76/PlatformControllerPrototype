@@ -8,15 +8,14 @@ namespace PlayerStates {
         bool animationHasStopped;
         float runJumpDirectionX = 1f;
 
-        public void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
+        public void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animationHasStopped = false;
             animator.SetBool(AnimPlayerParamters.LANDING_RUNNING, true);
-            Move(ref playerController);
+            Move(playerController);
         }
 
-        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
-
-            Debug.Log(">>>> LANDING RUNNING! MOVE DIR:" + runJumpDirectionX);
+        public IStateInterface HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+            
             if (animationHasStopped) {
                 float directionX = Input.GetAxisRaw("Horizontal");
 
@@ -27,16 +26,16 @@ namespace PlayerStates {
                 }                
             }
 
-            Move(ref playerController);
+            Move(playerController);
 
             return null;
         }
 
-        private void Move(ref PlayerMovementController playerController) {
+        private void Move(PlayerMovementController playerController) {
             playerController.OnMoving(runJumpDirectionX, accelerationTime);
         }
 
-        public void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController) {
+        public void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animator.SetBool(AnimPlayerParamters.LANDING_RUNNING, false);
             runJumpDirectionX = 1;
         }

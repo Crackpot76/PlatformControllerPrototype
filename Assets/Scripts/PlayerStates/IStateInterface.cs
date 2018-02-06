@@ -4,9 +4,9 @@ using System.Collections;
 namespace PlayerStates {
    interface IStateInterface {
 
-       void OnEnter(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController);
-       IStateInterface HandleUpdate(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController);
-       void OnExit(PlayerStateMachine stateMachine, ref Animator animator, ref PlayerMovementController playerController);
+       void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController);
+       IStateInterface HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController);
+       void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController);
         void OnAnimEvent(string parameter);
    }
 }
