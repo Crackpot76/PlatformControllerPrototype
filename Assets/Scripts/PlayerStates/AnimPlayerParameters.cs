@@ -11,12 +11,13 @@ namespace PlayerStates {
         public static string JUMP_START_IDLE = "JUMP_START_IDLE";
         public static string JUMP_START_RUNNING = "JUMP_START_RUNNING";
         public static string JUMP_AIR = "JUMP_AIR";        
-        public static string FALLING_IDLE = "FALLING_IDLE";
-        public static string FALLING_RUNNING = "FALLING_RUNNING";
-        public static string LANDING_IDLE = "LANDING_IDLE";
-        public static string LANDING_RUNNING = "LANDING_RUNNING";
+        public static string FALLING = "FALLING";
+        public static string LAND_IDLE = "LAND_IDLE";
+        public static string LAND_RUNNING = "LAND_RUNNING";
+        public static string LAND_ROLLING = "LAND_ROLLING";
+        public static string DUCKING = "DUCKING";
 
-        
+
 
 
     }

@@ -2,34 +2,26 @@
 using System.Collections;
 
 namespace PlayerStates {
-    public class LandingIdleState: AbstractState {
-
-        bool animationHasStopped;
+    public class DuckingState: AbstractState {
 
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-            animationHasStopped = false;
-            animator.SetBool(AnimPlayerParameters.LANDING_IDLE, true);
+            animator.SetBool(AnimPlayerParameters.DUCKING, true);
         }
 
         public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
 
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                return PlayerStateMachine.preJumpIdleState;
-            }
-            if (animationHasStopped) {
+            if (!Input.GetKey(KeyCode.DownArrow)) {
                 return PlayerStateMachine.idleState;
             }
 
+            if (playerController.IsFalling()) {
+                return PlayerStateMachine.fallingState;
+            }
             return null;
         }
 
         public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-            animator.SetBool(AnimPlayerParameters.LANDING_IDLE, false);
+            animator.SetBool(AnimPlayerParameters.DUCKING, false);
         }
-
-        public override void OnAnimEvent(string parameter) {
-            animationHasStopped = true;
-        }
-        
     }
 }

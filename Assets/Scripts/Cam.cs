@@ -30,7 +30,7 @@ public class Cam : MonoBehaviour {
 		{
 			lastHeight = Screen.height;
 			//Debug.Log("ScreenHeight=" + lastHeight);
-			float textureSize = 25f;
+			float textureSize = 24f;
             //float unitsPerPixel = 1f/textureSize;
             //Debug.Log("UnitsPerPixel:" + unitsPerPixel);
             float erg = (lastHeight / (textureSize * 2f)) / 3f;

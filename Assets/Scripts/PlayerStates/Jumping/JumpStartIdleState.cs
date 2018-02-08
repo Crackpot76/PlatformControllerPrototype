@@ -4,11 +4,8 @@ using System.Collections;
 namespace PlayerStates {
     public class JumpStartIdleState: AbstractState {
 
-        bool animationHasStopped;
-        bool animationIsAirborne;
-
+        
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-            animationHasStopped = false;
             animator.SetBool(AnimPlayerParameters.JUMP_START_IDLE, true);
             MoveXAirborne(stateMachine, playerController);
         }
@@ -17,10 +14,16 @@ namespace PlayerStates {
 
             if (playerController.IsGrounded()) {
                // Debug.Log("Allready grounded!!!");
+               return PlayerStateMachine.idleState;
             }
 
-            if (animationHasStopped) {
-                return PlayerStateMachine.jumpAirState;
+            /*      if (animationHasStopped) {
+                      return PlayerStateMachine.jumpAirState;
+                  } */
+
+            if (playerController.IsFalling() || playerController.IsGrounded()) {
+                                
+                return PlayerStateMachine.fallingState;
             }
 
             // Move while jumping
@@ -32,9 +35,6 @@ namespace PlayerStates {
         public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.JUMP_START_IDLE, false);
         }
-
-        public override void OnAnimEvent(string parameter) {
-            animationHasStopped = true;
-        }
+        
     }
 }

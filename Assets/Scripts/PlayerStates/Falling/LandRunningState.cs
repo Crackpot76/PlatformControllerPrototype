@@ -2,13 +2,13 @@
 using System.Collections;
 
 namespace PlayerStates {
-    public class LandingRunningState: AbstractState {
+    public class LandRunningState: AbstractState {
         
         bool animationHasStopped;
 
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animationHasStopped = false;
-            animator.SetBool(AnimPlayerParameters.LANDING_RUNNING, true);
+            animator.SetBool(AnimPlayerParameters.LAND_RUNNING, true);
             MoveXGrounded(stateMachine, playerController);
         }
 
@@ -30,7 +30,7 @@ namespace PlayerStates {
         }
 
         public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-            animator.SetBool(AnimPlayerParameters.LANDING_RUNNING, false);
+            animator.SetBool(AnimPlayerParameters.LAND_RUNNING, false);
         }
 
         public override void OnAnimEvent(string parameter) {

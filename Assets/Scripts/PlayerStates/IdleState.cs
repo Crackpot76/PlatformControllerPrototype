@@ -16,13 +16,18 @@ namespace PlayerStates {
                 return PlayerStateMachine.preJumpIdleState;
             }
             
-            if (Input.GetAxisRaw("Horizontal") != 0) {
+            if (Input.GetAxisRaw("Horizontal") != 0 && playerController.IsGrounded()) {
                 return PlayerStateMachine.runningState;
             }
 
             if (playerController.IsFalling()) {
-                return PlayerStateMachine.fallingIdleState;
+                return PlayerStateMachine.fallingState;
             }
+
+            if (Input.GetKey(KeyCode.DownArrow) && playerController.IsGrounded()) {
+                return PlayerStateMachine.duckingState;
+            }
+
             return null;
         }
 

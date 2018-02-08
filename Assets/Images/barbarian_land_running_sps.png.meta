@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 0f7bd17805780c647ad8b6646d8e5c21
-timeCreated: 1517860142
+guid: fcbaee7d96e2bc74d955c271e4fd41bf
+timeCreated: 1518120501
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,8 +8,6 @@ TextureImporter:
     21300002: barbarian_land_running_sps_1
     21300004: barbarian_land_running_sps_2
     21300006: barbarian_land_running_sps_3
-    21300008: barbarian_land_running_sps_4
-    21300010: barbarian_land_running_sps_5
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -52,7 +50,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 25
+  spritePixelsToUnits: 24
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -152,34 +150,6 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 150
-        y: 0
-        width: 50
-        height: 60
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: barbarian_land_running_sps_4
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 0
-        width: 50
-        height: 60
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: barbarian_land_running_sps_5
-      rect:
-        serializedVersion: 2
-        x: 250
         y: 0
         width: 50
         height: 60

@@ -4,27 +4,26 @@ using System.Collections;
 namespace PlayerStates {
     public class JumpStartRunningState: AbstractStateAir {
         
-        bool animationHasStopped;
 
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
-            animationHasStopped = false;
             animator.SetBool(AnimPlayerParameters.JUMP_START_RUNNING, true);
-            Move(stateMachine, playerController);
+            MoveXAirborne(stateMachine, playerController);
         }
 
         public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
 
             if (playerController.IsGrounded()) {
                 // Debug.Log("Allready grounded!!!");
+                return PlayerStateMachine.runningState;
             }
 
-            if (animationHasStopped) {
-                PlayerStateMachine.jumpAirState.InitParameters(initialRunJumpDirectionX, moveMultiplierAir);
-                return PlayerStateMachine.jumpAirState;
+            if (playerController.IsFalling() || playerController.IsGrounded()) {
+                PlayerStateMachine.fallingState.InitParameters(initialRunJumpDirectionX, moveMultiplierAir);
+                return PlayerStateMachine.fallingState;
             }
 
             // Move while jumping
-            Move(stateMachine, playerController);
+            MoveXAirborne(stateMachine, playerController);
             return null;
         }
 
@@ -32,9 +31,6 @@ namespace PlayerStates {
             animator.SetBool(AnimPlayerParameters.JUMP_START_RUNNING, false);
             ResetStateAir();
         }
-
-        public override void OnAnimEvent(string parameter) {
-            animationHasStopped = true;
-        }
+        
     }
 }

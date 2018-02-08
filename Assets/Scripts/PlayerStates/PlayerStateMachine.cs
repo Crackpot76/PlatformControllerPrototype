@@ -8,20 +8,21 @@ namespace PlayerStates {
         public static IdleState idleState = new IdleState();
         public static PreJumpIdleState preJumpIdleState = new PreJumpIdleState();
         public static JumpStartIdleState jumpStartIdleState = new JumpStartIdleState();
-        public static JumpAirState jumpAirState = new JumpAirState();
         public static PreJumpRunningState preJumpRunningState = new PreJumpRunningState();
         public static JumpStartRunningState jumpStartRunningState = new JumpStartRunningState();
-        public static FallingIdleState fallingIdleState = new FallingIdleState();
-        public static FallingRunningState fallingRunningState = new FallingRunningState();
-        public static LandingIdleState landingIdleState = new LandingIdleState();
-        public static LandingRunningState landingRunningState = new LandingRunningState();
+        public static FallingState fallingState = new FallingState();
+        public static LandIdleState landIdleState = new LandIdleState();
+        public static LandRunningState landRunningState = new LandRunningState();
+        public static LandRollingState landRollingState = new LandRollingState();
         public static RunningState runningState = new RunningState();
         public static StoppingState stoppingState = new StoppingState();
+        public static DuckingState duckingState = new DuckingState();
 
         // current States
         AbstractState currentState;
         [HideInInspector]
         public float currentDirectionX;
+        public Transform currentTransform;
 
         Animator animator;
         SpriteRenderer spriteRenderer;
@@ -37,6 +38,7 @@ namespace PlayerStates {
         }
 
         void Update() {
+            currentTransform = transform;
             AbstractState newState = currentState.HandleUpdate(this, animator, playerController);
             if (newState != null) {
                 currentState.OnExit(this, animator, playerController);

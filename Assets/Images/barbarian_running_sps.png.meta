@@ -1,13 +1,17 @@
 fileFormatVersion: 2
-guid: 767a6f8a8bc697c4ab5d43708f75076b
-timeCreated: 1517860076
+guid: 1281a4caf21beac41830f2c26c88489f
+timeCreated: 1517430617
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: barbarian_jumps_start_running_0
-    21300002: barbarian_jumps_start_running_1
-    21300004: barbarian_jumps_start_running_2
-    21300006: barbarian_jumps_start_running_3
+    21300000: barbarian_run_new_sps_0
+    21300002: barbarian_run_new_sps_1
+    21300004: barbarian_run_new_sps_2
+    21300006: barbarian_run_new_sps_3
+    21300008: barbarian_run_new_sps_4
+    21300010: barbarian_run_new_sps_5
+    21300012: barbarian_run_new_sps_6
+    21300014: barbarian_run_new_sps_7
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -50,7 +54,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 25
+  spritePixelsToUnits: 24
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -104,13 +108,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: barbarian_jumps_start_running_0
+      name: barbarian_run_new_sps_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 50
-        height: 60
+        height: 50
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,13 +122,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_jumps_start_running_1
+      name: barbarian_run_new_sps_1
       rect:
         serializedVersion: 2
         x: 50
         y: 0
         width: 50
-        height: 60
+        height: 50
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,13 +136,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_jumps_start_running_2
+      name: barbarian_run_new_sps_2
       rect:
         serializedVersion: 2
         x: 100
         y: 0
         width: 50
-        height: 60
+        height: 50
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,13 +150,69 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_jumps_start_running_3
+      name: barbarian_run_new_sps_3
       rect:
         serializedVersion: 2
         x: 150
         y: 0
         width: 50
-        height: 60
+        height: 50
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: barbarian_run_new_sps_4
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 50
+        height: 50
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: barbarian_run_new_sps_5
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 0
+        width: 50
+        height: 50
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: barbarian_run_new_sps_6
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 50
+        height: 50
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: barbarian_run_new_sps_7
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 0
+        width: 50
+        height: 50
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

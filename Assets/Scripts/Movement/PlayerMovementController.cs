@@ -63,7 +63,7 @@ public class PlayerMovementController: MovementController {
     // Interfaces for external Interaction
     public void ReceiveDamage(float directionHitX) {        
         spriteFlashingEffect.StartFlashing(.3f);
-        OnMoving(-directionHitX, 0f, 1); // Push back in oposite direction       
+        OnMoving(-directionHitX, 0f, 3f); // Push back in oposite direction       
     }
 
 
