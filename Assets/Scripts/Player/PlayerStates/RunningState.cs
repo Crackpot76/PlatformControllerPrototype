@@ -30,7 +30,6 @@ namespace PlayerStates {
                 //check if stopping Animation
                 float newPosX = stateMachine.currentTransform.position.x;
                 float distanceRun = (startX >= newPosX ? startX - newPosX : newPosX - startX);
-                Debug.Log("DistanceRun" + distanceRun);
                 if (distanceRun < QUICKSTOP_DISTANCE) {
                     if (directionX == 0) {
                         return PlayerStateMachine.idleState;

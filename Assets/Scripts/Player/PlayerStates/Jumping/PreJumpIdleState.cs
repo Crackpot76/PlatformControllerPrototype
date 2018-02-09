@@ -19,7 +19,6 @@ namespace PlayerStates {
         public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
 
             if (!playerController.IsJumpingPossible()) {
-                Debug.Log("In PreJumpIdleState: Irgendwas hat sich verändert, springen nicht mehr möglich!");
                 return PlayerStateMachine.idleState;
             }
 

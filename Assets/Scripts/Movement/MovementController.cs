@@ -12,7 +12,6 @@ public class MovementController: RaycastController {
         collisions.faceDir = 1;
         collisions.below = true;
         collisions.lastBelow = true;
-
     }
 
     public void Move(Vector2 moveAmount, bool standingOnPlatform = false) {

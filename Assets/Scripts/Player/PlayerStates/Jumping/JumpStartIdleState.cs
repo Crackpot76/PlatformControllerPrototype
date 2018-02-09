@@ -13,13 +13,8 @@ namespace PlayerStates {
         public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
 
             if (playerController.IsGrounded()) {
-               // Debug.Log("Allready grounded!!!");
                return PlayerStateMachine.idleState;
             }
-
-            /*      if (animationHasStopped) {
-                      return PlayerStateMachine.jumpAirState;
-                  } */
 
             if (playerController.IsFalling() || playerController.IsGrounded()) {
                                 

@@ -11,7 +11,6 @@ namespace PlayerStates {
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.FALLING, true);
             startYPos = stateMachine.currentTransform.position.y;
-            Debug.Log("startingY Pos: " + startYPos);
             Move(stateMachine, playerController);
         }
 
@@ -29,7 +28,6 @@ namespace PlayerStates {
 
                 float currentYPos = stateMachine.currentTransform.position.y;
                 float distanceFalling = Mathf.Abs(Mathf.Abs(startYPos) - Mathf.Abs(currentYPos));
-                Debug.Log("Distance Falling:" + distanceFalling);
                 if (distanceFalling < MIN_FALL_HEIGHT) {
                     return PlayerStateMachine.idleState;
                 }

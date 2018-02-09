@@ -7,19 +7,14 @@ public class SpriteFlashing {
     SpriteRenderer spriteRenderer;
     Shader shaderFlash;
     Shader shaderDefault;
-
-    const float defaultSwitchTimer = .1f;
-    float switchTimer;
+    
     bool toWhite = true;
 
-    bool started = false;
-    float timer;
 
     public SpriteFlashing(SpriteRenderer spriteRenderer) {
         this.spriteRenderer = spriteRenderer;
         this.shaderFlash = Shader.Find("GUI/Text Shader"); 
         this.shaderDefault = Shader.Find("Sprites/Default");
-        switchTimer = defaultSwitchTimer;
     }
 
 
@@ -32,28 +27,9 @@ public class SpriteFlashing {
         spriteRenderer.color = Color.white;
     }
 
-    public void StartFlashing(float timerFlashing) {
-        started = true;
-        timer = timerFlashing;        
-    }
 
-    public void Update() { 
-        if (started) {
-            timer -= Time.deltaTime;
-            if (timer <= 0) {
-                normalSprite();
-                toWhite = true;
-                started = false;
-            } else {
-                UpdateShader();
-            }
-
-        }
-    }
-
-    void UpdateShader() {
-        switchTimer -= Time.deltaTime;
-        if (switchTimer <= 0) {
+    public IEnumerator Flash(float flashCount, float flashInterval) {
+        for (int i = 0; i < flashCount; i++) {
             // switch color
             if (toWhite) {
                 whiteSprite();
@@ -62,8 +38,7 @@ public class SpriteFlashing {
                 normalSprite();
                 toWhite = true;
             }
-            switchTimer = defaultSwitchTimer;
+            yield return new WaitForSeconds(flashInterval);
         }
     }
-
 }

@@ -4,57 +4,53 @@ using System.Collections;
 
 public class Cam : MonoBehaviour {
 
-	
+    const float TEXTURE_SIZE = 24f;
 	private float lastHeight = 0;
 	private CinemachineVirtualCamera cam;
+
 	// Use this for initialization
 	void Start () {
 		cam = GetComponent<CinemachineVirtualCamera>();
-        if (cam) {
-            Debug.Log("GEFUNDEN!");
 
-            // Shake
-            CinemachineBasicMultiChannelPerlin test = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-            if (test) {
-                Debug.Log("Gefunden Component!");
-                //test.m_AmplitudeGain = 0.05f;
-                //test.m_FrequencyGain = 0.1f;
-            }
+        UpdateOrthographicSize();
+
+        // Shake
+        CinemachineBasicMultiChannelPerlin noiseSettings = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        if (noiseSettings) {
+            //test.m_AmplitudeGain = 0.05f;
+            //test.m_FrequencyGain = 5f;
         }
         
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (lastHeight != Screen.height)
-		{
-			lastHeight = Screen.height;
-			//Debug.Log("ScreenHeight=" + lastHeight);
-			float textureSize = 24f;
-            //float unitsPerPixel = 1f/textureSize;
-            //Debug.Log("UnitsPerPixel:" + unitsPerPixel);
-            float erg = (lastHeight / (textureSize * 2f)) / 3f;
-			
-			erg = erg * 100;
-			if (erg % 2 != 0) {
-				erg ++;
-			}
-			erg = erg / 100f;
-//			erg = erg * 10;
-//			erg = Mathf.Round(erg);
-//			erg = erg / 10f;
-			
-			Debug.Log("Erg:" + erg);
+        UpdateOrthographicSize();
+
+    }
+
+
+    private void UpdateOrthographicSize() {
+
+        if (lastHeight != Screen.height) {
+            lastHeight = Screen.height;
+
+            float scale = 4f;
+            if (Screen.height < 1080) {
+                scale = 3f;
+            }
+            if (Screen.height < 768) {
+                scale = 2f;
+            }
+            if (Screen.height < 512) {
+                scale = 1f;
+            }
+            
+            float erg = (Screen.height / (TEXTURE_SIZE * 2f)) / scale;
 
             cam.m_Lens.OrthographicSize = erg;
-            
-
-            //Camera.main.orthographicSize = erg;
-            //Debug.Log("Act:" + Camera.main.orthographicSize);
-
-            //Camera.main.orthographicSize = 5.73f;
-        }	
-	}
+        }
+    }
 	
 
 }

@@ -19,30 +19,17 @@ public class PlayerMovementController: MovementController {
     float targetVelocityX;
     float targetVelocityY;
     float accelerationTime; 
-
-    // SpriteRenderer 
-    SpriteRenderer spriteRenderer;
-
-    //TODO Wohl falsch hier aufgehoben
-    // Effects
-    SpriteFlashing spriteFlashingEffect;
-
+    
 
 
     public override void Start() {
-        base.Start();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
-        // Effect initialisation
-        spriteFlashingEffect = new SpriteFlashing(spriteRenderer);        
+        base.Start();  
 
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
     }
-
-
+    
 
     void Update() {
-        spriteFlashingEffect.Update();
 
         CalculateVelocity();
 
@@ -59,14 +46,7 @@ public class PlayerMovementController: MovementController {
         targetVelocityX = 0;
     }
 
-
-    // Interfaces for external Interaction
-    public void ReceiveDamage(float directionHitX) {        
-        spriteFlashingEffect.StartFlashing(.3f);
-        OnMoving(-directionHitX, 0f, 3f); // Push back in oposite direction       
-    }
-
-
+    
     // --------------------------------------------------------------------------
     //  Player Controller Commands for Input
     // --------------------------------------------------------------------------
@@ -75,10 +55,7 @@ public class PlayerMovementController: MovementController {
     public bool OnJumping(float jumpForcePercent) {
         if (IsJumpingPossible()) {
             float possibleJumpingHeightRange = maxJumpHeight - minJumpHeight;
-            float newJumpingHeight = minJumpHeight + possibleJumpingHeightRange * jumpForcePercent;
-
-            Debug.Log(newJumpingHeight);
-
+            float newJumpingHeight = minJumpHeight + possibleJumpingHeightRange * jumpForcePercent;            
             float calculatedGravity = -(2 * newJumpingHeight) / Mathf.Pow(timeToJumpApex, 2);
 
             targetVelocityY = Mathf.Abs(calculatedGravity) * timeToJumpApex;
@@ -134,7 +111,6 @@ public class PlayerMovementController: MovementController {
             return false;
         }
     }
-
 
 
     void CalculateVelocity() {
