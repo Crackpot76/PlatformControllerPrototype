@@ -9,6 +9,7 @@ namespace PlayerStates {
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animationHasStopped = false;
             animator.SetBool(AnimPlayerParameters.LAND_IDLE, true);
+            stateMachine.InstantiateEffect(stateMachine.dustLandingEffect);
         }
 
         public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {

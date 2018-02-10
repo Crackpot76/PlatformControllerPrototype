@@ -18,6 +18,12 @@ namespace PlayerStates {
         public static StoppingState stoppingState = new StoppingState();
         public static DuckingState duckingState = new DuckingState();
 
+        private const string DUST_JUMP_EFFECT_PREFAB_NAME = "DustJumpIdleGo";
+        public Object dustJumpEffect;
+        private const string DUST_LANDING_EFFECT_PREFAB_NAME = "DustLandingGo";
+        public Object dustLandingEffect;
+
+
         // current States
         AbstractState currentState;
         [HideInInspector]
@@ -33,6 +39,10 @@ namespace PlayerStates {
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             playerController = GetComponent<PlayerMovementController>();
+
+            dustJumpEffect = Resources.Load(DUST_JUMP_EFFECT_PREFAB_NAME);
+            dustLandingEffect = Resources.Load(DUST_LANDING_EFFECT_PREFAB_NAME);
+
             currentState = idleState;            
             currentDirectionX = 1;
         }
@@ -57,6 +67,13 @@ namespace PlayerStates {
                 currentDirectionX = newDirectionX;
                 spriteRenderer.flipX = (currentDirectionX < 0);
             }
-        }      
+        } 
+        
+        public void InstantiateEffect(Object effectToInstanciate) {
+            GameObject dustGo = (GameObject)Instantiate(effectToInstanciate);
+            SpriteRenderer effectSpriteRenderer = dustGo.GetComponent<SpriteRenderer>();
+            effectSpriteRenderer.flipX = (currentDirectionX < 0);
+            dustGo.transform.position = transform.position;
+        }
     }
 }

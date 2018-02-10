@@ -29,6 +29,8 @@ namespace PlayerStates {
 
                 if (jumpForcePercent > 0) {
                     // JUMP NOW!
+
+                    stateMachine.InstantiateEffect(stateMachine.dustJumpEffect);
                     playerController.OnJumping(jumpForcePercent);
 
                     float directionX = Input.GetAxisRaw("Horizontal");

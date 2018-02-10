@@ -33,6 +33,7 @@ namespace PlayerStates {
                 float moveFactorAirborne = CalculateMoveFactorFromJumpTimer(jumpTime);
 
                 if (jumpForcePercent > 0) {
+                    stateMachine.InstantiateEffect(stateMachine.dustJumpEffect);
                     playerController.OnJumping(jumpForcePercent);                    
                     PlayerStateMachine.jumpStartRunningState.InitParameters(directionX, moveFactorAirborne);
                     return PlayerStateMachine.jumpStartRunningState;
