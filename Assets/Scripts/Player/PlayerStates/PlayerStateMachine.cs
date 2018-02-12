@@ -5,24 +5,19 @@ namespace PlayerStates {
     [RequireComponent(typeof(Animator), typeof(SpriteRenderer), typeof(PlayerMovementController))]
     public class PlayerStateMachine : MonoBehaviour {
 
-        public static IdleState idleState = new IdleState();
-        public static PreJumpIdleState preJumpIdleState = new PreJumpIdleState();
-        public static JumpStartIdleState jumpStartIdleState = new JumpStartIdleState();
-        public static PreJumpRunningState preJumpRunningState = new PreJumpRunningState();
-        public static JumpStartRunningState jumpStartRunningState = new JumpStartRunningState();
-        public static FallingState fallingState = new FallingState();
-        public static LandIdleState landIdleState = new LandIdleState();
-        public static LandRunningState landRunningState = new LandRunningState();
-        public static LandRollingState landRollingState = new LandRollingState();
-        public static RunningState runningState = new RunningState();
-        public static StoppingState stoppingState = new StoppingState();
-        public static DuckingState duckingState = new DuckingState();
-
-        private const string DUST_JUMP_EFFECT_PREFAB_NAME = "DustJumpIdleGo";
-        public Object dustJumpEffect;
-        private const string DUST_LANDING_EFFECT_PREFAB_NAME = "DustLandingGo";
-        public Object dustLandingEffect;
-
+        public static IdleState idleState;
+        public static PreJumpIdleState preJumpIdleState;
+        public static JumpStartIdleState jumpStartIdleState;
+        public static PreJumpRunningState preJumpRunningState;
+        public static JumpStartRunningState jumpStartRunningState;
+        public static FallingState fallingState;
+        public static LandIdleState landIdleState;
+        public static LandRunningState landRunningState;
+        public static LandRollingState landRollingState;
+        public static RunningState runningState;
+        public static StoppingState stoppingState;
+        public static DuckingState duckingState;
+        
 
         // current States
         AbstractState currentState;
@@ -40,9 +35,19 @@ namespace PlayerStates {
             spriteRenderer = GetComponent<SpriteRenderer>();
             playerController = GetComponent<PlayerMovementController>();
 
-            dustJumpEffect = Resources.Load(DUST_JUMP_EFFECT_PREFAB_NAME);
-            dustLandingEffect = Resources.Load(DUST_LANDING_EFFECT_PREFAB_NAME);
-
+            idleState = new IdleState();
+            preJumpIdleState = new PreJumpIdleState();
+            jumpStartIdleState = new JumpStartIdleState();
+            preJumpRunningState = new PreJumpRunningState();
+            jumpStartRunningState = new JumpStartRunningState();
+            fallingState = new FallingState();
+            landIdleState = new LandIdleState();
+            landRunningState = new LandRunningState();
+            landRollingState = new LandRollingState();
+            runningState = new RunningState();
+            stoppingState = new StoppingState();
+            duckingState = new DuckingState();
+            
             currentState = idleState;            
             currentDirectionX = 1;
         }
@@ -59,7 +64,7 @@ namespace PlayerStates {
         }
 
         public void EventTrigger(string parameter) {
-            currentState.OnAnimEvent(parameter);
+            currentState.OnAnimEvent(this, parameter);
         }
 
         public void FlipSprite(float newDirectionX) {

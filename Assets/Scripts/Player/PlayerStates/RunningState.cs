@@ -4,8 +4,16 @@ using System.Collections;
 namespace PlayerStates {
     public class RunningState : AbstractState {
 
-        const float QUICKSTOP_DISTANCE = 2.5f;
-        float startX;
+        private const string DUST_RUN_EFFECT_PREFAB_NAME = "DustRunningGO";
+        private const float QUICKSTOP_DISTANCE = 2.5f;
+
+        private Object dustEffect;
+        private float startX;
+
+        public RunningState() {
+            //Init Effect Prefab
+            dustEffect = Resources.Load(DUST_RUN_EFFECT_PREFAB_NAME);
+        }
 
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
         {
@@ -53,6 +61,10 @@ namespace PlayerStates {
         public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
         {
             animator.SetBool(AnimPlayerParameters.RUNNING, false);
+        }
+
+        public override void OnAnimEvent(PlayerStateMachine stateMachine, string parameter) {
+            stateMachine.InstantiateEffect(dustEffect);
         }
     }
 }

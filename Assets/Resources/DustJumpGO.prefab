@@ -9,49 +9,49 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1773905346438932}
+  m_RootGameObject: {fileID: 1977128928139258}
   m_IsPrefabParent: 1
---- !u!1 &1773905346438932
+--- !u!1 &1977128928139258
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4356890712770684}
-  - component: {fileID: 212588916497377084}
-  - component: {fileID: 95474791340129308}
-  - component: {fileID: 114432287495955024}
+  - component: {fileID: 4808672208501458}
+  - component: {fileID: 212468002615790054}
+  - component: {fileID: 95742444394191562}
+  - component: {fileID: 114642009183769708}
   m_Layer: 0
-  m_Name: DustLandingGO
+  m_Name: DustJumpGO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4356890712770684
+--- !u!4 &4808672208501458
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1773905346438932}
+  m_GameObject: {fileID: 1977128928139258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.964779, y: 0.8111534, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95474791340129308
+--- !u!95 &95742444394191562
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1773905346438932}
+  m_GameObject: {fileID: 1977128928139258}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 895e198ae7718774a8431fbcf151418a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7e15757de9b550149a8f24cb5079fe2e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -59,23 +59,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114432287495955024
+--- !u!114 &114642009183769708
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1773905346438932}
+  m_GameObject: {fileID: 1977128928139258}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dca07ebbc79e9d548959f41af9ba1ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &212588916497377084
+--- !u!212 &212468002615790054
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1773905346438932}
+  m_GameObject: {fileID: 1977128928139258}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -104,12 +104,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: d2696861b66febc4eaa55906787ae225, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e57c15a4337113c47a3ae741545dd063, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.5, y: 1.6666666}
+  m_Size: {x: 1.6666666, y: 2.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

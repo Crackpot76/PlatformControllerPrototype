@@ -15,7 +15,7 @@ namespace PlayerStates {
         public abstract AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController);
         public abstract void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController);
 
-        public virtual void OnAnimEvent(string parameter) {
+        public virtual void OnAnimEvent(PlayerStateMachine stateMachine, string parameter) {
             // not implemented
         }
 

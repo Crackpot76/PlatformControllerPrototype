@@ -4,11 +4,16 @@ using System.Collections;
 namespace PlayerStates {
     public class PreJumpIdleState: AbstractState {
 
+        private const float maxJumpTime = 0.6f;
+        private const string DUST_EFFECT_PREFAB_NAME = "DustJumpGo";
 
-        const float accelerationTime = 0.1f;
-        const float maxJumpTime = 0.6f;
+        private Object dustEffect;
+        private float jumpTimerStart;
 
-        float jumpTimerStart;
+        public PreJumpIdleState() {
+            //Init Effect Prefab
+            dustEffect = Resources.Load(DUST_EFFECT_PREFAB_NAME);
+        }
 
 
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
@@ -30,7 +35,7 @@ namespace PlayerStates {
                 if (jumpForcePercent > 0) {
                     // JUMP NOW!
 
-                    stateMachine.InstantiateEffect(stateMachine.dustJumpEffect);
+                    stateMachine.InstantiateEffect(dustEffect);
                     playerController.OnJumping(jumpForcePercent);
 
                     float directionX = Input.GetAxisRaw("Horizontal");

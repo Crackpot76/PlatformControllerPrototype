@@ -3,18 +3,26 @@ using System.Collections;
 
 namespace PlayerStates {
     public class PreJumpRunningState: AbstractState {
-
-        const float maxJumpTime = 0.6f;
-        const float maxJumpPercent = 75f;
-        const float moveFactorGrounded = 1.4f;
-
-        float jumpTimerStart;
         
+        private const string DUST_JUMP_EFFECT_PREFAB_NAME = "DustJumpGo";
+        private const string DUST_RUN_EFFECT_PREFAB_NAME = "DustRunningGO";
+        private const float maxJumpTime = 0.6f;
+        private const float maxJumpPercent = 75f;
+        private const float moveFactorGrounded = 1.4f;
+
+        private float jumpTimerStart;
+        private Object dustJumpEffect;
+        private Object dustRunEffect;
+
+        public PreJumpRunningState() {
+            //Init Effect Prefab
+            dustJumpEffect = Resources.Load(DUST_JUMP_EFFECT_PREFAB_NAME);
+            dustRunEffect = Resources.Load(DUST_RUN_EFFECT_PREFAB_NAME);
+        }
 
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.PRE_JUMP_RUNNING, true);
             jumpTimerStart = Time.time;
-
             MoveXGrounded(stateMachine, playerController, moveFactorGrounded);
         }
 
@@ -33,7 +41,7 @@ namespace PlayerStates {
                 float moveFactorAirborne = CalculateMoveFactorFromJumpTimer(jumpTime);
 
                 if (jumpForcePercent > 0) {
-                    stateMachine.InstantiateEffect(stateMachine.dustJumpEffect);
+                    stateMachine.InstantiateEffect(dustJumpEffect);
                     playerController.OnJumping(jumpForcePercent);                    
                     PlayerStateMachine.jumpStartRunningState.InitParameters(directionX, moveFactorAirborne);
                     return PlayerStateMachine.jumpStartRunningState;
@@ -58,7 +66,11 @@ namespace PlayerStates {
         public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.PRE_JUMP_RUNNING, false);
         }
-        
+
+        public override void OnAnimEvent(PlayerStateMachine stateMachine, string parameter) {
+            stateMachine.InstantiateEffect(dustRunEffect);
+        }
+
 
         // Calculates percent of jump force y from prepared jumping time
         private float CalculatePercentFromJumpTimer(float jumpTime) {

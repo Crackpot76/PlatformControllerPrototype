@@ -19,6 +19,7 @@ public class CoinController: MonoBehaviour {
             Debug.Log("PlayerDetected!");
             collected = true;
             animator.SetBool(COLLECTED, collected);
+            SoundManager.SetSFXVolume(0.7f);
             SoundManager.PlaySFX(clip);
         }
     }

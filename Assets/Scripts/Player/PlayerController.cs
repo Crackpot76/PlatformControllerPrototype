@@ -12,19 +12,13 @@ public class PlayerController : MonoBehaviour {
     // Effects
     SpriteFlashing spriteFlashingEffect;
 
-    public AudioClip audioClip;
+
 
     // Use this for initialization
     void Start () {
         playerMovement = GetComponent<PlayerMovementController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteFlashingEffect = new SpriteFlashing(spriteRenderer);
-
-        SoundManager.SetBGMVolume(0.5f);
-        SoundManager.PlayBGM(audioClip, false, 0);
-
-
-
     }
 	
 	// Update is called once per frame

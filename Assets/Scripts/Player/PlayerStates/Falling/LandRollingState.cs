@@ -4,11 +4,21 @@ using System.Collections;
 namespace PlayerStates {
     public class LandRollingState: AbstractState {
 
-        bool animationHasStopped;
+        private const string DUST_EFFECT_PREFAB_NAME = "DustLandingDirectionGO";
+
+        private  Object dustEffect;
+        private bool animationHasStopped;
+
+        public LandRollingState() {
+            //Init Effect Prefab
+            dustEffect = Resources.Load(DUST_EFFECT_PREFAB_NAME);
+        }
 
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+            
             animationHasStopped = false;
             animator.SetBool(AnimPlayerParameters.LAND_ROLLING, true);
+            stateMachine.InstantiateEffect(dustEffect);
             MoveXRaw(playerController, stateMachine.currentDirectionX, ACCELERATION_TIME_GROUNDED, 1f);
         }
 
@@ -34,7 +44,7 @@ namespace PlayerStates {
             animator.SetBool(AnimPlayerParameters.LAND_ROLLING, false);
         }
 
-        public override void OnAnimEvent(string parameter) {
+        public override void OnAnimEvent(PlayerStateMachine stateMachine, string parameter) {
             animationHasStopped = true;
         }
     }

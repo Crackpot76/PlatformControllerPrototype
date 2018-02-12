@@ -4,12 +4,20 @@ using System.Collections;
 namespace PlayerStates {
     public class LandIdleState: AbstractState {
 
-        bool animationHasStopped;
+        private const string DUST_EFFECT_PREFAB_NAME = "DustLandingGo";
+
+        private Object dustEffect;
+        private bool animationHasStopped;
+
+        public LandIdleState() {
+            //Init Effect Prefab
+            dustEffect = Resources.Load(DUST_EFFECT_PREFAB_NAME);
+        }
 
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
             animationHasStopped = false;
             animator.SetBool(AnimPlayerParameters.LAND_IDLE, true);
-            stateMachine.InstantiateEffect(stateMachine.dustLandingEffect);
+            stateMachine.InstantiateEffect(dustEffect);
         }
 
         public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
@@ -28,7 +36,7 @@ namespace PlayerStates {
             animator.SetBool(AnimPlayerParameters.LAND_IDLE, false);
         }
 
-        public override void OnAnimEvent(string parameter) {
+        public override void OnAnimEvent(PlayerStateMachine stateMachine, string parameter) {
             animationHasStopped = true;
         }
         

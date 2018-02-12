@@ -1,18 +1,15 @@
 fileFormatVersion: 2
-guid: e57c15a4337113c47a3ae741545dd063
-timeCreated: 1518349784
+guid: 2f4e95e1a80c45742ba17405b623692b
+timeCreated: 1518382098
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: barbarian_dust_jump_sps_0
-    21300002: barbarian_dust_jump_sps_1
-    21300004: barbarian_dust_jump_sps_2
-    21300006: barbarian_dust_jump_sps_3
-    21300008: barbarian_dust_jump_sps_4
-    21300010: barbarian_dust_jump_sps_5
-    21300012: barbarian_dust_jump_sps_6
-    21300014: barbarian_dust_jump_sps_7
-    21300016: barbarian_dust_jump_sps_8
+    21300000: barbarian_dust_running_sps_0
+    21300002: barbarian_dust_running_sps_1
+    21300004: barbarian_dust_running_sps_2
+    21300006: barbarian_dust_running_sps_3
+    21300008: barbarian_dust_running_sps_4
+    21300010: barbarian_dust_running_sps_5
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -109,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: barbarian_dust_jump_sps_0
+      name: barbarian_dust_running_sps_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 40
-        height: 60
+        width: 50
+        height: 10
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,13 +120,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_dust_jump_sps_1
+      name: barbarian_dust_running_sps_1
       rect:
         serializedVersion: 2
-        x: 40
+        x: 50
         y: 0
-        width: 40
-        height: 60
+        width: 50
+        height: 10
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,13 +134,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_dust_jump_sps_2
+      name: barbarian_dust_running_sps_2
       rect:
         serializedVersion: 2
-        x: 80
+        x: 100
         y: 0
-        width: 40
-        height: 60
+        width: 50
+        height: 10
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,13 +148,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_dust_jump_sps_3
+      name: barbarian_dust_running_sps_3
       rect:
         serializedVersion: 2
-        x: 120
+        x: 150
         y: 0
-        width: 40
-        height: 60
+        width: 50
+        height: 10
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,27 +162,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_dust_jump_sps_4
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 40
-        height: 60
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: barbarian_dust_jump_sps_5
+      name: barbarian_dust_running_sps_4
       rect:
         serializedVersion: 2
         x: 200
         y: 0
-        width: 40
-        height: 60
+        width: 50
+        height: 10
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,27 +176,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_dust_jump_sps_6
+      name: barbarian_dust_running_sps_5
       rect:
         serializedVersion: 2
-        x: 240
+        x: 250
         y: 0
-        width: 40
-        height: 60
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: barbarian_dust_jump_sps_7
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 0
-        width: 40
-        height: 60
+        width: 50
+        height: 10
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
