@@ -21,22 +21,25 @@ namespace PlayerStates {
         
 
 
+
         // current States
         AbstractState currentState;
         [HideInInspector]
         public float currentDirectionX;
         [HideInInspector]
         public Transform currentTransform;
+        [HideInInspector]
+        public bool disableUserInput;
 
         Animator animator;
         SpriteRenderer spriteRenderer;
-        CharacterMovementController playerController;
+        CharacterMovementController characterMovementController;
 
 
         void Start() {
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
-            playerController = GetComponent<CharacterMovementController>();
+            characterMovementController = GetComponent<CharacterMovementController>();
 
             idleState = new IdleState();
             preJumpIdleState = new PreJumpIdleState();
@@ -58,11 +61,11 @@ namespace PlayerStates {
 
         void Update() {
             currentTransform = transform;
-            AbstractState newState = currentState.HandleUpdate(this, animator, playerController);
+            AbstractState newState = currentState.HandleUpdate(this, animator, characterMovementController);
             if (newState != null) {
-                currentState.OnExit(this, animator, playerController);
+                currentState.OnExit(this, animator, characterMovementController);
                 currentState = newState;
-                currentState.OnEnter(this, animator, playerController);
+                currentState.OnEnter(this, animator, characterMovementController);
             }
 
         }

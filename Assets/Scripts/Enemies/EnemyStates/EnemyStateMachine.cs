@@ -7,9 +7,13 @@ namespace EnemyStates {
 
         public float observerDistanceNear = 2f;
         public float observerDistanceFar = 6f;
+        public float ATTACK_DISTANCE = 0.7f;
+        public float attackEverySeconds = 2;
 
         public static IdleState idleState;
         public static RunningState runningState;
+        public static AttackIdleState attackIdleState;
+        public static AttackingState attackingState;
 
 
 
@@ -26,6 +30,7 @@ namespace EnemyStates {
         SpriteRenderer spriteRenderer;
         CharacterMovementController characterMovementController;
         ObserverController observerController;
+        ObserverController.PlayerDetectionInfo currentDetection;
 
         void Start() {
             animator = GetComponent<Animator>();
@@ -38,6 +43,8 @@ namespace EnemyStates {
 
             idleState = new IdleState();
             runningState = new RunningState();
+            attackIdleState = new AttackIdleState();
+            attackingState = new AttackingState();
 
             currentState = idleState;
             currentDirectionX = (spriteRenderer.flipX ? 1 : -1); // Enemies always initially face left
@@ -47,24 +54,24 @@ namespace EnemyStates {
             currentTransform = transform;
 
             float observeAroundDistance = (isAware ? observerDistanceFar : observerDistanceNear);
-            ObserverController.PlayerDetectionInfo detection = observerController.ObserveAround(observeAroundDistance);
-            if (detection.distance < 0) {
+            currentDetection = observerController.ObserveAround(observeAroundDistance);
+            if (currentDetection.distance < 0) {
                 // Player near around not detected
-                detection = observerController.ObserveDirection(observerDistanceFar, currentDirectionX, 0);
+                currentDetection = observerController.ObserveDirection(observerDistanceFar, currentDirectionX, 0);
             }
 
-            if (detection.distance < 0) {
+            if (currentDetection.distance < 0) {
                 // Player not be found. Aware is false again
                 isAware = false;
             } else {
                 isAware = true;
             }
 
-                AbstractState newState = currentState.HandleUpdate(this, animator, characterMovementController, detection);
+                AbstractState newState = currentState.HandleUpdate(this, animator, characterMovementController, currentDetection);
             if (newState != null) {
-                currentState.OnExit(this, animator, characterMovementController, detection);
+                currentState.OnExit(this, animator, characterMovementController, currentDetection);
                 currentState = newState;
-                currentState.OnEnter(this, animator, characterMovementController, detection);
+                currentState.OnEnter(this, animator, characterMovementController, currentDetection);
             }
 
         }
@@ -85,6 +92,18 @@ namespace EnemyStates {
             SpriteRenderer effectSpriteRenderer = dustGo.GetComponent<SpriteRenderer>();
             effectSpriteRenderer.flipX = (currentDirectionX < 0);
             dustGo.transform.position = transform.position;
+        }
+
+        public bool InAttackPosition() {
+            if (isAware && currentDetection.distance <= ATTACK_DISTANCE) {
+                // facing in right direction?
+                if ((currentDirectionX == 1 && currentDetection.right) ||
+                    (currentDirectionX == -1 && currentDetection.left)) {
+                    // is in position! May Attack
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

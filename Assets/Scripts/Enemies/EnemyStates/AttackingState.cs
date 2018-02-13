@@ -3,35 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace EnemyStates {
-    public class RunningState: AbstractState {
+    public class AttackingState: AbstractState {
 
+        bool animationHasStopped;
 
         public override void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController, ObserverController.PlayerDetectionInfo playerDetection) {
-            animator.SetBool(AnimEnemyParameters.RUNNING, true);
+            animationHasStopped = false;
+            animator.SetBool(AnimEnemyParameters.ATTACKING, true);
         }
 
         public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController, ObserverController.PlayerDetectionInfo playerDetection) {
 
-            if (playerDetection.distance < 0) {
-                //   Debug.Log("Player detected: " + playerDetection.distance);
-                return EnemyStateMachine.idleState;
-            }
-
-            if (stateMachine.InAttackPosition()) {
-                Debug.Log("Player in Attack Position!");
+            if (animationHasStopped) {
                 return EnemyStateMachine.attackIdleState;
             }
-
-            // run towards player
-            float directionX = (playerDetection.right ? 1 : -1);
-
-            MoveX(stateMachine, playerController, directionX);
-
+            
             return null;
         }
 
         public override void OnExit(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController, ObserverController.PlayerDetectionInfo playerDetection) {
-            animator.SetBool(AnimEnemyParameters.RUNNING, false);
-        }        
+            animator.SetBool(AnimEnemyParameters.ATTACKING, false);
+        }
+
+        public override void OnAnimEvent(EnemyStateMachine stateMachine, string parameter) {
+            animationHasStopped = true;
+        }
     }
 }

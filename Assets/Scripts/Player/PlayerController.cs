@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         playerMovement = GetComponent<CharacterMovementController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerStateMachine = GetComponent<PlayerStateMachine>();
         spriteFlashingEffect = new SpriteFlashing(spriteRenderer);
     }
 	
@@ -31,7 +32,18 @@ public class PlayerController : MonoBehaviour {
 
     // Interfaces for external Interaction
     public void ReceiveDamage(float directionHitX) {
+        playerStateMachine.disableUserInput = true;
         StartCoroutine(spriteFlashingEffect.Flash(4f, 0.15f));
-        playerMovement.OnMoving(-directionHitX, 0f, 7f); // Push back in oposite direction      
+        StartCoroutine(MoveOnDamage(directionHitX));
+    }
+
+    public IEnumerator MoveOnDamage(float directionHitX) {
+        float time = Time.time;
+        while( (time + 0.1f) > Time.time) {
+            Debug.Log("MOVE HIT!");
+            playerMovement.OnMoving(-directionHitX, 0f, 2f); // Push back in oposite direction      
+            yield return new WaitForEndOfFrame();            
+        }
+        playerStateMachine.disableUserInput = false;
     }
 }
