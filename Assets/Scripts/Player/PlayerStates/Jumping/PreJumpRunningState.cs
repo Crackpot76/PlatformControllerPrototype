@@ -20,13 +20,13 @@ namespace PlayerStates {
             dustRunEffect = Resources.Load(DUST_RUN_EFFECT_PREFAB_NAME);
         }
 
-        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.PRE_JUMP_RUNNING, true);
             jumpTimerStart = Time.time;
             MoveXGrounded(stateMachine, playerController, moveFactorGrounded);
         }
 
-        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
             float directionX = Input.GetAxisRaw("Horizontal");
             if (directionX == 0 || directionX != stateMachine.currentDirectionX || !playerController.IsJumpingPossible()) {
@@ -63,7 +63,7 @@ namespace PlayerStates {
             return null;
         }
 
-        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.PRE_JUMP_RUNNING, false);
         }
 

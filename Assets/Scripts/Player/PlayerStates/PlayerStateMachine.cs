@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 namespace PlayerStates {
-    [RequireComponent(typeof(Animator), typeof(SpriteRenderer), typeof(PlayerMovementController))]
+    [RequireComponent(typeof(Animator), typeof(SpriteRenderer), typeof(CharacterMovementController))]
     public class PlayerStateMachine : MonoBehaviour {
 
         public static IdleState idleState;
@@ -17,23 +17,26 @@ namespace PlayerStates {
         public static RunningState runningState;
         public static StoppingState stoppingState;
         public static DuckingState duckingState;
+        public static DuckingUpState duckingUpState;
         
+
 
         // current States
         AbstractState currentState;
         [HideInInspector]
         public float currentDirectionX;
+        [HideInInspector]
         public Transform currentTransform;
 
         Animator animator;
         SpriteRenderer spriteRenderer;
-        PlayerMovementController playerController;
+        CharacterMovementController playerController;
 
 
         void Start() {
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
-            playerController = GetComponent<PlayerMovementController>();
+            playerController = GetComponent<CharacterMovementController>();
 
             idleState = new IdleState();
             preJumpIdleState = new PreJumpIdleState();
@@ -47,7 +50,8 @@ namespace PlayerStates {
             runningState = new RunningState();
             stoppingState = new StoppingState();
             duckingState = new DuckingState();
-            
+            duckingUpState = new DuckingUpState();
+
             currentState = idleState;            
             currentDirectionX = 1;
         }

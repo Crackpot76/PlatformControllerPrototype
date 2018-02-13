@@ -17,7 +17,7 @@ namespace PlayerStates {
             this.moveMultiplierAir = moveMultiplierAir;
         }
 
-        public void Move(PlayerStateMachine stateMachine, PlayerMovementController playerController) {
+        public void Move(PlayerStateMachine stateMachine, CharacterMovementController playerController) {
             if (initialRunJumpDirectionX != Input.GetAxisRaw("Horizontal")) {
                 moveMultiplierAir = MIN_MOVE_FACTOR_AIR; // wieder initialisieren da Initialrichtung gewechselt
             }

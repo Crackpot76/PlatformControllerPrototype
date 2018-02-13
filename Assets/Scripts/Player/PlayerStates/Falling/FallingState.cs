@@ -8,13 +8,13 @@ namespace PlayerStates {
         float startYPos;
 
 
-        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.FALLING, true);
             startYPos = stateMachine.currentTransform.position.y;
             Move(stateMachine, playerController);
         }
 
-        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
             float directionX = Input.GetAxisRaw("Horizontal");
 
@@ -47,7 +47,7 @@ namespace PlayerStates {
         }
 
 
-        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.FALLING, false);
             ResetStateAir();
         }

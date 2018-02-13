@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerStates;
 
-[RequireComponent (typeof (PlayerMovementController))]
+[RequireComponent (typeof (CharacterMovementController), (typeof(SpriteRenderer)))]
 public class PlayerController : MonoBehaviour {
     // Central Player Controller
 
-    PlayerMovementController playerMovement;
+    CharacterMovementController playerMovement;
     SpriteRenderer spriteRenderer;
+    PlayerStateMachine playerStateMachine;
 
     // Effects
     SpriteFlashing spriteFlashingEffect;
@@ -16,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        playerMovement = GetComponent<PlayerMovementController>();
+        playerMovement = GetComponent<CharacterMovementController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteFlashingEffect = new SpriteFlashing(spriteRenderer);
     }
@@ -30,6 +32,6 @@ public class PlayerController : MonoBehaviour {
     // Interfaces for external Interaction
     public void ReceiveDamage(float directionHitX) {
         StartCoroutine(spriteFlashingEffect.Flash(4f, 0.15f));
-        playerMovement.OnMoving(-directionHitX, 0f, 5f); // Push back in oposite direction      
+        playerMovement.OnMoving(-directionHitX, 0f, 7f); // Push back in oposite direction      
     }
 }

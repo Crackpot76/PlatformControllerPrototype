@@ -16,12 +16,12 @@ namespace PlayerStates {
         }
 
 
-        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.PRE_JUMP_IDLE, true);
             jumpTimerStart = Time.time;
         }
 
-        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
             if (!playerController.IsJumpingPossible()) {
                 return PlayerStateMachine.idleState;
@@ -65,7 +65,7 @@ namespace PlayerStates {
 
 
 
-        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.PRE_JUMP_IDLE, false);
         }
 

@@ -5,12 +5,12 @@ namespace PlayerStates {
     public class JumpStartRunningState: AbstractStateAir {
         
 
-        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.JUMP_START_RUNNING, true);
             MoveXAirborne(stateMachine, playerController);
         }
 
-        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
             if (playerController.IsGrounded()) {
                 return PlayerStateMachine.runningState;
@@ -26,7 +26,7 @@ namespace PlayerStates {
             return null;
         }
 
-        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.JUMP_START_RUNNING, false);
             ResetStateAir();
         }

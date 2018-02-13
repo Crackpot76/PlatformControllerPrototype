@@ -14,13 +14,13 @@ namespace PlayerStates {
             dustEffect = Resources.Load(DUST_EFFECT_PREFAB_NAME);
         }
 
-        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animationHasStopped = false;
             animator.SetBool(AnimPlayerParameters.LAND_IDLE, true);
             stateMachine.InstantiateEffect(dustEffect);
         }
 
-        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
             if (Input.GetKeyDown(KeyCode.Space)) {
                 return PlayerStateMachine.preJumpIdleState;
@@ -32,7 +32,7 @@ namespace PlayerStates {
             return null;
         }
 
-        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.LAND_IDLE, false);
         }
 

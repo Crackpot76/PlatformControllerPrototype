@@ -15,14 +15,14 @@ namespace PlayerStates {
             dustEffect = Resources.Load(DUST_RUN_EFFECT_PREFAB_NAME);
         }
 
-        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController)
         {
             startX = stateMachine.currentTransform.position.x;
             animator.SetBool(AnimPlayerParameters.RUNNING, true);
             MoveXGrounded(stateMachine, playerController);
         }
 
-        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
+        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController)
         {
             if (playerController.IsFalling()) {
                 return PlayerStateMachine.fallingState;
@@ -58,7 +58,7 @@ namespace PlayerStates {
             return null;
         }
 
-        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController)
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController)
         {
             animator.SetBool(AnimPlayerParameters.RUNNING, false);
         }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovementController: MovementController {
+public class CharacterMovementController: MovementController {
     
     public float moveSpeed = 5;
     public float maxJumpHeight = 4;

@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114824276921605548}
   - component: {fileID: 95497896339404658}
   - component: {fileID: 50873128665005544}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -119,7 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ae9655f8f9a3ea408871e915c64daaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: e5747e67ad364524dbdbd95afea72f85, type: 3}
 --- !u!114 &114780032943787720
 MonoBehaviour:
   m_ObjectHideFlags: 1

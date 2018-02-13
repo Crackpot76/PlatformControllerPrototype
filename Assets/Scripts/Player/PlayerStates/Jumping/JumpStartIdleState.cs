@@ -5,12 +5,12 @@ namespace PlayerStates {
     public class JumpStartIdleState: AbstractState {
 
         
-        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.JUMP_START_IDLE, true);
             MoveXAirborne(stateMachine, playerController);
         }
 
-        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
             if (playerController.IsGrounded()) {
                return PlayerStateMachine.idleState;
@@ -27,7 +27,7 @@ namespace PlayerStates {
             return null;
         }
 
-        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, PlayerMovementController playerController) {
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.JUMP_START_IDLE, false);
         }
         
