@@ -16,7 +16,6 @@ public class CoinController: MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision) {
 
         if (collision.gameObject.tag == "Player") {
-            Debug.Log("PlayerDetected!");
             collected = true;
             animator.SetBool(COLLECTED, collected);
             SoundManager.SetSFXVolume(0.7f);

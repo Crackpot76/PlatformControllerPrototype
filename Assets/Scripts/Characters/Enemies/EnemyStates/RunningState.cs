@@ -18,7 +18,6 @@ namespace EnemyStates {
             }
 
             if (stateMachine.InAttackPosition()) {
-                Debug.Log("Player in Attack Position!");
                 return EnemyStateMachine.attackIdleState;
             }
 

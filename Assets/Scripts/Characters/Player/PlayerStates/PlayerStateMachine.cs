@@ -18,18 +18,17 @@ namespace PlayerStates {
         public static StoppingState stoppingState;
         public static DuckingState duckingState;
         public static DuckingUpState duckingUpState;
-        
+        public static AttackingLightState attackingLightState;
 
 
-
-        // current States
+        // current State
         AbstractState currentState;
         [HideInInspector]
         public float currentDirectionX;
         [HideInInspector]
         public Transform currentTransform;
         [HideInInspector]
-        public bool disableUserInput;
+        public bool disableUserInput =false;
 
         Animator animator;
         SpriteRenderer spriteRenderer;
@@ -54,20 +53,22 @@ namespace PlayerStates {
             stoppingState = new StoppingState();
             duckingState = new DuckingState();
             duckingUpState = new DuckingUpState();
+            attackingLightState = new AttackingLightState();
 
-            currentState = idleState;            
+        currentState = idleState;            
             currentDirectionX = 1;
         }
 
         void Update() {
-            currentTransform = transform;
-            AbstractState newState = currentState.HandleUpdate(this, animator, characterMovementController);
-            if (newState != null) {
-                currentState.OnExit(this, animator, characterMovementController);
-                currentState = newState;
-                currentState.OnEnter(this, animator, characterMovementController);
+            if (!disableUserInput) { 
+                currentTransform = transform;
+                AbstractState newState = currentState.HandleUpdate(this, animator, characterMovementController);
+                if (newState != null) {
+                    currentState.OnExit(this, animator, characterMovementController);
+                    currentState = newState;
+                    currentState.OnEnter(this, animator, characterMovementController);
+                }
             }
-
         }
 
         public void EventTrigger(string parameter) {

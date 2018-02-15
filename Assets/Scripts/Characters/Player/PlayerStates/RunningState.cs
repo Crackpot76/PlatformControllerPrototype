@@ -32,6 +32,10 @@ namespace PlayerStates {
                 return PlayerStateMachine.preJumpRunningState;
             }
 
+            if (Input.GetKey(KeyCode.D) && playerController.IsGrounded()) {
+                return PlayerStateMachine.attackingLightState;
+            }
+
             float directionX = Input.GetAxisRaw("Horizontal");
             if (directionX == 0 || directionX != stateMachine.currentDirectionX) {
 

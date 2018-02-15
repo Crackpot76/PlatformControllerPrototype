@@ -35,7 +35,7 @@ public class MovementController: RaycastController {
         if (moveAmount.y != 0) {
             VerticalCollisions(ref moveAmount);
         }
-
+        
         transform.Translate(moveAmount);
 
         if (standingOnPlatform) {

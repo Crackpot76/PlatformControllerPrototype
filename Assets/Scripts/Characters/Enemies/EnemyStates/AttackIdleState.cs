@@ -23,7 +23,6 @@ namespace EnemyStates {
             }
 
             if (IsTimeToAttack(stateMachine)) {
-                Debug.Log("ATTACK");
                 return EnemyStateMachine.attackingState;
             }
 

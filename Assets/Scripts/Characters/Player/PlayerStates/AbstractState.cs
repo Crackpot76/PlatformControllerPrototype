@@ -27,12 +27,10 @@ namespace PlayerStates {
             MoveX(stateMachine, playerController, ACCELERATION_TIME_AIRBORNE, moveFactor);
         }
 
-        private void MoveX(PlayerStateMachine stateMachine, CharacterMovementController playerController, float accelerationTime, float moveFactor) {
-            if (!stateMachine.disableUserInput) {
-                float directionX = Input.GetAxisRaw("Horizontal");
-                stateMachine.FlipSprite(directionX);
-                playerController.OnMoving(directionX, accelerationTime, moveFactor);
-            }
+        private void MoveX(PlayerStateMachine stateMachine, CharacterMovementController playerController, float accelerationTime, float moveFactor) {            
+            float directionX = Input.GetAxisRaw("Horizontal");
+            stateMachine.FlipSprite(directionX);
+            playerController.OnMoving(directionX, accelerationTime, moveFactor);
         }
 
         // Moves Player in directionX, independant from User Input!

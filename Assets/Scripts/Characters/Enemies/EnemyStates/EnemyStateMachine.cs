@@ -7,7 +7,7 @@ namespace EnemyStates {
 
         public float observerDistanceNear = 2f;
         public float observerDistanceFar = 6f;
-        public float ATTACK_DISTANCE = 0.7f;
+        public float attackDistance = 0.7f;
         public float attackEverySeconds = 2;
 
         public static IdleState idleState;
@@ -25,6 +25,8 @@ namespace EnemyStates {
         public Transform currentTransform;
         [HideInInspector]
         public bool isAware = false;
+        [HideInInspector]
+        public bool disabled = false;
 
         Animator animator;
         SpriteRenderer spriteRenderer;
@@ -51,29 +53,30 @@ namespace EnemyStates {
         }
 
         void Update() {
-            currentTransform = transform;
+            if (!disabled) {
+                currentTransform = transform;
 
-            float observeAroundDistance = (isAware ? observerDistanceFar : observerDistanceNear);
-            currentDetection = observerController.ObserveAround(observeAroundDistance);
-            if (currentDetection.distance < 0) {
-                // Player near around not detected
-                currentDetection = observerController.ObserveDirection(observerDistanceFar, currentDirectionX, 0);
-            }
+                float observeAroundDistance = (isAware ? observerDistanceFar : observerDistanceNear);
+                currentDetection = observerController.ObserveAround(observeAroundDistance);
+                if (currentDetection.distance < 0) {
+                    // Player near around not detected
+                    currentDetection = observerController.ObserveDirection(observerDistanceFar, currentDirectionX, 0);
+                }
 
-            if (currentDetection.distance < 0) {
-                // Player not be found. Aware is false again
-                isAware = false;
-            } else {
-                isAware = true;
-            }
+                if (currentDetection.distance < 0) {
+                    // Player not be found. Aware is false again
+                    isAware = false;
+                } else {
+                    isAware = true;
+                }
 
                 AbstractState newState = currentState.HandleUpdate(this, animator, characterMovementController, currentDetection);
-            if (newState != null) {
-                currentState.OnExit(this, animator, characterMovementController, currentDetection);
-                currentState = newState;
-                currentState.OnEnter(this, animator, characterMovementController, currentDetection);
+                if (newState != null) {
+                    currentState.OnExit(this, animator, characterMovementController, currentDetection);
+                    currentState = newState;
+                    currentState.OnEnter(this, animator, characterMovementController, currentDetection);
+                }
             }
-
         }
 
         public void EventTrigger(string parameter) {
@@ -95,7 +98,7 @@ namespace EnemyStates {
         }
 
         public bool InAttackPosition() {
-            if (isAware && currentDetection.distance <= ATTACK_DISTANCE) {
+            if (isAware && currentDetection.distance <= attackDistance) {
                 // facing in right direction?
                 if ((currentDirectionX == 1 && currentDetection.right) ||
                     (currentDirectionX == -1 && currentDetection.left)) {

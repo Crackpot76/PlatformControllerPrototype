@@ -32,9 +32,9 @@ public class LevelManager : MonoBehaviour {
     }
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
-        Debug.Log("Level Loaded");
-        Debug.Log(scene.name);
-        Debug.Log(mode);
+//        Debug.Log("Level Loaded");
+//        Debug.Log(scene.name);
+//        Debug.Log(mode);
 
         SoundManager.SetBGMVolume(0.5f);
         SoundManager.PlayBGM(bgMusic, false, 0);
