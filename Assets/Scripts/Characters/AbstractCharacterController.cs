@@ -5,8 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterMovementController), typeof(SpriteRenderer), typeof(HealthController))]
 public abstract class AbstractCharacterController : MonoBehaviour {
 
-    // which tags can be attacked
+    // which opponents with tags can be attacked
     public string[] opponentTags;
+    // which objects with tags can be destroyed
+    public string[] destructableTags;
+
 
     [HideInInspector]
     public CharacterMovementController movementController;
@@ -17,11 +20,14 @@ public abstract class AbstractCharacterController : MonoBehaviour {
     [HideInInspector]
     public bool disableStateMovement = false;
 
+    // Default Werte aus AttackDetails für Bodycheck verwenden
+    private AttackDetails bodyCheck = new AttackDetails();
+
     // Effects
     private SpriteFlashing spriteFlashingEffect;
 
     // Get the parameters of the current attack
-    public abstract float GetCurrentAttackDetails();
+    public abstract AttackDetails GetCurrentAttackDetails();
 
 
     // Use this for initialization
@@ -38,43 +44,50 @@ public abstract class AbstractCharacterController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision) {
 
-        foreach (string opponentTag in opponentTags) {
-            if (collision.gameObject.tag == opponentTag) {
-                float hitDirectionX = AttackController.GetHitDirection(transform, collision);
+        // check for collision with an opponent
+        if (AttackController.ListContainsTag(opponentTags, collision.gameObject.tag)) {
+            float hitDirectionX = AttackController.GetHitDirection(transform, collision);
 
-                AbstractCharacterController opponentCharacterController = collision.gameObject.GetComponent<AbstractCharacterController>();
+            AbstractCharacterController opponentCharacterController = collision.gameObject.GetComponent<AbstractCharacterController>();
 
-                if (opponentCharacterController) {
-                    opponentCharacterController.ReceiveDamage(hitDirectionX, 1f);
-                } else {
-                    Debug.LogError("No PlayerController Script for player found. No damage served today!");
-                }
+            if (opponentCharacterController) {
+                opponentCharacterController.ReceiveDamage(hitDirectionX, bodyCheck);
+            } else {
+                Debug.LogError("No PlayerController Script for player found. No damage served today!");
             }
         }
     }
 
 
 
-
     // Interfaces for external Interaction
-    public virtual void ReceiveDamage(float directionHitX, float damage) {
+    public virtual void ReceiveDamage(float directionHitX, AttackDetails attack) {
         disableStateMovement = true;
-        StartCoroutine(spriteFlashingEffect.Flash(4f, 0.15f));
-        StartCoroutine(MoveOnDamage(directionHitX));
-        health.TakeDamage(damage);
+        StartCoroutine(spriteFlashingEffect.Flash(4f, 0.15f));        
 
+        health.TakeDamage(attack.damage);
+        if (attack.pushOnDamage) {
+            StartCoroutine(MoveOnDamage(directionHitX, attack.pushSpeed));
+        }
         if (!health.IsAlive()) {
             // GAME OVER
             Destroy(gameObject);
+        } else {
+            Invoke("EnableStateMovement", .1f);
         }
     }
 
-    public IEnumerator MoveOnDamage(float directionHitX) {
+    public IEnumerator MoveOnDamage(float directionHitX, float pushSpeed) {
         float time = Time.time;
         while ((time + 0.1f) > Time.time) {
-            movementController.OnMoving(-directionHitX, 0f, 2f); // Push back in oposite direction      
+            movementController.OnPushed(directionHitX, pushSpeed); // Push back in oposite direction      
             yield return new WaitForEndOfFrame();
         }
+    }
+
+
+    // Enables state movement after certain time
+    void EnableStateMovement() {
         disableStateMovement = false;
     }
 }

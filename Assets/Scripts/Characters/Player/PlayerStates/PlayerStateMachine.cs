@@ -83,11 +83,12 @@ namespace PlayerStates {
             dustGo.transform.position = transform.position;
         }
 
-        public override float GetCurrentAttackDetails() {
-            if (currentState.Equals(attackingLightState)) {
-                return 1f;
+        public override AttackDetails GetCurrentAttackDetails() {
+            AbstractStateAttack instanceCheck = currentState as AbstractStateAttack;
+            if (instanceCheck != null) {
+                return instanceCheck.GetAttackDetails();
             }
-            return -1f;
+            return null;
         }
     }
 }

@@ -12,13 +12,4 @@ public class EnemyController : EnemyStateMachine {
         base.Start();
     }
 
-
-
-    // Interfaces for external Interaction
-    public override void ReceiveDamage(float directionHitX, float damage) {
-        base.ReceiveDamage(directionHitX, damage);
-        // hier kann noch mehr individuell passieren, wenn gewünscht
-    }
-
-
 }

@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace EnemyStates {
-    public class AttackingState: AbstractState {
+    public class AttackingState: AbstractStateAttack {
 
-        bool animationHasStopped;
+        private bool animationHasStopped;
+        private AttackDetails attack;
+
+        public AttackingState() {
+            // Define Attack Details
+            attack = new AttackDetails(); // default attack
+            attack.type = AttackDetails.AttackType.Sharp;
+        }
 
         public override void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animationHasStopped = false;
@@ -27,6 +34,10 @@ namespace EnemyStates {
 
         public override void OnAnimEvent(EnemyStateMachine stateMachine, string parameter) {
             animationHasStopped = true;
+        }
+
+        public override AttackDetails GetAttackDetails() {
+            return attack;
         }
     }
 }

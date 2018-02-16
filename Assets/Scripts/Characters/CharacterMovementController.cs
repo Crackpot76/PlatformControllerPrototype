@@ -70,12 +70,14 @@ public class CharacterMovementController: MovementController {
     }
 
     public void OnMoving(float directionX, float accelerationTime, float moveMultiplier) {
-
         this.targetVelocityX += directionX * moveSpeed * moveMultiplier;
         this.accelerationTime = accelerationTime;
     }
 
-
+    public void OnPushed(float directionXPushedFrom, float pushSpeed) {
+        this.targetVelocityX += -directionXPushedFrom * pushSpeed;
+        this.accelerationTime = 0f;
+    }
 
     // --------------------------------------------------------------------------
     // State checker

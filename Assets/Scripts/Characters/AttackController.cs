@@ -9,22 +9,38 @@ public class AttackController : MonoBehaviour {
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-        
-        foreach (string opponentTag in parentCharacterController.opponentTags) {
-            if (collision.gameObject.tag == opponentTag) {
-                float hitDirectionX = GetHitDirection(parentCharacterController.transform, collision);
 
-                AbstractCharacterController opponentCharacterController = collision.gameObject.GetComponent<AbstractCharacterController>();
+        if (ListContainsTag(parentCharacterController.opponentTags, collision.gameObject.tag)) {
+            float hitDirectionX = GetHitDirection(parentCharacterController.transform, collision);
 
-                if (opponentCharacterController) {
-                    if (parentCharacterController.GetCurrentAttackDetails() > 0) {
-                       opponentCharacterController.ReceiveDamage(hitDirectionX, parentCharacterController.GetCurrentAttackDetails());
-                    }
+            AbstractCharacterController opponentCharacterController = collision.gameObject.GetComponent<AbstractCharacterController>();
+
+            if (opponentCharacterController) {
+                AttackDetails attack = parentCharacterController.GetCurrentAttackDetails();
+                if (attack != null) {
+                    opponentCharacterController.ReceiveDamage(hitDirectionX, attack);
                 } else {
-                    Debug.LogError("No PlayerController Script for player found. No damage served today!");
+                    Debug.LogError("Parent CharacterController is not in state attacking!");
                 }
+            } else {
+                Debug.LogError("No PlayerController Script for player found. No damage served today!");
             }
         }
+
+        if (ListContainsTag(parentCharacterController.destructableTags, collision.gameObject.tag))
+            {
+            //TODO handle destructable object code
+        }
+    }
+
+    public static bool ListContainsTag(string[] tagList, string tag) {
+
+        foreach(string searchTag in tagList) {
+            if (searchTag.Contains(tag)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static float GetHitDirection(Transform thisTransform, Collision2D collision) {

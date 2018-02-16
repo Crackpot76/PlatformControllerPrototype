@@ -91,11 +91,12 @@ namespace EnemyStates {
             return false;
         }
 
-        public override float GetCurrentAttackDetails() {           
-            if (currentState.Equals(attackingState)) {
-                return 1f;
+        public override AttackDetails GetCurrentAttackDetails() {
+            AbstractStateAttack instanceCheck = currentState as AbstractStateAttack;
+            if (instanceCheck != null) {
+                return instanceCheck.GetAttackDetails();
             }
-            return -1f;
+            return null;
         }
     }
 }
