@@ -2,8 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 namespace PlayerStates {
-    [RequireComponent(typeof(Animator), typeof(SpriteRenderer), typeof(CharacterMovementController))]
-    public class PlayerStateMachine : MonoBehaviour {
+    [RequireComponent(typeof(Animator))]
+    public class PlayerStateMachine : AbstractCharacterController {
 
         public static IdleState idleState;
         public static PreJumpIdleState preJumpIdleState;
@@ -20,25 +20,17 @@ namespace PlayerStates {
         public static DuckingUpState duckingUpState;
         public static AttackingLightState attackingLightState;
 
-
-        // current State
-        AbstractState currentState;
         [HideInInspector]
         public float currentDirectionX;
         [HideInInspector]
         public Transform currentTransform;
-        [HideInInspector]
-        public bool disableUserInput =false;
-
+        
+        AbstractState currentState;
         Animator animator;
-        SpriteRenderer spriteRenderer;
-        CharacterMovementController characterMovementController;
 
-
-        void Start() {
+        public override void Start() {
+            base.Start();
             animator = GetComponent<Animator>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            characterMovementController = GetComponent<CharacterMovementController>();
 
             idleState = new IdleState();
             preJumpIdleState = new PreJumpIdleState();
@@ -55,18 +47,20 @@ namespace PlayerStates {
             duckingUpState = new DuckingUpState();
             attackingLightState = new AttackingLightState();
 
-        currentState = idleState;            
+            currentState = idleState;            
             currentDirectionX = 1;
         }
 
-        void Update() {
-            if (!disableUserInput) { 
+        public virtual void Update() {
+           // base.Update();
+
+            if (!disableStateMovement) { 
                 currentTransform = transform;
-                AbstractState newState = currentState.HandleUpdate(this, animator, characterMovementController);
+                AbstractState newState = currentState.HandleUpdate(this, animator, movementController);
                 if (newState != null) {
-                    currentState.OnExit(this, animator, characterMovementController);
+                    currentState.OnExit(this, animator, movementController);
                     currentState = newState;
-                    currentState.OnEnter(this, animator, characterMovementController);
+                    currentState.OnEnter(this, animator, movementController);
                 }
             }
         }
@@ -87,6 +81,13 @@ namespace PlayerStates {
             SpriteRenderer effectSpriteRenderer = dustGo.GetComponent<SpriteRenderer>();
             effectSpriteRenderer.flipX = (currentDirectionX < 0);
             dustGo.transform.position = transform.position;
+        }
+
+        public override float GetCurrentAttackDetails() {
+            if (currentState.Equals(attackingLightState)) {
+                return 1f;
+            }
+            return -1f;
         }
     }
 }

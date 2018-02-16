@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4638383199319956}
   - component: {fileID: 212442980754025884}
   - component: {fileID: 114513894013538910}
-  - component: {fileID: 114731838964052040}
-  - component: {fileID: 114629546419278864}
   - component: {fileID: 114471697273745596}
+  - component: {fileID: 114629546419278864}
   - component: {fileID: 114653961566155160}
   - component: {fileID: 114534719582802116}
   - component: {fileID: 95826492616376268}
@@ -242,8 +241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92cee29e009624f46ae61a35c5af65b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  opponentTags:
-  - Player
 --- !u!114 &114471697273745596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -280,6 +277,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7590fd8946ba5794888ef3a1463070f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  opponentTags:
+  - Player
+  movementController: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  health: {fileID: 0}
+  disableStateMovement: 0
+  attackDistance: 0.7
+  attackEverySeconds: 2
+  currentDirectionX: 0
+  currentTransform: {fileID: 0}
 --- !u!114 &114534719582802116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,8 +298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92cee29e009624f46ae61a35c5af65b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  opponentTags:
-  - Player
 --- !u!114 &114629546419278864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -312,7 +317,10 @@ MonoBehaviour:
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   collider: {fileID: 0}
-  detectionTag: Player
+  observerDistanceNear: 2
+  observerDistanceFar: 6
+  detectionTags:
+  - Player
 --- !u!114 &114653961566155160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -327,25 +335,6 @@ MonoBehaviour:
   healthDisplay: {fileID: 0}
   maxHealth: 4
   currentHealth: 4
---- !u!114 &114731838964052040
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1463376748534530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c87ccd08fb61b2b4995d89bb29bbdddb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  observerDistanceNear: 2
-  observerDistanceFar: 8
-  attackDistance: 1
-  attackEverySeconds: 0.5
-  currentDirectionX: 0
-  currentTransform: {fileID: 0}
-  isAware: 0
-  disabled: 0
 --- !u!212 &212442980754025884
 SpriteRenderer:
   m_ObjectHideFlags: 1

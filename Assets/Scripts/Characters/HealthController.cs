@@ -11,6 +11,10 @@ public class HealthController : MonoBehaviour {
 
     public float currentHealth = 1f;
 
+    private void Start() {
+        RefreshDisplay();
+    }
+
     public void RefreshDisplay() {
         if (healthDisplay) {
             healthDisplay.text = "Health: " + currentHealth + " / " + maxHealth;

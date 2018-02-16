@@ -7,12 +7,12 @@ namespace EnemyStates {
 
         bool animationHasStopped;
 
-        public override void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController, ObserverController.PlayerDetectionInfo playerDetection) {
+        public override void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animationHasStopped = false;
             animator.SetBool(AnimEnemyParameters.ATTACKING, true);
         }
 
-        public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController, ObserverController.PlayerDetectionInfo playerDetection) {
+        public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
             if (animationHasStopped) {
                 return EnemyStateMachine.attackIdleState;
@@ -21,7 +21,7 @@ namespace EnemyStates {
             return null;
         }
 
-        public override void OnExit(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController, ObserverController.PlayerDetectionInfo playerDetection) {
+        public override void OnExit(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimEnemyParameters.ATTACKING, false);
         }
 

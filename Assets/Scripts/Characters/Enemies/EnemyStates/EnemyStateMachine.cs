@@ -2,11 +2,9 @@
 using System.Collections;
 
 namespace EnemyStates {
-    [RequireComponent(typeof(Animator), typeof(SpriteRenderer), typeof(CharacterMovementController))]
-    public class EnemyStateMachine: MonoBehaviour {
-
-        public float observerDistanceNear = 2f;
-        public float observerDistanceFar = 6f;
+    [RequireComponent(typeof(Animator))]
+    public class EnemyStateMachine: AbstractCharacterController {
+        
         public float attackDistance = 0.7f;
         public float attackEverySeconds = 2;
 
@@ -16,28 +14,21 @@ namespace EnemyStates {
         public static AttackingState attackingState;
 
 
-
-        // current States
-        AbstractState currentState;
         [HideInInspector]
         public float currentDirectionX;
         [HideInInspector]
         public Transform currentTransform;
         [HideInInspector]
-        public bool isAware = false;
-        [HideInInspector]
-        public bool disabled = false;
-
+        public ObserverController.DetectionInfo currentDetection;
+        
+        AbstractState currentState;
         Animator animator;
-        SpriteRenderer spriteRenderer;
-        CharacterMovementController characterMovementController;
         ObserverController observerController;
-        ObserverController.PlayerDetectionInfo currentDetection;
 
-        void Start() {
+        public override void Start() {
+            base.Start();
+
             animator = GetComponent<Animator>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            characterMovementController = GetComponent<CharacterMovementController>();
             observerController = GetComponent<ObserverController>();
             if (!observerController) {
                 Debug.LogError("Kein ObserverController gefunden, Object kann auf nichts reagieren!");
@@ -52,29 +43,20 @@ namespace EnemyStates {
             currentDirectionX = (spriteRenderer.flipX ? 1 : -1); // Enemies always initially face left
         }
 
-        void Update() {
-            if (!disabled) {
+        public virtual void Update() {
+            //base.Update();
+
+
+            if (!disableStateMovement) {
                 currentTransform = transform;
 
-                float observeAroundDistance = (isAware ? observerDistanceFar : observerDistanceNear);
-                currentDetection = observerController.ObserveAround(observeAroundDistance);
-                if (currentDetection.distance < 0) {
-                    // Player near around not detected
-                    currentDetection = observerController.ObserveDirection(observerDistanceFar, currentDirectionX, 0);
-                }
+                currentDetection = observerController.DetectOpponents(currentDirectionX);
 
-                if (currentDetection.distance < 0) {
-                    // Player not be found. Aware is false again
-                    isAware = false;
-                } else {
-                    isAware = true;
-                }
-
-                AbstractState newState = currentState.HandleUpdate(this, animator, characterMovementController, currentDetection);
+                AbstractState newState = currentState.HandleUpdate(this, animator, movementController);
                 if (newState != null) {
-                    currentState.OnExit(this, animator, characterMovementController, currentDetection);
+                    currentState.OnExit(this, animator, movementController);
                     currentState = newState;
-                    currentState.OnEnter(this, animator, characterMovementController, currentDetection);
+                    currentState.OnEnter(this, animator, movementController);
                 }
             }
         }
@@ -98,7 +80,7 @@ namespace EnemyStates {
         }
 
         public bool InAttackPosition() {
-            if (isAware && currentDetection.distance <= attackDistance) {
+            if (currentDetection.isAware && currentDetection.distance <= attackDistance) {
                 // facing in right direction?
                 if ((currentDirectionX == 1 && currentDetection.right) ||
                     (currentDirectionX == -1 && currentDetection.left)) {
@@ -107,6 +89,13 @@ namespace EnemyStates {
                 }
             }
             return false;
+        }
+
+        public override float GetCurrentAttackDetails() {           
+            if (currentState.Equals(attackingState)) {
+                return 1f;
+            }
+            return -1f;
         }
     }
 }

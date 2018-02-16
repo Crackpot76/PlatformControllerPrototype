@@ -42,11 +42,10 @@ GameObject:
   - component: {fileID: 212770524635191052}
   - component: {fileID: 61642137979592640}
   - component: {fileID: 114593083441986388}
-  - component: {fileID: 114780032943787720}
   - component: {fileID: 114824276921605548}
+  - component: {fileID: 114877102128137882}
   - component: {fileID: 95497896339404658}
   - component: {fileID: 50873128665005544}
-  - component: {fileID: 114877102128137882}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -240,20 +239,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ae9655f8f9a3ea408871e915c64daaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114780032943787720
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1400734427654220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed8ae39a2c0f42541a1a6c8f694c151b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  opponentTags:
+  - Enemy
+  movementController: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  health: {fileID: 0}
+  disableStateMovement: 0
   currentDirectionX: 0
   currentTransform: {fileID: 0}
-  disableUserInput: 0
 --- !u!114 &114824276921605548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,8 +284,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthDisplay: {fileID: 0}
-  maxHealth: 3
-  currentHealth: 3
+  maxHealth: 4
+  currentHealth: 4
 --- !u!114 &114949802758902988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -304,8 +297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92cee29e009624f46ae61a35c5af65b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  opponentTags:
-  - Enemy
 --- !u!212 &212770524635191052
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -4,31 +4,52 @@ using UnityEngine;
 
 public class ObserverController: RaycastController {
 
-    public string detectionTag;
-
-    public PlayerDetectionInfo playerDetectionInfo;
+    public float observerDistanceNear = 2f;
+    public float observerDistanceFar = 6f;
+    public string[] detectionTags;
+    
+    private DetectionInfo detectionInfo;
 
     public override void Start() {
         base.Start();
     }
     
 
-    public PlayerDetectionInfo ObserveDirection(float distance, float directionX, float directionY) {
+    public DetectionInfo DetectOpponents(float currentDirectionX) {
+
+        float observeAroundDistance = (detectionInfo.isAware ? observerDistanceFar : observerDistanceNear);
+        DetectionInfo currentDetection = ObserveAround(observeAroundDistance);
+        if (currentDetection.distance < 0) {
+            // Player near around not detected
+            currentDetection = ObserveDirection(observerDistanceFar, currentDirectionX, 0);
+        }
+
+        if (currentDetection.distance < 0) {
+            // Player not be found. Aware is false again
+            detectionInfo.isAware = false;
+        } else {
+            detectionInfo.isAware = true;
+        }
+
+        return currentDetection;
+    }
+
+    private DetectionInfo ObserveDirection(float distance, float directionX, float directionY) {
         UpdateRaycastOrigins();
-        playerDetectionInfo.Reset();
+        detectionInfo.Reset();
         Observe(distance, directionX, directionY);
-        return playerDetectionInfo;
+        return detectionInfo;
 
     }
 
-    public PlayerDetectionInfo ObserveAround(float distance) {
+    private DetectionInfo ObserveAround(float distance) {
         UpdateRaycastOrigins();
-        playerDetectionInfo.Reset();
+        detectionInfo.Reset();
         Observe(distance, 1, 1);
         Observe(distance, -1, 1);
         Observe(distance, 1, -1);
         Observe(distance, -1, -1);
-        return playerDetectionInfo;
+        return detectionInfo;
     }
 
 
@@ -58,11 +79,11 @@ public class ObserverController: RaycastController {
             
             Debug.DrawRay(rayOrigin, Vector2.right * directionX, Color.blue);
             
-            if (hit && hit.transform.gameObject.CompareTag(detectionTag)) {
+            if (hit && IsGameObjectDetectable(hit.transform.gameObject)) {
 
-                playerDetectionInfo.distance = hit.distance;
-                playerDetectionInfo.right = directionX == 1;
-                playerDetectionInfo.left = directionX == -1;
+                detectionInfo.distance = hit.distance;
+                detectionInfo.right = directionX == 1;
+                detectionInfo.left = directionX == -1;
 
             }
         }
@@ -80,19 +101,31 @@ public class ObserverController: RaycastController {
             Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.blue);
 
 
-            if (hit && hit.transform.gameObject.CompareTag(detectionTag)) {
+            if (hit && IsGameObjectDetectable(hit.transform.gameObject)) {
 
-                playerDetectionInfo.distance = hit.distance;
-                playerDetectionInfo.below = directionY == -1;
-                playerDetectionInfo.above = directionY == 1;
+                detectionInfo.distance = hit.distance;
+                detectionInfo.below = directionY == -1;
+                detectionInfo.above = directionY == 1;
             }
         }
     }
 
+    private bool IsGameObjectDetectable(GameObject go) {
+        if (go) {
+            foreach(string detectionTag in detectionTags) {
+                if (go.CompareTag(detectionTag)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-    public struct PlayerDetectionInfo {
+
+    public struct DetectionInfo {
         public bool above, below;
         public bool left, right;
+        public bool isAware;
         public float distance;
 
         public void Reset() {

@@ -10,12 +10,12 @@ namespace EnemyStates {
 
         private float lastAttackTime;
 
-        public override void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController, ObserverController.PlayerDetectionInfo playerDetection) {
+        public override void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimEnemyParameters.IDLE, true);
             lastAttackTime = Time.time;
         }
 
-        public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController, ObserverController.PlayerDetectionInfo playerDetection) {
+        public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
             if (!stateMachine.InAttackPosition()) {
                 //  Player out of reach
@@ -29,7 +29,7 @@ namespace EnemyStates {
             return null;
         }
 
-        public override void OnExit(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController, ObserverController.PlayerDetectionInfo playerDetection) {
+        public override void OnExit(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimEnemyParameters.IDLE, false);
         }
 
