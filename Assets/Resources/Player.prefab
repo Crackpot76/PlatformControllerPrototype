@@ -241,6 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   opponentTags:
   - Enemy
+  destructableTags: []
   movementController: {fileID: 0}
   spriteRenderer: {fileID: 0}
   health: {fileID: 0}

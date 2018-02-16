@@ -11,6 +11,9 @@ public class AttackController : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision) {
 
         if (ListContainsTag(parentCharacterController.opponentTags, collision.gameObject.tag)) {
+
+            float maxHitContactY = GetMaxHitContactY(collision);
+            Debug.Log("MaxHitY:" + maxHitContactY);
             float hitDirectionX = GetHitDirection(parentCharacterController.transform, collision);
 
             AbstractCharacterController opponentCharacterController = collision.gameObject.GetComponent<AbstractCharacterController>();
@@ -18,7 +21,7 @@ public class AttackController : MonoBehaviour {
             if (opponentCharacterController) {
                 AttackDetails attack = parentCharacterController.GetCurrentAttackDetails();
                 if (attack != null) {
-                    opponentCharacterController.ReceiveDamage(hitDirectionX, attack);
+                    opponentCharacterController.ReceiveDamage(hitDirectionX, maxHitContactY, attack);
                 } else {
                     Debug.LogError("Parent CharacterController is not in state attacking!");
                 }
@@ -41,6 +44,24 @@ public class AttackController : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    public static float GetMaxHitContactY(Collision2D collision) {
+
+        ContactPoint2D[] contactPoints = collision.contacts;
+        float result = 0;
+        bool first = true;
+        foreach (ContactPoint2D contactPoint in contactPoints) {
+            if (first) {
+                result = contactPoint.point.y;
+                first = false;
+            } else {
+                if (contactPoint.point.y > result) {
+                    result = contactPoint.point.y;
+                }
+            }
+        }
+        return result;
     }
 
     public static float GetHitDirection(Transform thisTransform, Collision2D collision) {

@@ -9,6 +9,7 @@ public abstract class AbstractCharacterController : MonoBehaviour {
     public string[] opponentTags;
     // which objects with tags can be destroyed
     public string[] destructableTags;
+    
 
 
     [HideInInspector]
@@ -28,6 +29,8 @@ public abstract class AbstractCharacterController : MonoBehaviour {
 
     // Get the parameters of the current attack
     public abstract AttackDetails GetCurrentAttackDetails();
+
+    public abstract Object GetBloodSplatterParticleSystem();
 
 
     // Use this for initialization
@@ -51,7 +54,7 @@ public abstract class AbstractCharacterController : MonoBehaviour {
             AbstractCharacterController opponentCharacterController = collision.gameObject.GetComponent<AbstractCharacterController>();
 
             if (opponentCharacterController) {
-                opponentCharacterController.ReceiveDamage(hitDirectionX, bodyCheck);
+                opponentCharacterController.ReceiveDamage(hitDirectionX, -1, bodyCheck);
             } else {
                 Debug.LogError("No PlayerController Script for player found. No damage served today!");
             }
@@ -61,20 +64,32 @@ public abstract class AbstractCharacterController : MonoBehaviour {
 
 
     // Interfaces for external Interaction
-    public virtual void ReceiveDamage(float directionHitX, AttackDetails attack) {
+    public virtual void ReceiveDamage(float directionHitX, float maxHitContactY, AttackDetails attack) {
         disableStateMovement = true;
+
+        // Blood Effect on sharp attack
+        if (attack.type.Equals(AttackDetails.AttackType.Sharp)) {
+            InstantiateBloodSplatterParticleSystem(directionHitX, maxHitContactY);
+        }
+
+        // Start flashing animation
         StartCoroutine(spriteFlashingEffect.Flash(4f, 0.15f));        
 
+        // calculate damage on health
         health.TakeDamage(attack.damage);
+
+        // push effect on model
         if (attack.pushOnDamage) {
             StartCoroutine(MoveOnDamage(directionHitX, attack.pushSpeed));
         }
+
+        // what to do on when health is below zero
         if (!health.IsAlive()) {
             // GAME OVER
             Destroy(gameObject);
-        } else {
-            Invoke("EnableStateMovement", .1f);
         }
+
+        Invoke("EnableStateMovement", .1f);
     }
 
     public IEnumerator MoveOnDamage(float directionHitX, float pushSpeed) {
@@ -89,5 +104,19 @@ public abstract class AbstractCharacterController : MonoBehaviour {
     // Enables state movement after certain time
     void EnableStateMovement() {
         disableStateMovement = false;
+    }
+
+    void InstantiateBloodSplatterParticleSystem(float directionHitX, float maxHitContactY) {
+        GameObject bloodSplatter = (GameObject)Instantiate(GetBloodSplatterParticleSystem());
+        ParticleSystem particleSystem = bloodSplatter.GetComponent<ParticleSystem>();
+        
+        if (directionHitX > 0) {
+            // bloodSplatter rotate 180 degrees
+            bloodSplatter.transform.rotation = new Quaternion(bloodSplatter.transform.rotation.x, 180, bloodSplatter.transform.rotation.z, bloodSplatter.transform.rotation.w);
+        }
+        bloodSplatter.transform.parent = transform;
+        bloodSplatter.transform.position = new Vector2(transform.position.x, maxHitContactY);
+
+        particleSystem.Play();
     }
 }

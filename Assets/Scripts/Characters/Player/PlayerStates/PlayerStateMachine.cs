@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace PlayerStates {
     [RequireComponent(typeof(Animator))]
-    public class PlayerStateMachine : AbstractCharacterController {
+    public abstract class PlayerStateMachine : AbstractCharacterController {
 
         public static IdleState idleState;
         public static PreJumpIdleState preJumpIdleState;

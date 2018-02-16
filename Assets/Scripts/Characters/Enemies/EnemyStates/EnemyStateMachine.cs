@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace EnemyStates {
     [RequireComponent(typeof(Animator))]
-    public class EnemyStateMachine: AbstractCharacterController {
+    public abstract class EnemyStateMachine: AbstractCharacterController {
         
         public float attackDistance = 0.7f;
         public float attackEverySeconds = 2;
