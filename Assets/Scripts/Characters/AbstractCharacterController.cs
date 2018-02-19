@@ -109,12 +109,15 @@ public abstract class AbstractCharacterController : MonoBehaviour {
     void InstantiateBloodSplatterParticleSystem(float directionHitX, float maxHitContactY) {
         GameObject bloodSplatter = (GameObject)Instantiate(GetBloodSplatterParticleSystem());
         ParticleSystem particleSystem = bloodSplatter.GetComponent<ParticleSystem>();
-        
+
         if (directionHitX > 0) {
             // bloodSplatter rotate 180 degrees
             bloodSplatter.transform.rotation = new Quaternion(bloodSplatter.transform.rotation.x, 180, bloodSplatter.transform.rotation.z, bloodSplatter.transform.rotation.w);
         }
+        
         bloodSplatter.transform.parent = transform;
+
+        bloodSplatter.transform.localScale = new Vector3(transform.localScale.x, 1, 1);
         bloodSplatter.transform.position = new Vector2(transform.position.x, maxHitContactY);
 
         particleSystem.Play();

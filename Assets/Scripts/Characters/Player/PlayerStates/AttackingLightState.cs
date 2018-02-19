@@ -24,6 +24,7 @@ namespace PlayerStates {
             animationHasStopped = false;
             animator.SetBool(AnimPlayerParameters.ATTACKING_LIGHT, true);
             stateMachine.InstantiateEffect(dustEffect);
+            Debug.Log("OnEnter Attacking");
         }
 
         public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {

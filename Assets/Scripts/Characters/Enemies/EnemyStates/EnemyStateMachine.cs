@@ -68,7 +68,8 @@ namespace EnemyStates {
         public void FlipSprite(float newDirectionX) {
             if (newDirectionX != 0 && currentDirectionX != newDirectionX) {
                 currentDirectionX = newDirectionX;
-                spriteRenderer.flipX = (currentDirectionX > 0);
+                transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                //spriteRenderer.flipX = (currentDirectionX > 0);
             }
         }
 

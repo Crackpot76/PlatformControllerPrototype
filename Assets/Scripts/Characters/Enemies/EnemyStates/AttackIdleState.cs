@@ -5,8 +5,8 @@ using UnityEngine;
 namespace EnemyStates {
     public class AttackIdleState: AbstractState {
 
-        private const float minAttackInterval = 1;
-        private const float maxAttackInterval = 2;
+        private const float minAttackInterval = 0.5f;
+        private const float maxAttackInterval = 0.8f;
 
         private float lastAttackTime;
 

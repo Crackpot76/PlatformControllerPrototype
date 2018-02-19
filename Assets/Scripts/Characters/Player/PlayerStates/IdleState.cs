@@ -28,7 +28,7 @@ namespace PlayerStates {
                 return PlayerStateMachine.duckingState;
             }
 
-            if (Input.GetKey(KeyCode.D) && playerController.IsGrounded()) {
+            if (Input.GetKey(KeyCode.T) && playerController.IsGrounded()) {
                 return PlayerStateMachine.attackingLightState;
             }
             return null;

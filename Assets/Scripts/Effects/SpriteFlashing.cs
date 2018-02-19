@@ -22,23 +22,38 @@ public class SpriteFlashing {
         spriteRenderer.material.shader = shaderFlash;
         spriteRenderer.color = Color.white;
     }
+    void redSprite() {
+        spriteRenderer.material.shader = shaderDefault;
+        spriteRenderer.color = Color.red;
+    }
+    void invisibleSprite() {
+        spriteRenderer.material.shader = shaderDefault;
+        spriteRenderer.color = Color.white;
+        Color c = spriteRenderer.color;
+        c.a = 0f;
+        spriteRenderer.color = c;
+    }
     void normalSprite() {
         spriteRenderer.material.shader = shaderDefault;
         spriteRenderer.color = Color.white;
     }
 
-
     public IEnumerator Flash(float flashCount, float flashInterval) {
-        for (int i = 0; i < flashCount; i++) {
+        for (int i = 0; i < 4; i++) {
             // switch color
-            if (toWhite) {
+            if (i==0) {
                 whiteSprite();
-                toWhite = false;
-            } else {
-                normalSprite();
-                toWhite = true;
             }
-            yield return new WaitForSeconds(flashInterval);
+            if (i == 1) {
+                redSprite();
+            }
+            if (i == 2) {
+                invisibleSprite();
+            }
+            if (i == 3) {
+                normalSprite();
+            }
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }

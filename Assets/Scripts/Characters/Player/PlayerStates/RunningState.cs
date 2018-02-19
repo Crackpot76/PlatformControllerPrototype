@@ -32,7 +32,7 @@ namespace PlayerStates {
                 return PlayerStateMachine.preJumpRunningState;
             }
 
-            if (Input.GetKey(KeyCode.D) && playerController.IsGrounded()) {
+            if (Input.GetKey(KeyCode.T) && playerController.IsGrounded()) {
                 return PlayerStateMachine.attackingLightState;
             }
 

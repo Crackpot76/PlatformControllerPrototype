@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 7255b03eb2ac34b4ea153b2225e81c9a
-timeCreated: 1518464689
+guid: e73ea4e793746e740bf03a32143429c2
+timeCreated: 1519070460
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: guard_small_idle_0
-    21300002: guard_small_idle_1
-    21300004: guard_small_idle_2
-    21300006: guard_small_idle_3
+    21300000: guard_small_attack_idle_0
+    21300002: guard_small_attack_idle_1
+    21300004: guard_small_attack_idle_2
+    21300006: guard_small_attack_idle_3
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -104,12 +104,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: guard_small_idle_0
+      name: guard_small_attack_idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 40
+        width: 45
         height: 40
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -118,12 +118,12 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: guard_small_idle_1
+      name: guard_small_attack_idle_1
       rect:
         serializedVersion: 2
-        x: 40
+        x: 45
         y: 0
-        width: 40
+        width: 45
         height: 40
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -132,12 +132,12 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: guard_small_idle_2
+      name: guard_small_attack_idle_2
       rect:
         serializedVersion: 2
-        x: 80
+        x: 90
         y: 0
-        width: 40
+        width: 45
         height: 40
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -146,12 +146,12 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: guard_small_idle_3
+      name: guard_small_attack_idle_3
       rect:
         serializedVersion: 2
-        x: 120
+        x: 135
         y: 0
-        width: 40
+        width: 45
         height: 40
       alignment: 7
       pivot: {x: 0.5, y: 0}

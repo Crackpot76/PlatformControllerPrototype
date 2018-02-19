@@ -42,13 +42,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4021350291910084}
-  - component: {fileID: 33504924044372126}
-  - component: {fileID: 23003298592195948}
-  - component: {fileID: 61234589714831060}
   - component: {fileID: 114355706780325188}
+  - component: {fileID: 61234589714831060}
   - component: {fileID: 50375132594186072}
   m_Layer: 10
-  m_Name: Quad
+  m_Name: Spear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1489759963600038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.907, y: 0.668, z: 0}
+  m_LocalPosition: {x: -0.907, y: 0.75, z: 0}
   m_LocalScale: {x: 1.1374999, y: 0.31765637, z: 1}
   m_Children: []
   m_Father: {fileID: 4638383199319956}
@@ -74,54 +72,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1463376748534530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.75, y: 0, z: 0}
+  m_LocalPosition: {x: 4.06, y: -40.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4021350291910084}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23003298592195948
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1489759963600038}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 8a21abc5a8c9dbb4db02f53543ecf673, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &33504924044372126
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1489759963600038}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!50 &50375132594186072
 Rigidbody2D:
   serializedVersion: 4
@@ -199,18 +156,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.096722364, y: 0.5721832}
+  m_Offset: {x: 0.11968374, y: 0.5721832}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.6666666, y: 1.6666666}
+    oldSize: {x: 1.875, y: 1.6666666}
     newSize: {x: 1.6666666, y: 1.6666666}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8735442, y: 1.1443664}
+  m_Size: {x: 0.80466175, y: 1.1443664}
   m_EdgeRadius: 0
 --- !u!95 &95826492616376268
 Animator:
@@ -283,8 +240,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   health: {fileID: 0}
   disableStateMovement: 0
-  attackDistance: 0.7
-  attackEverySeconds: 2
+  attackDistance: 0.9
+  attackEverySeconds: 0.5
   currentDirectionX: 0
   currentTransform: {fileID: 0}
   bloodSplatterParticleSystem: {fileID: 1967139464538676, guid: e84abdddc13b8ef43891a09b868d6824,
@@ -360,7 +317,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7255b03eb2ac34b4ea153b2225e81c9a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e73ea4e793746e740bf03a32143429c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
