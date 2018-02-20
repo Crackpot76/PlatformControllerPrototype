@@ -241,7 +241,7 @@ MonoBehaviour:
   health: {fileID: 0}
   disableStateMovement: 0
   attackDistance: 0.9
-  attackEverySeconds: 0.5
+  attackEverySeconds: 0.2
   currentDirectionX: 0
   currentTransform: {fileID: 0}
   bloodSplatterParticleSystem: {fileID: 1967139464538676, guid: e84abdddc13b8ef43891a09b868d6824,

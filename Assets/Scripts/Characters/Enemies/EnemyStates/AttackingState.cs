@@ -17,6 +17,7 @@ namespace EnemyStates {
         public override void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animationHasStopped = false;
             animator.SetBool(AnimEnemyParameters.ATTACKING, true);
+            Debug.Log("Sorting Order: " + stateMachine.spriteRenderer.sortingOrder);
         }
 
         public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {

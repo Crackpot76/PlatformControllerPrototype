@@ -23,7 +23,7 @@ namespace PlayerStates {
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animationHasStopped = false;
             animator.SetBool(AnimPlayerParameters.ATTACKING_LIGHT, true);
-            stateMachine.InstantiateEffect(dustEffect);
+            
             Debug.Log("OnEnter Attacking");
         }
 
@@ -39,7 +39,12 @@ namespace PlayerStates {
         }
 
         public override void OnAnimEvent(PlayerStateMachine stateMachine, string parameter) {
-            animationHasStopped = true;
+            if (parameter.Equals("DUST_EFFECT")) {
+                Debug.Log("DustEffect");
+                stateMachine.InstantiateEffect(dustEffect);
+            } else {
+                animationHasStopped = true;
+            }
         }
 
         public override AttackDetails GetAttackDetails() {
