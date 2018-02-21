@@ -72,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1463376748534530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.06, y: -40.93, z: 0}
+  m_LocalPosition: {x: 10.765, y: -0.002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4021350291910084}
@@ -240,11 +240,12 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   health: {fileID: 0}
   disableStateMovement: 0
+  damagedEvent: 0
   attackDistance: 0.9
   attackEverySeconds: 0.2
   currentDirectionX: 0
   currentTransform: {fileID: 0}
-  bloodSplatterParticleSystem: {fileID: 1967139464538676, guid: e84abdddc13b8ef43891a09b868d6824,
+  bloodSplatterParticleSystem: {fileID: 1967139464538676, guid: 6309258a1a00ddd458b9bafe8ab78572,
     type: 2}
 --- !u!114 &114629546419278864
 MonoBehaviour:
@@ -281,8 +282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthDisplay: {fileID: 0}
-  maxHealth: 4
-  currentHealth: 4
+  maxHealth: 10
+  currentHealth: 10
 --- !u!212 &212442980754025884
 SpriteRenderer:
   m_ObjectHideFlags: 1

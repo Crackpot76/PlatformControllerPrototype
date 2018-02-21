@@ -17,6 +17,10 @@ namespace EnemyStates {
 
         public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
+            if (stateMachine.damagedEvent) {
+                return EnemyStateMachine.damageState;
+            }
+
             if (!stateMachine.InAttackPosition()) {
                 //  Player out of reach
                 return EnemyStateMachine.runningState;

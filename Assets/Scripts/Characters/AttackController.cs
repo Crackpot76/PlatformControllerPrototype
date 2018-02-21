@@ -13,7 +13,6 @@ public class AttackController : MonoBehaviour {
         if (ListContainsTag(parentCharacterController.opponentTags, collision.gameObject.tag)) {
 
             float maxHitContactY = GetMaxHitContactY(collision);
-            Debug.Log("MaxHitY:" + maxHitContactY);
             float hitDirectionX = GetHitDirection(parentCharacterController.transform, collision);
 
             AbstractCharacterController opponentCharacterController = collision.gameObject.GetComponent<AbstractCharacterController>();

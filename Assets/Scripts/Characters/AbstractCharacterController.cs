@@ -20,6 +20,9 @@ public abstract class AbstractCharacterController : MonoBehaviour {
     public HealthController health;
     [HideInInspector]
     public bool disableStateMovement = false;
+    [HideInInspector]
+    public bool damagedEvent = false;
+
 
     // Default Werte aus AttackDetails für Bodycheck verwenden
     private AttackDetails bodyCheck = new AttackDetails();
@@ -66,6 +69,7 @@ public abstract class AbstractCharacterController : MonoBehaviour {
     // Interfaces for external Interaction
     public virtual void ReceiveDamage(float directionHitX, float maxHitContactY, AttackDetails attack) {
         disableStateMovement = true;
+        damagedEvent = true;
 
         // Blood Effect on sharp attack
         if (attack.type.Equals(AttackDetails.AttackType.Sharp)) {
@@ -104,6 +108,7 @@ public abstract class AbstractCharacterController : MonoBehaviour {
     // Enables state movement after certain time
     void EnableStateMovement() {
         disableStateMovement = false;
+        damagedEvent = false; 
     }
 
     void InstantiateBloodSplatterParticleSystem(float directionHitX, float maxHitContactY) {

@@ -8,5 +8,6 @@ namespace EnemyStates {
         public static string IDLE = "IDLE";
         public static string RUNNING = "RUNNING";
         public static string ATTACKING = "ATTACKING";
+        public static string DAMAGE = "DAMAGE";
     }
 }

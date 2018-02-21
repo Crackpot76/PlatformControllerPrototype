@@ -12,6 +12,7 @@ namespace EnemyStates {
         public static RunningState runningState;
         public static AttackIdleState attackIdleState;
         public static AttackingState attackingState;
+        public static DamageState damageState;
 
 
         [HideInInspector]
@@ -38,6 +39,7 @@ namespace EnemyStates {
             runningState = new RunningState();
             attackIdleState = new AttackIdleState();
             attackingState = new AttackingState();
+            damageState = new DamageState();
 
             currentState = idleState;
             currentDirectionX = (spriteRenderer.flipX ? 1 : -1); // Enemies always initially face left
@@ -45,20 +47,18 @@ namespace EnemyStates {
 
         public virtual void Update() {
             //base.Update();
+                        
+            currentTransform = transform;
 
+            currentDetection = observerController.DetectOpponents(currentDirectionX);
 
-            if (!disableStateMovement) {
-                currentTransform = transform;
-
-                currentDetection = observerController.DetectOpponents(currentDirectionX);
-
-                AbstractState newState = currentState.HandleUpdate(this, animator, movementController);
-                if (newState != null) {
-                    currentState.OnExit(this, animator, movementController);
-                    currentState = newState;
-                    currentState.OnEnter(this, animator, movementController);
-                }
+            AbstractState newState = currentState.HandleUpdate(this, animator, movementController);
+            if (newState != null) {
+                currentState.OnExit(this, animator, movementController);
+                currentState = newState;
+                currentState.OnEnter(this, animator, movementController);
             }
+            
         }
 
         public void EventTrigger(string parameter) {
