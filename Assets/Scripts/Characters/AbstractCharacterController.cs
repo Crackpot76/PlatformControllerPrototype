@@ -39,28 +39,32 @@ public abstract class AbstractCharacterController : MonoBehaviour {
     // Interfaces for external Interaction
     public virtual void ReceiveDamage(float directionHitX, float maxHitContactY, AttackDetails attack) {
 
-        stateMachineInterface.EventTrigger("DAMAGE");
+        if (attack.damage > 0) {
 
-        // Blood Effect on sharp attack
-        if (attack.type.Equals(AttackDetails.AttackType.Sharp)) {
-            InstantiateBloodSplatterParticleSystem(directionHitX, maxHitContactY);
-        }
+            // Blood Effect on sharp attack
+            if (attack.type.Equals(AttackDetails.AttackType.Sharp)) {
+                InstantiateBloodSplatterParticleSystem(directionHitX, maxHitContactY);
+            }
 
-        // Start flashing animation
-        StartCoroutine(spriteFlashingEffect.Flash(4f, 0.15f));        
+            // Start flashing animation
+            StartCoroutine(spriteFlashingEffect.Flash(4f, 0.15f));
 
-        // calculate damage on health
-        health.TakeDamage(attack.damage);
+            // calculate damage on health
+            health.TakeDamage(attack.damage);
 
-        // push effect on model
-        if (attack.pushOnDamage) {
-            StartCoroutine(MoveOnDamage(directionHitX, attack.pushSpeed));
-        }
+            // push effect on model
+            if (attack.pushOnDamage) {
+                StartCoroutine(MoveOnDamage(directionHitX, attack.pushSpeed));
+            }
 
-        // what to do on when health is below zero
-        if (!health.IsAlive()) {
-            // GAME OVER
-            Destroy(gameObject);
+            // what to do on when health is below zero
+            if (!health.IsAlive()) {
+                // GAME OVER
+                stateMachineInterface.EventTrigger(EventParameters.DEATH);
+                //Destroy(gameObject);
+            } else {
+                stateMachineInterface.EventTrigger(EventParameters.DAMAGE);
+            }
         }
     }
 
@@ -88,8 +92,6 @@ public abstract class AbstractCharacterController : MonoBehaviour {
         bloodSplatter.transform.localScale = new Vector3(transform.localScale.x, 1, 1);
         bloodSplatter.transform.position = new Vector2(transform.position.x, maxHitContactY);
 
-        var particleMain = particleSystem.main;
-        particleMain.duration = 1f;
         particleSystem.Play();
     }
 }

@@ -5,17 +5,15 @@ using UnityEngine;
 namespace EnemyStates {
     public class RunningState: AbstractState {
 
-
-        private bool damaged = false;
-
+        
         public override void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
+            base.OnEnter(stateMachine, animator, playerController);
             animator.SetBool(AnimEnemyParameters.RUNNING, true);
-            damaged = false;
          }
 
         public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
-            if (damaged) {
+            if (eventParameter != null && eventParameter.Equals(EventParameters.DAMAGE)) {
                 return EnemyStateMachine.damageState;
             }
 
@@ -40,10 +38,5 @@ namespace EnemyStates {
             animator.SetBool(AnimEnemyParameters.RUNNING, false);
         }
 
-        public override void OnAnimEvent(EnemyStateMachine stateMachine, string parameter) {
-            if (parameter.Equals("DAMAGE")) {
-                damaged = true;
-            }
-        }
     }
 }

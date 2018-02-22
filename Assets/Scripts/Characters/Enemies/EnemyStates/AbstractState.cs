@@ -10,13 +10,18 @@ namespace EnemyStates {
         public const float MAX_MOVE_FACTOR_AIR = 2f;
         public const float MIDDLE_MOVE_FACTOR_AIR = (MAX_MOVE_FACTOR_AIR - MIN_MOVE_FACTOR_AIR) / 2 + MIN_MOVE_FACTOR_AIR;
 
+        public string eventParameter = null;
 
-        public abstract void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController);
+
+        public virtual void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
+            eventParameter = null;
+        }
+
         public abstract AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController);
         public abstract void OnExit(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerControllern);
 
         public virtual void OnAnimEvent(EnemyStateMachine stateMachine, string parameter) {
-            // not implemented
+            eventParameter = parameter;
         }
 
         public void MoveX(EnemyStateMachine stateMachine, CharacterMovementController playerController, float directionX, float accelerationTime = ACCELERATION_TIME_GROUNDED, float moveFactor = 1f) {

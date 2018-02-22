@@ -4,17 +4,15 @@ using UnityEngine;
 
 namespace EnemyStates {
     public class IdleState: AbstractState {
-
-        private bool damaged = false;
-
+        
         public override void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
+            base.OnEnter(stateMachine, animator, playerController);
             animator.SetBool(AnimEnemyParameters.IDLE, true);
-            damaged = false;
-    }
+        }
 
         public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
-            if (damaged) {
+            if (eventParameter != null && eventParameter.Equals(EventParameters.DAMAGE)) {
                 return EnemyStateMachine.damageState;
             }
             if (stateMachine.currentDetection.distance >= 0) {
@@ -28,11 +26,6 @@ namespace EnemyStates {
         public override void OnExit(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimEnemyParameters.IDLE, false);
         }
-
-        public override void OnAnimEvent(EnemyStateMachine stateMachine, string parameter) {
-            if (parameter.Equals("DAMAGE")) {
-                damaged = true;
-            }
-        }
+        
     }
 }

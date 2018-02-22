@@ -8,6 +8,7 @@ namespace EnemyStates {
         private bool animationHasStopped;
 
         public override void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
+            base.OnEnter(stateMachine, animator, playerController);
             animationHasStopped = false;
             animator.SetBool(AnimEnemyParameters.DAMAGE, true);
         }
@@ -26,6 +27,7 @@ namespace EnemyStates {
         }
 
         public override void OnAnimEvent(EnemyStateMachine stateMachine, string parameter) {
+            base.OnAnimEvent(stateMachine, parameter);
             animationHasStopped = true;
         }
     }

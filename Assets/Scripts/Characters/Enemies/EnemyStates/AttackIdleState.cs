@@ -9,17 +9,16 @@ namespace EnemyStates {
         private const float maxAttackInterval = 0.8f;
 
         private float lastAttackTime;
-        private bool damaged = false;
 
         public override void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
+            base.OnEnter(stateMachine, animator, playerController);
             animator.SetBool(AnimEnemyParameters.IDLE, true);
             lastAttackTime = Time.time;
-            damaged = false;
         }
 
         public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
-            if (damaged) {
+            if (eventParameter != null && eventParameter.Equals(EventParameters.DAMAGE)) {
                 return EnemyStateMachine.damageState;
             }
 
@@ -38,15 +37,7 @@ namespace EnemyStates {
         public override void OnExit(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimEnemyParameters.IDLE, false);
         }
-
-        public override void OnAnimEvent(EnemyStateMachine stateMachine, string parameter) {
-            if (parameter.Equals("DAMAGE")) {
-                damaged = true;
-            }
-        }
-
-
-
+        
         bool IsTimeToAttack(EnemyStateMachine stateMachine) {
             float meanAttackTime = stateMachine.attackEverySeconds;
             float attacksPerSecond = 1 / meanAttackTime;
