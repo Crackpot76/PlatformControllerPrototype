@@ -13,6 +13,7 @@ namespace EnemyStates {
         public static AttackIdleState attackIdleState;
         public static AttackingState attackingState;
         public static DamageState damageState;
+        public static DeathState deathState;
 
 
         [HideInInspector]
@@ -21,11 +22,14 @@ namespace EnemyStates {
         public ObserverController.DetectionInfo currentDetection;
         
         AbstractState currentState;
+
+        SpriteRenderer spriteRenderer;
         Animator animator;
         ObserverController observerController;
         CharacterMovementController movementController;
 
         public void Start() {
+            spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
             observerController = GetComponent<ObserverController>();
             movementController = GetComponent<CharacterMovementController>();
@@ -35,6 +39,7 @@ namespace EnemyStates {
             attackIdleState = new AttackIdleState();
             attackingState = new AttackingState();
             damageState = new DamageState();
+            deathState = new DeathState();
 
             currentState = idleState;
             currentDirectionX = -1; // Enemies always initially face left
@@ -78,6 +83,22 @@ namespace EnemyStates {
                 }
             }
             return false;
+        }
+
+        public void Destroy() {
+            StartCoroutine(FadeOut());
+        }
+
+
+        private IEnumerator FadeOut() {
+            for (float i = 1; i > 0; i -= 0.01f) {
+                Color c = spriteRenderer.color;
+                c.a = i;
+                spriteRenderer.color = c;
+                Debug.Log(spriteRenderer.color.a);
+                yield return new WaitForSeconds(.1f);
+            }
+            Destroy(gameObject);
         }
 
         public void EventTrigger(string parameter) {

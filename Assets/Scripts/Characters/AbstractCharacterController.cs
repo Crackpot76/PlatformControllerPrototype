@@ -14,6 +14,7 @@ public abstract class AbstractCharacterController : MonoBehaviour {
     protected IStateMachine stateMachineInterface;
     protected CharacterMovementController movementController;
     protected SpriteRenderer spriteRenderer;
+    protected BoxCollider2D boxCollider;
     protected HealthController health;
 
 
@@ -29,6 +30,7 @@ public abstract class AbstractCharacterController : MonoBehaviour {
         stateMachineInterface = GetComponent<IStateMachine>();
         movementController = GetComponent<CharacterMovementController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider2D>();
         health = GetComponent<HealthController>();
         health.RefreshDisplay();
 
@@ -61,6 +63,7 @@ public abstract class AbstractCharacterController : MonoBehaviour {
             if (!health.IsAlive()) {
                 // GAME OVER
                 stateMachineInterface.EventTrigger(EventParameters.DEATH);
+                boxCollider.enabled = false;
                 //Destroy(gameObject);
             } else {
                 stateMachineInterface.EventTrigger(EventParameters.DAMAGE);

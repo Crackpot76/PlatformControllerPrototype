@@ -26,6 +26,10 @@ namespace EnemyStates {
                 return EnemyStateMachine.damageState;
             }
 
+            if (eventParameter != null && eventParameter.Equals(EventParameters.DEATH)) {
+                return EnemyStateMachine.deathState;
+            }
+
             if (animationHasStopped) {
                 return EnemyStateMachine.attackIdleState;
             }
