@@ -7,8 +7,6 @@ public class SpriteFlashing {
     SpriteRenderer spriteRenderer;
     Shader shaderFlash;
     Shader shaderDefault;
-    
-    bool toWhite = true;
 
 
     public SpriteFlashing(SpriteRenderer spriteRenderer) {

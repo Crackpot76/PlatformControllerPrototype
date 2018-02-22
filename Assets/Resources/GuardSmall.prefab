@@ -19,11 +19,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4638383199319956}
-  - component: {fileID: 212442980754025884}
   - component: {fileID: 114513894013538910}
+  - component: {fileID: 114260360915551766}
   - component: {fileID: 114471697273745596}
   - component: {fileID: 114629546419278864}
   - component: {fileID: 114653961566155160}
+  - component: {fileID: 212442980754025884}
   - component: {fileID: 95826492616376268}
   - component: {fileID: 61748848507247760}
   - component: {fileID: 50882812408067568}
@@ -47,7 +48,7 @@ GameObject:
   - component: {fileID: 50375132594186072}
   m_Layer: 10
   m_Name: Spear
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,6 +187,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114260360915551766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1463376748534530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87ccd08fb61b2b4995d89bb29bbdddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDistance: 0.7
+  attackEverySeconds: 2
+  currentDirectionX: 0
 --- !u!114 &114355706780325188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,15 +251,6 @@ MonoBehaviour:
   opponentTags:
   - Player
   destructableTags: []
-  movementController: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  health: {fileID: 0}
-  disableStateMovement: 0
-  damagedEvent: 0
-  attackDistance: 0.9
-  attackEverySeconds: 0.2
-  currentDirectionX: 0
-  currentTransform: {fileID: 0}
   bloodSplatterParticleSystem: {fileID: 1967139464538676, guid: 6309258a1a00ddd458b9bafe8ab78572,
     type: 2}
 --- !u!114 &114629546419278864

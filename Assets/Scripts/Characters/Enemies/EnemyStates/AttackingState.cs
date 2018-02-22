@@ -8,20 +8,23 @@ namespace EnemyStates {
         private bool animationHasStopped;
         private AttackDetails attack;
 
+        private bool damaged = false;
+
         public AttackingState() {
             // Define Attack Details
             attack = new AttackDetails(); // default attack
             attack.type = AttackDetails.AttackType.Sharp;
         }
 
-        public override void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
-            animationHasStopped = false;
+        public override void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {            
             animator.SetBool(AnimEnemyParameters.ATTACKING, true);
+            damaged = false;
+            animationHasStopped = false;
         }
 
         public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
-            if (stateMachine.damagedEvent) {
+            if (damaged) {
                 return EnemyStateMachine.damageState;
             }
 
@@ -37,7 +40,11 @@ namespace EnemyStates {
         }
 
         public override void OnAnimEvent(EnemyStateMachine stateMachine, string parameter) {
-            animationHasStopped = true;
+            if (parameter != null && parameter.Equals("DAMAGE")) {
+                damaged = true;
+            } else {
+                animationHasStopped = true;
+            }            
         }
 
         public override AttackDetails GetAttackDetails() {

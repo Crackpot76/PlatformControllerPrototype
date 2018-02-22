@@ -38,7 +38,6 @@ namespace PlayerStates {
 
         public override void OnAnimEvent(PlayerStateMachine stateMachine, string parameter) {
             if (parameter.Equals("DUST_EFFECT")) {
-                Debug.Log("DustEffect");
                 stateMachine.InstantiateEffect(dustEffect);
             } else {
                 animationHasStopped = true;

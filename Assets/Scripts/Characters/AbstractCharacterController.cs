@@ -9,67 +9,37 @@ public abstract class AbstractCharacterController : MonoBehaviour {
     public string[] opponentTags;
     // which objects with tags can be destroyed
     public string[] destructableTags;
-    
 
 
-    [HideInInspector]
-    public CharacterMovementController movementController;
-    [HideInInspector]
-    public SpriteRenderer spriteRenderer;
-    [HideInInspector]
-    public HealthController health;
-    [HideInInspector]
-    public bool disableStateMovement = false;
-    [HideInInspector]
-    public bool damagedEvent = false;
+    protected IStateMachine stateMachineInterface;
+    protected CharacterMovementController movementController;
+    protected SpriteRenderer spriteRenderer;
+    protected HealthController health;
 
-
-    // Default Werte aus AttackDetails für Bodycheck verwenden
-    private AttackDetails bodyCheck = new AttackDetails();
 
     // Effects
     private SpriteFlashing spriteFlashingEffect;
-
-    // Get the parameters of the current attack
-    public abstract AttackDetails GetCurrentAttackDetails();
+    
 
     public abstract Object GetBloodSplatterParticleSystem();
 
 
     // Use this for initialization
     public virtual void Start() {
+        stateMachineInterface = GetComponent<IStateMachine>();
         movementController = GetComponent<CharacterMovementController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = GetComponent<HealthController>();
         health.RefreshDisplay();
 
         spriteFlashingEffect = new SpriteFlashing(spriteRenderer);
-
     }
-
-
-    void OnCollisionEnter2D(Collision2D collision) {
-
-        // check for collision with an opponent
-        if (AttackController.ListContainsTag(opponentTags, collision.gameObject.tag)) {
-            float hitDirectionX = AttackController.GetHitDirection(transform, collision);
-
-            AbstractCharacterController opponentCharacterController = collision.gameObject.GetComponent<AbstractCharacterController>();
-
-            if (opponentCharacterController) {
-                opponentCharacterController.ReceiveDamage(hitDirectionX, -1, bodyCheck);
-            } else {
-                Debug.LogError("No PlayerController Script for player found. No damage served today!");
-            }
-        }
-    }
-
-
+    
 
     // Interfaces for external Interaction
     public virtual void ReceiveDamage(float directionHitX, float maxHitContactY, AttackDetails attack) {
-        disableStateMovement = true;
-        damagedEvent = true;
+
+        stateMachineInterface.EventTrigger("DAMAGE");
 
         // Blood Effect on sharp attack
         if (attack.type.Equals(AttackDetails.AttackType.Sharp)) {
@@ -92,11 +62,9 @@ public abstract class AbstractCharacterController : MonoBehaviour {
             // GAME OVER
             Destroy(gameObject);
         }
-
-        Invoke("EnableStateMovement", .1f);
     }
 
-    public IEnumerator MoveOnDamage(float directionHitX, float pushSpeed) {
+    private IEnumerator MoveOnDamage(float directionHitX, float pushSpeed) {
         float time = Time.time;
         while ((time + 0.1f) > Time.time) {
             movementController.OnPushed(directionHitX, pushSpeed); // Push back in oposite direction      
@@ -105,13 +73,8 @@ public abstract class AbstractCharacterController : MonoBehaviour {
     }
 
 
-    // Enables state movement after certain time
-    void EnableStateMovement() {
-        disableStateMovement = false;
-        damagedEvent = false; 
-    }
 
-    void InstantiateBloodSplatterParticleSystem(float directionHitX, float maxHitContactY) {
+    private void InstantiateBloodSplatterParticleSystem(float directionHitX, float maxHitContactY) {
         GameObject bloodSplatter = (GameObject)Instantiate(GetBloodSplatterParticleSystem());
         ParticleSystem particleSystem = bloodSplatter.GetComponent<ParticleSystem>();
 
@@ -125,6 +88,8 @@ public abstract class AbstractCharacterController : MonoBehaviour {
         bloodSplatter.transform.localScale = new Vector3(transform.localScale.x, 1, 1);
         bloodSplatter.transform.position = new Vector2(transform.position.x, maxHitContactY);
 
+        var particleMain = particleSystem.main;
+        particleMain.duration = 1f;
         particleSystem.Play();
     }
 }

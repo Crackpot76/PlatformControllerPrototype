@@ -14,7 +14,6 @@ public class CoinController: MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log("COLLIDER COIN!");
         if (collision.gameObject.tag == "Player") {
             collected = true;
             animator.SetBool(COLLECTED, collected);

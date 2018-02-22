@@ -2,8 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 namespace PlayerStates {
-    [RequireComponent(typeof(Animator))]
-    public abstract class PlayerStateMachine : AbstractCharacterController {
+    [RequireComponent(typeof(CharacterMovementController), typeof(Animator))]
+    public class PlayerStateMachine : MonoBehaviour, IStateMachine {
 
         public static IdleState idleState;
         public static PreJumpIdleState preJumpIdleState;
@@ -22,15 +22,16 @@ namespace PlayerStates {
 
         [HideInInspector]
         public float currentDirectionX;
-        [HideInInspector]
-        public Transform currentTransform;
         
         AbstractState currentState;
         Animator animator;
+        CharacterMovementController movementController;
+        bool disableStateMovement = false;
 
-        public override void Start() {
-            base.Start();
+
+        public void Start() {
             animator = GetComponent<Animator>();
+            movementController = GetComponent<CharacterMovementController>();
 
             idleState = new IdleState();
             preJumpIdleState = new PreJumpIdleState();
@@ -54,8 +55,7 @@ namespace PlayerStates {
         public virtual void Update() {
            // base.Update();
 
-            if (!disableStateMovement) { 
-                currentTransform = transform;
+            if (!disableStateMovement) {
                 AbstractState newState = currentState.HandleUpdate(this, animator, movementController);
                 if (newState != null) {
                     currentState.OnExit(this, animator, movementController);
@@ -65,9 +65,6 @@ namespace PlayerStates {
             }
         }
 
-        public void EventTrigger(string parameter) {
-            currentState.OnAnimEvent(this, parameter);
-        }
 
         public void FlipSprite(float newDirectionX) {
             if (newDirectionX != 0 && currentDirectionX != newDirectionX) {                
@@ -83,12 +80,28 @@ namespace PlayerStates {
             dustGo.transform.position = transform.position;
         }
 
-        public override AttackDetails GetCurrentAttackDetails() {
+        public void EventTrigger(string parameter) {
+            currentState.OnAnimEvent(this, parameter);
+
+            if (parameter.Equals("DAMAGE")) {
+                disableStateMovement = true;
+                Invoke("ReenableStateMovement", .1f);
+            }
+        }
+
+        public AttackDetails GetCurrentAttackDetails() {
             AbstractStateAttack instanceCheck = currentState as AbstractStateAttack;
             if (instanceCheck != null) {
                 return instanceCheck.GetAttackDetails();
             }
             return null;
         }
+
+        // Enables state movement after certain time
+        private void ReenableStateMovement() {
+            disableStateMovement = false;
+        }
+
+
     }
 }

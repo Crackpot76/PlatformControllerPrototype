@@ -3,9 +3,17 @@
 public class AttackController : MonoBehaviour {
 
     private AbstractCharacterController parentCharacterController;
+    private IStateMachine parentStateMachine;
 
     private void Start() {
         parentCharacterController = transform.parent.gameObject.GetComponent<AbstractCharacterController>();
+        if (parentCharacterController == null) {
+            Debug.LogError("parentCharacterController in Attack Controller not found!");
+        }
+        parentStateMachine = transform.parent.gameObject.GetComponent<IStateMachine>();
+        if (parentStateMachine == null) {
+            Debug.LogError("parentStateMachine in Attack Controller not found!");
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
@@ -18,7 +26,7 @@ public class AttackController : MonoBehaviour {
             AbstractCharacterController opponentCharacterController = collision.gameObject.GetComponent<AbstractCharacterController>();
 
             if (opponentCharacterController) {
-                AttackDetails attack = parentCharacterController.GetCurrentAttackDetails();
+                AttackDetails attack = parentStateMachine.GetCurrentAttackDetails();
                 if (attack != null) {
                     opponentCharacterController.ReceiveDamage(hitDirectionX, maxHitContactY, attack);
                 } else {

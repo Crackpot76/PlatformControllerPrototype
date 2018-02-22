@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayerStates;
 
-public class PlayerController : PlayerStateMachine {
+public class PlayerController : AbstractCharacterController {
 
     private Object bloodSplatterParticleSystem;
 

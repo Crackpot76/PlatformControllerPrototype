@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace EnemyStates {
     [RequireComponent(typeof(Animator))]
-    public abstract class EnemyStateMachine: AbstractCharacterController {
+    public class EnemyStateMachine: MonoBehaviour, IStateMachine {
         
         public float attackDistance = 0.7f;
         public float attackEverySeconds = 2;
@@ -18,22 +18,17 @@ namespace EnemyStates {
         [HideInInspector]
         public float currentDirectionX;
         [HideInInspector]
-        public Transform currentTransform;
-        [HideInInspector]
         public ObserverController.DetectionInfo currentDetection;
         
         AbstractState currentState;
         Animator animator;
         ObserverController observerController;
+        CharacterMovementController movementController;
 
-        public override void Start() {
-            base.Start();
-
+        public void Start() {
             animator = GetComponent<Animator>();
             observerController = GetComponent<ObserverController>();
-            if (!observerController) {
-                Debug.LogError("Kein ObserverController gefunden, Object kann auf nichts reagieren!");
-            }
+            movementController = GetComponent<CharacterMovementController>();
 
             idleState = new IdleState();
             runningState = new RunningState();
@@ -42,13 +37,11 @@ namespace EnemyStates {
             damageState = new DamageState();
 
             currentState = idleState;
-            currentDirectionX = (spriteRenderer.flipX ? 1 : -1); // Enemies always initially face left
+            currentDirectionX = -1; // Enemies always initially face left
         }
 
         public virtual void Update() {
             //base.Update();
-                        
-            currentTransform = transform;
 
             currentDetection = observerController.DetectOpponents(currentDirectionX);
 
@@ -61,15 +54,10 @@ namespace EnemyStates {
             
         }
 
-        public void EventTrigger(string parameter) {
-            currentState.OnAnimEvent(this, parameter);
-        }
-
         public void FlipSprite(float newDirectionX) {
             if (newDirectionX != 0 && currentDirectionX != newDirectionX) {
                 currentDirectionX = newDirectionX;
                 transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                //spriteRenderer.flipX = (currentDirectionX > 0);
             }
         }
 
@@ -92,7 +80,11 @@ namespace EnemyStates {
             return false;
         }
 
-        public override AttackDetails GetCurrentAttackDetails() {
+        public void EventTrigger(string parameter) {
+            currentState.OnAnimEvent(this, parameter);
+        }
+
+        public AttackDetails GetCurrentAttackDetails() {
             AbstractStateAttack instanceCheck = currentState as AbstractStateAttack;
             if (instanceCheck != null) {
                 return instanceCheck.GetAttackDetails();

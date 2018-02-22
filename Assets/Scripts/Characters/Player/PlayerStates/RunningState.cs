@@ -17,7 +17,7 @@ namespace PlayerStates {
 
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController)
         {
-            startX = stateMachine.currentTransform.position.x;
+            startX = stateMachine.transform.position.x;
             animator.SetBool(AnimPlayerParameters.RUNNING, true);
             MoveXGrounded(stateMachine, playerController);
         }
@@ -40,7 +40,7 @@ namespace PlayerStates {
             if (directionX == 0 || directionX != stateMachine.currentDirectionX) {
 
                 //check if stopping Animation
-                float newPosX = stateMachine.currentTransform.position.x;
+                float newPosX = stateMachine.transform.position.x;
                 float distanceRun = (startX >= newPosX ? startX - newPosX : newPosX - startX);
                 if (distanceRun < QUICKSTOP_DISTANCE) {
                     if (directionX == 0) {
