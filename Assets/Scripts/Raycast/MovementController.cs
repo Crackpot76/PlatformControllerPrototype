@@ -14,16 +14,17 @@ public class MovementController: RaycastController {
         collisions.lastBelow = true;
     }
 
-    public void Move(Vector2 moveAmount, bool standingOnPlatform = false) {
+    public void Move(Vector2 moveAmount, bool useLadder, bool standingOnPlatform = false) {
 
         UpdateRaycastOrigins();
 
         collisions.Reset();
         collisions.moveAmountOld = moveAmount;
-        
+
+        // Leiter prüfen        
+        ValidateLadderState(ref moveAmount, useLadder);
 
         if (moveAmount.y < 0) {
-
             DescendSlope(ref moveAmount);
         }
 
@@ -33,9 +34,10 @@ public class MovementController: RaycastController {
 
         HorizontalCollisions(ref moveAmount);
         if (moveAmount.y != 0) {
-            VerticalCollisions(ref moveAmount);
+            VerticalCollisions(ref moveAmount, useLadder);
         }
-        
+
+        //Debug.Log("TranslateY: " + moveAmount.y);
         transform.Translate(moveAmount);
 
         if (standingOnPlatform) {
@@ -58,7 +60,7 @@ public class MovementController: RaycastController {
 
             Debug.DrawRay(rayOrigin, Vector2.right * directionX, Color.red);
 
-            if (hit) {
+            if (hit && hit.collider.tag != "Ladder") {
 
                 if (hit.distance == 0) {
                     continue;
@@ -95,7 +97,7 @@ public class MovementController: RaycastController {
         }
     }
 
-    void VerticalCollisions(ref Vector2 moveAmount) {
+    void VerticalCollisions(ref Vector2 moveAmount, bool useLadder) {
         float directionY = Mathf.Sign(moveAmount.y);
         float rayLength = Mathf.Abs(moveAmount.y) + skinWidth;
 
@@ -109,9 +111,9 @@ public class MovementController: RaycastController {
 
             Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.red);
 
-            if (hit) {
+            if (hit && hit.collider.tag != "Ladder") {
                 if (hit.collider.tag == "Through") {
-                    if (directionY == 1 || hit.distance == 0) {
+                    if (directionY == 1 || hit.distance == 0 || (collisions.onLadder && useLadder)) {
                         continue;
                     }
                 }
@@ -123,7 +125,10 @@ public class MovementController: RaycastController {
                     moveAmount.x = moveAmount.y / Mathf.Tan(collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign(moveAmount.x);
                 }
 
-                collisions.below = directionY == -1;
+                if (!collisions.onLadder) {
+                    // wenn auf Leiter, dann collision below bereits korrekt gesetzt
+                    collisions.below = directionY == -1;
+                }
                 collisions.above = directionY == 1;
             }
         }
@@ -209,6 +214,42 @@ public class MovementController: RaycastController {
         }
     }
 
+    void ValidateLadderState(ref Vector2 moveAmount, bool useLadder) {
+        collisions.onLadder = (collisions.onLadder || useLadder);
+
+        // Raycast nach unten, check ob Leiter vorhanden
+        float directionY = -1;
+        float rayLength = skinWidth;
+        int ladderHitCoint = 0;
+        for (int i = 0; i < verticalRayCount; i++) {
+
+            Vector2 rayOrigin = raycastOrigins.bottomLeft;
+            rayOrigin += Vector2.right * (verticalRaySpacing * i + moveAmount.x);
+
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+
+            Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.red);
+            
+            if (hit && hit.collider.tag == "Ladder" && hit.distance == 0) {
+                // Verfügbare Leiter unter uns
+                ladderHitCoint++;
+            }
+        }
+
+        if (ladderHitCoint > (verticalRayCount / 2)) {
+            // Mehr als die hälfte der Raycast muss leiter Treffen
+            collisions.ladderAvailable = true;            
+        } else {
+            collisions.ladderAvailable = false;
+            collisions.onLadder = false;
+        }
+
+        if (collisions.onLadder) {
+            // wenn auf Leiter, dann auch collision below
+            collisions.below = true; 
+        }
+    }
+
     public CollisionInfo GetCollision() {
         return collisions;
     }
@@ -220,11 +261,13 @@ public class MovementController: RaycastController {
         public bool climbingSlope;
         public bool descendingSlope;
         public bool slidingDownMaxSlope;
+        public bool ladderAvailable;
 
         public float slopeAngle, slopeAngleOld;
         public Vector2 slopeNormal;
         public Vector2 moveAmountOld;        
         public int faceDir;
+        public bool onLadder;
 
         public void Reset() {
             lastBelow = below;
@@ -233,6 +276,7 @@ public class MovementController: RaycastController {
             climbingSlope = false;
             descendingSlope = false;
             slidingDownMaxSlope = false;
+            ladderAvailable = false;
             slopeNormal = Vector2.zero;
 
             slopeAngleOld = slopeAngle;

@@ -11,11 +11,22 @@ namespace PlayerStates {
 
         public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController)
         {
-            
+
+            if (Input.GetKey(KeyCode.UpArrow) && playerController.LadderBelow()) {
+                playerController.OnClimbLadder(1);
+            }
+            if (Input.GetKey(KeyCode.DownArrow) && playerController.IsGrounded()) {
+                if (playerController.LadderBelow()) {
+                    playerController.OnClimbLadder(-1);
+                } else {
+                    return PlayerStateMachine.duckingState;
+                }
+            }
+
             if (Input.GetKey(KeyCode.Space) && playerController.IsJumpingPossible()) {
                 return PlayerStateMachine.preJumpIdleState;
             }
-            
+
             if (Input.GetAxisRaw("Horizontal") != 0 && playerController.IsGrounded()) {
                 return PlayerStateMachine.runningState;
             }
@@ -24,9 +35,7 @@ namespace PlayerStates {
                 return PlayerStateMachine.fallingState;
             }
 
-            if (Input.GetKey(KeyCode.DownArrow) && playerController.IsGrounded()) {
-                return PlayerStateMachine.duckingState;
-            }
+
 
             if (Input.GetKey(KeyCode.T) && playerController.IsGrounded()) {
                 return PlayerStateMachine.attackingLightState;

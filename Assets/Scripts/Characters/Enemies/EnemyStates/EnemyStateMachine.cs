@@ -91,11 +91,11 @@ namespace EnemyStates {
 
 
         private IEnumerator FadeOut() {
-            for (float i = 1; i > 0; i -= 0.01f) {
-                Color c = spriteRenderer.color;
-                c.a = i;
-                spriteRenderer.color = c;
-                Debug.Log(spriteRenderer.color.a);
+            yield return new WaitForSeconds(3f);
+            for (float i = 1; i > 0; i -= 0.03f) {
+                Color color = spriteRenderer.color;
+                color.a = i;
+                spriteRenderer.color = color;
                 yield return new WaitForSeconds(.1f);
             }
             Destroy(gameObject);

@@ -2,12 +2,14 @@
 using System.Collections;
 
 public class CharacterMovementController: MovementController {
+
     
     public float moveSpeed = 5;
     public float maxJumpHeight = 4;
     public float minJumpHeight = 1;
     public float timeToJumpApex = .4f;
     public float comicFallFactor = 1.08f;
+    public float climbLadderSpeed = 5;
 
     // calculated move variables
     float gravity;
@@ -18,8 +20,9 @@ public class CharacterMovementController: MovementController {
     // move variables for next update
     float targetVelocityX;
     float targetVelocityY;
-    float accelerationTime; 
-    
+    float accelerationTime;
+
+    bool useLadder = false;    
 
 
     public override void Start() {
@@ -33,7 +36,7 @@ public class CharacterMovementController: MovementController {
 
         CalculateVelocity();
 
-        Move(velocity * Time.deltaTime);
+        Move(velocity * Time.deltaTime, useLadder);
 
         if (collisions.above || collisions.below) {
             if (collisions.slidingDownMaxSlope) {
@@ -44,6 +47,7 @@ public class CharacterMovementController: MovementController {
         }
         targetVelocityY = 0;
         targetVelocityX = 0;
+        useLadder = false;
     }
 
     
@@ -54,6 +58,7 @@ public class CharacterMovementController: MovementController {
     // if bool = false, jump is not possible
     public bool OnJumping(float jumpForcePercent) {
         if (IsJumpingPossible()) {
+            collisions.onLadder = false;
             float possibleJumpingHeightRange = maxJumpHeight - minJumpHeight;
             float newJumpingHeight = minJumpHeight + possibleJumpingHeightRange * jumpForcePercent;            
             float calculatedGravity = -(2 * newJumpingHeight) / Mathf.Pow(timeToJumpApex, 2);
@@ -63,6 +68,13 @@ public class CharacterMovementController: MovementController {
         } else {
             return false;
         }        
+    }
+
+    public void OnClimbLadder(float directionY) {
+        if (LadderBelow()) {
+            useLadder = true;
+            targetVelocityY = Mathf.Sign(directionY) * climbLadderSpeed;            
+        }
     }
 
     public void OnMoving(float directionX, float accelerationTime) {
@@ -82,6 +94,22 @@ public class CharacterMovementController: MovementController {
     // --------------------------------------------------------------------------
     // State checker
     // --------------------------------------------------------------------------
+    public bool LadderBelow() {
+        if (collisions.ladderAvailable) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public bool OnLadder() {
+        if (collisions.onLadder) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public bool IsGrounded() {
         if (collisions.below) {
             return true;
@@ -117,8 +145,12 @@ public class CharacterMovementController: MovementController {
 
     void CalculateVelocity() {
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelerationTime);
-        
-        velocity.y += targetVelocityY + gravity * Time.deltaTime;
+
+        if (collisions.onLadder) {
+            velocity.y = targetVelocityY;
+        } else {
+            velocity.y += targetVelocityY + gravity * Time.deltaTime;
+        }
 
         // hier schnelleres Fallen an velocity.y manipulieren.
         if (IsFalling()) {

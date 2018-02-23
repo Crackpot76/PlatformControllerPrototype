@@ -22,14 +22,21 @@ namespace PlayerStates {
 
         [HideInInspector]
         public float currentDirectionX;
-        
+        bool disableStateMovement = false;
+
         AbstractState currentState;
         Animator animator;
         CharacterMovementController movementController;
-        bool disableStateMovement = false;
+        GameObject effectGO;
+
+
 
 
         public void Start() {
+            effectGO = GameObject.Find("Effects");
+            if (effectGO == null) {
+                effectGO = new GameObject("Effects");
+            }
             animator = GetComponent<Animator>();
             movementController = GetComponent<CharacterMovementController>();
 
@@ -77,16 +84,22 @@ namespace PlayerStates {
             GameObject dustGo = (GameObject)Instantiate(effectToInstanciate);
             SpriteRenderer effectSpriteRenderer = dustGo.GetComponent<SpriteRenderer>();
             effectSpriteRenderer.flipX = (currentDirectionX < 0);
+            dustGo.transform.parent = effectGO.transform;
             dustGo.transform.position = transform.position;
+
         }
 
         public void EventTrigger(string parameter) {
             currentState.OnAnimEvent(this, parameter);
 
-            if (parameter.Equals("DAMAGE")) {
+            if (parameter.Equals(EventParameters.DAMAGE)) {
                 disableStateMovement = true;
                 Invoke("ReenableStateMovement", .1f);
             }
+        }
+        // Enables state movement after certain time
+        private void ReenableStateMovement() {
+            disableStateMovement = false;
         }
 
         public AttackDetails GetCurrentAttackDetails() {
@@ -97,10 +110,7 @@ namespace PlayerStates {
             return null;
         }
 
-        // Enables state movement after certain time
-        private void ReenableStateMovement() {
-            disableStateMovement = false;
-        }
+
 
 
     }
