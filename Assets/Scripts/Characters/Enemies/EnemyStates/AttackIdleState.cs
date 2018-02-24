@@ -23,7 +23,8 @@ namespace EnemyStates {
             }
 
             if (eventParameter != null && eventParameter.Equals(EventParameters.DEATH)) {
-                return EnemyStateMachine.deathState;
+                //return EnemyStateMachine.deathState;
+                return EnemyStateMachine.decapitateState;
             }
 
             if (!stateMachine.InAttackPosition()) {

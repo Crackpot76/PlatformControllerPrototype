@@ -10,5 +10,6 @@ namespace EnemyStates {
         public static string ATTACKING = "ATTACKING";
         public static string DAMAGE = "DAMAGE";
         public static string DEATH = "DEATH";
+        public static string DECAP = "DECAP";
     }
 }

@@ -41,13 +41,7 @@ public abstract class AbstractCharacterController : MonoBehaviour {
 
         if (attack.damage > 0) {
 
-            // Blood Effect on sharp attack
-            if (attack.type.Equals(AttackDetails.AttackType.Sharp)) {
-                InstantiateBloodSplatterParticleSystem(directionHitX, maxHitContactY);
-            }
 
-            // Start flashing animation
-            EffectManager.GetInstance().DamageFlashingSprite(spriteRenderer);
 
             // calculate damage on health
             health.TakeDamage(attack.damage);
@@ -63,6 +57,15 @@ public abstract class AbstractCharacterController : MonoBehaviour {
                 stateMachineInterface.EventTrigger(EventParameters.DEATH);
                 boxCollider.enabled = false;
             } else {
+
+                // Blood Effect on sharp attack
+                if (attack.type.Equals(AttackDetails.AttackType.Sharp)) {
+                    InstantiateBloodSplatterParticleSystem(directionHitX, maxHitContactY);
+                }
+
+                // Start flashing animation
+                EffectManager.GetInstance().DamageFlashingSprite(spriteRenderer);
+
                 stateMachineInterface.EventTrigger(EventParameters.DAMAGE);
             }
         }

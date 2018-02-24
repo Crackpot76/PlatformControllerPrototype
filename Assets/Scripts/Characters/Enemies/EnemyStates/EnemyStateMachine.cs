@@ -8,12 +8,13 @@ namespace EnemyStates {
         public float attackDistance = 0.7f;
         public float attackEverySeconds = 2;
 
-        public static IdleState idleState;
-        public static RunningState runningState;
-        public static AttackIdleState attackIdleState;
-        public static AttackingState attackingState;
-        public static DamageState damageState;
-        public static DeathState deathState;
+        public static IdleState idleState = new IdleState();
+        public static RunningState runningState = new RunningState();
+        public static AttackIdleState attackIdleState = new AttackIdleState();
+        public static AttackingState attackingState = new AttackingState();
+        public static DamageState damageState = new DamageState();
+        public static DeathState deathState = new DeathState();
+        public static DecapitateState decapitateState = new DecapitateState();
 
 
         [HideInInspector]
@@ -33,13 +34,6 @@ namespace EnemyStates {
             animator = GetComponent<Animator>();
             observerController = GetComponent<ObserverController>();
             movementController = GetComponent<CharacterMovementController>();
-
-            idleState = new IdleState();
-            runningState = new RunningState();
-            attackIdleState = new AttackIdleState();
-            attackingState = new AttackingState();
-            damageState = new DamageState();
-            deathState = new DeathState();
 
             currentState = idleState;
             currentDirectionX = -1; // Enemies always initially face left
@@ -66,12 +60,6 @@ namespace EnemyStates {
             }
         }
 
-        public void InstantiateEffect(Object effectToInstanciate) {
-            GameObject dustGo = (GameObject)Instantiate(effectToInstanciate);
-            SpriteRenderer effectSpriteRenderer = dustGo.GetComponent<SpriteRenderer>();
-            effectSpriteRenderer.flipX = (currentDirectionX < 0);
-            dustGo.transform.position = transform.position;
-        }
 
         public bool InAttackPosition() {
             if (currentDetection.isAware && currentDetection.distance <= attackDistance) {
@@ -86,9 +74,24 @@ namespace EnemyStates {
         }
 
         public void Destroy() {
-           EffectManager.GetInstance().FadeOutSprite(spriteRenderer, 2f, 3f, true);
+            GameObject head = transform.Find("DecapHead").gameObject;
+            if (head != null && head.activeInHierarchy) {
+                SpriteRenderer headSpriteRenderer = head.GetComponent<SpriteRenderer>();
+                EffectManager.GetInstance().FadeOutSprite(headSpriteRenderer, 2f, 3f, true);
+            }
+            EffectManager.GetInstance().FadeOutSprite(spriteRenderer, 2f, 3f, true);
         }
-        
+
+        public void Decapitate() {
+            GameObject head = transform.Find("DecapHead").gameObject;
+            head.SetActive(true);
+
+            Rigidbody2D rb = head.GetComponent<Rigidbody2D>();
+            Vector2 v = new Vector2((-1 * currentDirectionX * 50), 400);
+            rb.AddForce(v);
+
+        }
+
         public void EventTrigger(string parameter) {
             currentState.OnAnimEvent(this, parameter);
         }
