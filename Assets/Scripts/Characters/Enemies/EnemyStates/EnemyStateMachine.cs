@@ -86,21 +86,9 @@ namespace EnemyStates {
         }
 
         public void Destroy() {
-            StartCoroutine(FadeOut());
+           EffectManager.GetInstance().FadeOutSprite(spriteRenderer, 2f, 3f, true);
         }
-
-
-        private IEnumerator FadeOut() {
-            yield return new WaitForSeconds(3f);
-            for (float i = 1; i > 0; i -= 0.03f) {
-                Color color = spriteRenderer.color;
-                color.a = i;
-                spriteRenderer.color = color;
-                yield return new WaitForSeconds(.1f);
-            }
-            Destroy(gameObject);
-        }
-
+        
         public void EventTrigger(string parameter) {
             currentState.OnAnimEvent(this, parameter);
         }

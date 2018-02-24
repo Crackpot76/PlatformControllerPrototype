@@ -2,54 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpriteFlashing {
-
-    SpriteRenderer spriteRenderer;
+public class SpriteFlashingEffect {
+    
     Shader shaderFlash;
     Shader shaderDefault;
 
 
-    public SpriteFlashing(SpriteRenderer spriteRenderer) {
-        this.spriteRenderer = spriteRenderer;
+    public SpriteFlashingEffect() {
         this.shaderFlash = Shader.Find("GUI/Text Shader"); 
         this.shaderDefault = Shader.Find("Sprites/Default");
     }
 
 
-    void whiteSprite() {
+    void whiteSprite(SpriteRenderer spriteRenderer) {
         spriteRenderer.material.shader = shaderFlash;
         spriteRenderer.color = Color.white;
     }
-    void redSprite() {
+    void redSprite(SpriteRenderer spriteRenderer) {
         spriteRenderer.material.shader = shaderDefault;
         spriteRenderer.color = Color.red;
     }
-    void invisibleSprite() {
+    void invisibleSprite(SpriteRenderer spriteRenderer) {
         spriteRenderer.material.shader = shaderDefault;
         spriteRenderer.color = Color.white;
         Color c = spriteRenderer.color;
         c.a = 0f;
         spriteRenderer.color = c;
     }
-    void normalSprite() {
+    void normalSprite(SpriteRenderer spriteRenderer) {
         spriteRenderer.material.shader = shaderDefault;
         spriteRenderer.color = Color.white;
     }
 
-    public IEnumerator Flash(float flashCount, float flashInterval) {
+    public IEnumerator DamageFlashing(SpriteRenderer spriteRenderer) {
         for (int i = 0; i < 4; i++) {
             // switch color
             if (i==0) {
-                whiteSprite();
+                whiteSprite(spriteRenderer);
             }
             if (i == 1) {
-                redSprite();
+                redSprite(spriteRenderer);
             }
             if (i == 2) {
-                invisibleSprite();
+                invisibleSprite(spriteRenderer);
             }
             if (i == 3) {
-                normalSprite();
+                normalSprite(spriteRenderer);
             }
             yield return new WaitForSeconds(0.05f);
         }

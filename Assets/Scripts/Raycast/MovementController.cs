@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MovementController: RaycastController {
 
+    public LayerMask ladderMask;
+
     public float maxSlopeAngle = 45;
 
     public CollisionInfo collisions;
@@ -60,7 +62,7 @@ public class MovementController: RaycastController {
 
             Debug.DrawRay(rayOrigin, Vector2.right * directionX, Color.red);
 
-            if (hit && hit.collider.tag != "Ladder") {
+            if (hit) {
 
                 if (hit.distance == 0) {
                     continue;
@@ -111,7 +113,7 @@ public class MovementController: RaycastController {
 
             Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.red);
 
-            if (hit && hit.collider.tag != "Ladder") {
+            if (hit) {
                 if (hit.collider.tag == "Through") {
                     if (directionY == 1 || hit.distance == 0 || (collisions.onLadder && useLadder)) {
                         continue;
@@ -226,11 +228,11 @@ public class MovementController: RaycastController {
             Vector2 rayOrigin = raycastOrigins.bottomLeft;
             rayOrigin += Vector2.right * (verticalRaySpacing * i + moveAmount.x);
 
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, ladderMask);
 
             Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.red);
             
-            if (hit && hit.collider.tag == "Ladder" && hit.distance == 0) {
+            if (hit && hit.distance == 0) {
                 // Verfügbare Leiter unter uns
                 ladderHitCoint++;
             }

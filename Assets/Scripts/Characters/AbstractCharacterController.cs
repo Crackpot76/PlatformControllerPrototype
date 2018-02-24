@@ -19,7 +19,7 @@ public abstract class AbstractCharacterController : MonoBehaviour {
 
 
     // Effects
-    private SpriteFlashing spriteFlashingEffect;
+    private SpriteFlashingEffect spriteFlashingEffect;
     
 
     public abstract Object GetBloodSplatterParticleSystem();
@@ -33,8 +33,6 @@ public abstract class AbstractCharacterController : MonoBehaviour {
         boxCollider = GetComponent<BoxCollider2D>();
         health = GetComponent<HealthController>();
         health.RefreshDisplay();
-
-        spriteFlashingEffect = new SpriteFlashing(spriteRenderer);
     }
     
 
@@ -49,7 +47,7 @@ public abstract class AbstractCharacterController : MonoBehaviour {
             }
 
             // Start flashing animation
-            StartCoroutine(spriteFlashingEffect.Flash(4f, 0.15f));
+            EffectManager.GetInstance().DamageFlashingSprite(spriteRenderer);
 
             // calculate damage on health
             health.TakeDamage(attack.damage);
@@ -64,7 +62,6 @@ public abstract class AbstractCharacterController : MonoBehaviour {
                 // GAME OVER
                 stateMachineInterface.EventTrigger(EventParameters.DEATH);
                 boxCollider.enabled = false;
-                //Destroy(gameObject);
             } else {
                 stateMachineInterface.EventTrigger(EventParameters.DAMAGE);
             }
