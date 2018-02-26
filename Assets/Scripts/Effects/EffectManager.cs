@@ -24,9 +24,13 @@ public class EffectManager: MonoBehaviour {
         flashingEffect = new SpriteFlashingEffect();
     }
 
+    // Flashes sprite in red to indicate hit
+    public void DamageFlashingSpriteEnemy(SpriteRenderer spriteRenderer) {
+        StartCoroutine(flashingEffect.DamageFlashingEnemy(spriteRenderer));
+    }
     // Flashes sprite in white and red to indicate hit
-    public void DamageFlashingSprite(SpriteRenderer spriteRenderer) {
-        StartCoroutine(flashingEffect.DamageFlashing(spriteRenderer));
+    public void DamageFlashingSpritePlayer(SpriteRenderer spriteRenderer) {
+        StartCoroutine(flashingEffect.DamageFlashingPlayer(spriteRenderer));
     }
 
     // Fades out a sprite, starts with a delay in seconds (optional) and destroy gameobject when finished (optional)

@@ -11,12 +11,18 @@ namespace EnemyStates {
             base.OnEnter(stateMachine, animator, playerController);
             animationHasStopped = false;
             animator.SetBool(AnimEnemyParameters.DAMAGE, true);
+            SoundManager.PlaySFX(stateMachine.sounds.damage);
         }
 
         public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
+            AbstractState baseState = base.HandleUpdate(stateMachine, animator, playerController);
+            if (baseState != null) {
+                return baseState;
+            }
+
             if (animationHasStopped) {
-                return EnemyStateMachine.idleState;
+                return stateMachine.idleState;
             }
 
             return null;

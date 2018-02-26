@@ -8,6 +8,7 @@ namespace EnemyStates {
         public override void OnEnter(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             base.OnEnter(stateMachine, animator, playerController);
             animator.SetBool(AnimEnemyParameters.DEATH, true);
+            SoundManager.PlaySFX(stateMachine.sounds.dead);
         }
 
         public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {

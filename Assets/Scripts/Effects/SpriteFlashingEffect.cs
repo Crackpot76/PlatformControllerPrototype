@@ -34,7 +34,7 @@ public class SpriteFlashingEffect {
         spriteRenderer.color = Color.white;
     }
 
-    public IEnumerator DamageFlashing(SpriteRenderer spriteRenderer) {
+    public IEnumerator DamageFlashingPlayer(SpriteRenderer spriteRenderer) {
         for (int i = 0; i < 4; i++) {
             // switch color
             if (i==0) {
@@ -47,6 +47,22 @@ public class SpriteFlashingEffect {
                 invisibleSprite(spriteRenderer);
             }
             if (i == 3) {
+                normalSprite(spriteRenderer);
+            }
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    public IEnumerator DamageFlashingEnemy(SpriteRenderer spriteRenderer) {
+        for (int i = 0; i < 3; i++) {
+            // switch color
+            if (i == 0) {
+                redSprite(spriteRenderer);
+            }
+            if (i == 1) {
+                invisibleSprite(spriteRenderer);
+            }
+            if (i == 2) {
                 normalSprite(spriteRenderer);
             }
             yield return new WaitForSeconds(0.05f);

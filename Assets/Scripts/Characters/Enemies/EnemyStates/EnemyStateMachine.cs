@@ -4,30 +4,43 @@ using System.Collections;
 namespace EnemyStates {
     [RequireComponent(typeof(Animator))]
     public class EnemyStateMachine: MonoBehaviour, IStateMachine {
-        
+
+        public Vector3 waypointLeft = Vector3.negativeInfinity;
+        public Vector3 waypointRight = Vector3.negativeInfinity;
+
+
+
+        public BasicSoundProperties sounds;
+
         public float attackDistance = 0.7f;
         public float attackEverySeconds = 2;
 
-        public static IdleState idleState = new IdleState();
-        public static RunningState runningState = new RunningState();
-        public static AttackIdleState attackIdleState = new AttackIdleState();
-        public static AttackingState attackingState = new AttackingState();
-        public static DamageState damageState = new DamageState();
-        public static DeathState deathState = new DeathState();
-        public static DecapitateState decapitateState = new DecapitateState();
+        // States
+        public AbstractState currentState;
 
+        public IdleState idleState = new IdleState();
+        public RunningState runningState = new RunningState();
+        public AttackIdleState attackIdleState = new AttackIdleState();
+        public AttackingState attackingState = new AttackingState();
+        public DamageState damageState = new DamageState();
+        public DeathState deathState = new DeathState();
+        public DecapitateState decapitateState = new DecapitateState();
+        
+        public WaypointController waypointController;
+        public ObserverController.DetectionInfo currentDetection;
 
         [HideInInspector]
         public float currentDirectionX;
-        [HideInInspector]
-        public ObserverController.DetectionInfo currentDetection;
         
-        AbstractState currentState;
+        private Vector3 globalWaypointLeft;
+        private Vector3 globalWaypointRight;
 
-        SpriteRenderer spriteRenderer;
-        Animator animator;
-        ObserverController observerController;
-        CharacterMovementController movementController;
+        private SpriteRenderer spriteRenderer;
+        private Animator animator;
+        private ObserverController observerController;
+        private CharacterMovementController movementController;
+
+        
 
         public void Start() {
             spriteRenderer = GetComponent<SpriteRenderer>();
@@ -37,11 +50,16 @@ namespace EnemyStates {
 
             currentState = idleState;
             currentDirectionX = -1; // Enemies always initially face left
+
+            if (!waypointLeft.Equals(Vector3.negativeInfinity) && !waypointRight.Equals(Vector3.negativeInfinity)) {
+                globalWaypointLeft = waypointLeft + transform.position;
+                globalWaypointRight = waypointRight + transform.position;
+
+                waypointController = new WaypointController(globalWaypointLeft, globalWaypointRight);
+            }
         }
 
         public virtual void Update() {
-            //base.Update();
-
             currentDetection = observerController.DetectOpponents(currentDirectionX);
 
             AbstractState newState = currentState.HandleUpdate(this, animator, movementController);
@@ -103,5 +121,22 @@ namespace EnemyStates {
             }
             return null;
         }
+
+        void OnDrawGizmos() {
+            if (!waypointLeft.Equals(Vector3.negativeInfinity) && !waypointRight.Equals(Vector3.negativeInfinity)) {
+                Gizmos.color = Color.blue;
+                float size = .3f;
+
+                Vector3 globalWaypointPos = (Application.isPlaying) ? globalWaypointLeft : waypointLeft + transform.position;
+                Gizmos.DrawLine(globalWaypointPos - Vector3.up * size, globalWaypointPos + Vector3.up * size);
+                Gizmos.DrawLine(globalWaypointPos - Vector3.left * size, globalWaypointPos + Vector3.left * size);
+
+                globalWaypointPos = (Application.isPlaying) ? globalWaypointRight : waypointRight + transform.position;
+                Gizmos.DrawLine(globalWaypointPos - Vector3.up * size, globalWaypointPos + Vector3.up * size);
+                Gizmos.DrawLine(globalWaypointPos - Vector3.left * size, globalWaypointPos + Vector3.left * size);
+            }
+        }
     }
+
+
 }

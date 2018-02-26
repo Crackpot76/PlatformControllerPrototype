@@ -5,8 +5,7 @@ using UnityEngine;
 namespace EnemyStates {
     public class AttackIdleState: AbstractState {
 
-        private const float minAttackInterval = 0.5f;
-        private const float maxAttackInterval = 0.8f;
+        private const float minAttackInterval = 0.0f;
 
         private float lastAttackTime;
 
@@ -18,22 +17,18 @@ namespace EnemyStates {
 
         public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
-            if (eventParameter != null && eventParameter.Equals(EventParameters.DAMAGE)) {
-                return EnemyStateMachine.damageState;
-            }
-
-            if (eventParameter != null && eventParameter.Equals(EventParameters.DEATH)) {
-                //return EnemyStateMachine.deathState;
-                return EnemyStateMachine.decapitateState;
+            AbstractState baseState = base.HandleUpdate(stateMachine, animator, playerController);
+            if (baseState != null) {
+                return baseState;
             }
 
             if (!stateMachine.InAttackPosition()) {
                 //  Player out of reach
-                return EnemyStateMachine.runningState;
+                return stateMachine.runningState;
             }
 
             if (IsTimeToAttack(stateMachine)) {
-                return EnemyStateMachine.attackingState;
+                return stateMachine.attackingState;
             }
 
             return null;
@@ -60,7 +55,7 @@ namespace EnemyStates {
                     result = true;
                 }                
             } else {
-                if ((Time.time - lastAttackTime) > maxAttackInterval) {
+                if ((Time.time - lastAttackTime) > stateMachine.attackEverySeconds) {
                     result = true;
                 }
             }

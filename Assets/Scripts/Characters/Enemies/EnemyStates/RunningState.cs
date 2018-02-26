@@ -13,26 +13,33 @@ namespace EnemyStates {
 
         public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
-            if (eventParameter != null && eventParameter.Equals(EventParameters.DAMAGE)) {
-                return EnemyStateMachine.damageState;
+            AbstractState baseState = base.HandleUpdate(stateMachine, animator, playerController);
+            if (baseState != null) {
+                return baseState;
             }
 
-            if (eventParameter != null && eventParameter.Equals(EventParameters.DEATH)) {
-                //return EnemyStateMachine.deathState;
-                return EnemyStateMachine.decapitateState;
-            }
+            float directionX = 0;
 
             if (stateMachine.currentDetection.distance < 0) {
-                //   Debug.Log("Player detected: " + playerDetection.distance);
-                return EnemyStateMachine.idleState;
+                // Kein Gegner gefunden
+
+                if (stateMachine.waypointController.HasWaypoints()) {
+                    // run towards waypoint
+                    directionX = stateMachine.waypointController.GetDirectionXnextWaypoint(stateMachine.transform.position);
+                } else {
+                    return stateMachine.idleState;
+                }
+            } else {
+                // Gegen gefunden
+
+                if (stateMachine.InAttackPosition()) {
+                    return stateMachine.attackIdleState;
+                } else {
+                    // run towards player
+                    directionX = (stateMachine.currentDetection.right ? 1 : -1);
+                }
             }
 
-            if (stateMachine.InAttackPosition()) {
-                return EnemyStateMachine.attackIdleState;
-            }
-
-            // run towards player
-            float directionX = (stateMachine.currentDetection.right ? 1 : -1);
 
             MoveX(stateMachine, playerController, directionX);
 

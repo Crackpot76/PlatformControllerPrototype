@@ -22,17 +22,13 @@ namespace EnemyStates {
 
         public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
-            if (eventParameter != null && eventParameter.Equals(EventParameters.DAMAGE)) {
-                return EnemyStateMachine.damageState;
-            }
-
-            if (eventParameter != null && eventParameter.Equals(EventParameters.DEATH)) {
-                //return EnemyStateMachine.deathState;
-                return EnemyStateMachine.decapitateState;
+            AbstractState baseState = base.HandleUpdate(stateMachine, animator, playerController);
+            if (animationHasStopped && baseState != null) {
+                return baseState;
             }
 
             if (animationHasStopped) {
-                return EnemyStateMachine.attackIdleState;
+                return stateMachine.attackIdleState;
             }
             
             return null;

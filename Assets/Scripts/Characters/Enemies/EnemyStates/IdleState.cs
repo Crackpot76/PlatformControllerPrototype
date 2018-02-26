@@ -12,18 +12,13 @@ namespace EnemyStates {
 
         public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
 
-            if (eventParameter != null && eventParameter.Equals(EventParameters.DAMAGE)) {
-                return EnemyStateMachine.damageState;
+            AbstractState baseState = base.HandleUpdate(stateMachine, animator, playerController);
+            if (baseState != null) {
+                return baseState;
             }
 
-            if (eventParameter != null && eventParameter.Equals(EventParameters.DEATH)) {
-                //return EnemyStateMachine.deathState;
-                return EnemyStateMachine.decapitateState;
-            }
-
-            if (stateMachine.currentDetection.distance >= 0) {
-                //   Debug.Log("Player detected: " + playerDetection.distance);
-                return EnemyStateMachine.runningState;
+            if (stateMachine.currentDetection.distance >= 0 || stateMachine.waypointController.HasWaypoints()) {                
+                return stateMachine.runningState;
             }
 
             return null;

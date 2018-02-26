@@ -18,11 +18,13 @@ namespace PlayerStates {
             attack = new AttackDetails(); // default attack
             attack.type = AttackDetails.AttackType.Sharp;
             attack.pushOnDamage = false; // light attack no push
+            attack.criticalHitPercent = 0.5f; // 50% crit
         }
 
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animationHasStopped = false;
             animator.SetBool(AnimPlayerParameters.ATTACKING_LIGHT, true);
+            SoundManager.PlaySFX(stateMachine.sounds.heavyAttack);
         }
 
         public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {

@@ -5,6 +5,8 @@ namespace PlayerStates {
     [RequireComponent(typeof(CharacterMovementController), typeof(Animator))]
     public class PlayerStateMachine : MonoBehaviour, IStateMachine {
 
+        public SoundProperties sounds;
+
         public static IdleState idleState;
         public static PreJumpIdleState preJumpIdleState;
         public static JumpStartIdleState jumpStartIdleState;

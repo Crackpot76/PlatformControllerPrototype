@@ -8,6 +8,7 @@ namespace PlayerStates {
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.JUMP_START_RUNNING, true);
             MoveXAirborne(stateMachine, playerController);
+            SoundManager.PlaySFX(stateMachine.sounds.heavyAttack);
         }
 
         public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {

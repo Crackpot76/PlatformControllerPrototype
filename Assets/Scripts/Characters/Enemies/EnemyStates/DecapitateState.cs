@@ -9,6 +9,7 @@ namespace EnemyStates {
             base.OnEnter(stateMachine, animator, playerController);
             animator.SetBool(AnimEnemyParameters.DECAP, true);
             stateMachine.Decapitate();
+            SoundManager.PlaySFX(stateMachine.sounds.deadCritical);
         }
 
         public override AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {

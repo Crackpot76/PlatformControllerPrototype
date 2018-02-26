@@ -14,7 +14,6 @@ public class FadeOutEffect {
         yield return new WaitForSeconds(delay);
         startTime = Time.time - 0.01f;
         while (spriteRenderer != null && spriteRenderer.color.a > 0) {
-            Debug.Log(spriteRenderer.color.a);
             float t = (Time.time - startTime) / duration;
             spriteRenderer.color = new Color(1f, 1f, 1f, 1 - Mathf.SmoothStep(minimum, maximum, t));
             yield return new WaitForFixedUpdate();

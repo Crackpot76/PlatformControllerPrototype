@@ -17,12 +17,26 @@ namespace EnemyStates {
             eventParameter = null;
         }
 
-        public abstract AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController);
-        public abstract void OnExit(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerControllern);
+        public virtual AbstractState HandleUpdate(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
+            if (eventParameter != null && (eventParameter.Equals(EventParameters.DAMAGE) || eventParameter.Equals(EventParameters.DAMAGE_CRITICAL))) {
+                return stateMachine.damageState;
+            }
+
+            if (eventParameter != null && eventParameter.Equals(EventParameters.DEATH)) {
+                return stateMachine.deathState;
+            }
+
+            if (eventParameter != null && eventParameter.Equals(EventParameters.DEATH_CRITICAL)) {
+                return stateMachine.decapitateState;
+            }
+            return null;
+        }        
 
         public virtual void OnAnimEvent(EnemyStateMachine stateMachine, string parameter) {
             eventParameter = parameter;
         }
+
+        public abstract void OnExit(EnemyStateMachine stateMachine, Animator animator, CharacterMovementController playerControllern);
 
         public void MoveX(EnemyStateMachine stateMachine, CharacterMovementController playerController, float directionX, float accelerationTime = ACCELERATION_TIME_GROUNDED, float moveFactor = 1f) {
             stateMachine.FlipSprite(directionX);
