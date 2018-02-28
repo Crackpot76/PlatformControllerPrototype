@@ -24,13 +24,15 @@ namespace PlayerStates {
 
         [HideInInspector]
         public float currentDirectionX;
-        bool disableStateMovement = false;
 
+        [HideInInspector]
+        public CharacterMovementController movementController;
+
+        bool disableStateMovement = false;
         AbstractState currentState;
         Animator animator;
-        CharacterMovementController movementController;
         GameObject effectGO;
-
+        Cam camerascript;
 
 
 
@@ -41,6 +43,11 @@ namespace PlayerStates {
             }
             animator = GetComponent<Animator>();
             movementController = GetComponent<CharacterMovementController>();
+            camerascript = GameObject.FindObjectOfType<Cam>();
+
+            if (camerascript) {
+                Debug.Log("Cam found!");
+            }
 
             idleState = new IdleState();
             preJumpIdleState = new PreJumpIdleState();
@@ -112,7 +119,9 @@ namespace PlayerStates {
             return null;
         }
 
-
+        public void ShakeCamera(float amplitude, float frequency, float time) {
+            StartCoroutine(camerascript.ShakeCoroutine(amplitude, frequency, time));
+        }
 
 
     }

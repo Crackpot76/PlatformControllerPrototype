@@ -339,6 +339,11 @@ Prefab:
       propertyPath: sounds.heavyAttack
       value: 
       objectReference: {fileID: 8300000, guid: 5e126b3f600bcb64dbed32ef175fbf23, type: 3}
+    - target: {fileID: 114824276921605548, guid: e98c610aeaeae4f4082d9297479244eb,
+        type: 2}
+      propertyPath: minJumpHeight
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e98c610aeaeae4f4082d9297479244eb, type: 2}
   m_IsPrefabParent: 0
@@ -389,8 +394,8 @@ MonoBehaviour:
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
-  m_ScreenX: 0.38700002
-  m_ScreenY: 0.674
+  m_ScreenX: 0.41
+  m_ScreenY: 0.651
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.149
   m_DeadZoneHeight: 0.3
@@ -398,8 +403,8 @@ MonoBehaviour:
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.92
   m_SoftZoneHeight: 0.89
-  m_BiasX: 0.15300001
-  m_BiasY: -0.30500007
+  m_BiasX: 0.15299998
+  m_BiasY: -0.3049994
   m_GroupFramingMode: 2
   m_AdjustmentMode: 2
   m_GroupFramingSize: 0.8
@@ -833,7 +838,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 629059585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4188882, y: 5.7800007, z: -10}
+  m_LocalPosition: {x: 0.01000011, y: 5.5500007, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 285547764}
@@ -851,6 +856,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c21adcbf5dd2940b49c1f98a15a12a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curveShake:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &689136873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1035,11 +1046,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4364900698833750, guid: 3f2cb14df7568ba4f8ba8c5b5c8e714f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.4188882
+      value: 0.01000011
       objectReference: {fileID: 0}
     - target: {fileID: 4364900698833750, guid: 3f2cb14df7568ba4f8ba8c5b5c8e714f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.7800007
+      value: 5.5500007
       objectReference: {fileID: 0}
     - target: {fileID: 4364900698833750, guid: 3f2cb14df7568ba4f8ba8c5b5c8e714f, type: 2}
       propertyPath: m_LocalPosition.z

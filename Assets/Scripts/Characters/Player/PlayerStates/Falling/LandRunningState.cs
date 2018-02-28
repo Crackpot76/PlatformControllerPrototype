@@ -15,6 +15,7 @@ namespace PlayerStates {
         }
 
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
+            Debug.Log("In LAND RUNNING STATE!");
             animationHasStopped = false;
             animator.SetBool(AnimPlayerParameters.LAND_RUNNING, true);
             stateMachine.InstantiateEffect(dustEffect);

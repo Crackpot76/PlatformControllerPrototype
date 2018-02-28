@@ -7,21 +7,30 @@ public class Cam : MonoBehaviour {
     const float TEXTURE_SIZE = 24f;
 	private float lastHeight = 0;
 	private CinemachineVirtualCamera cam;
+    public AnimationCurve curveShake;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		cam = GetComponent<CinemachineVirtualCamera>();
 
         UpdateOrthographicSize();
-
-        // Shake
-        CinemachineBasicMultiChannelPerlin noiseSettings = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        if (noiseSettings) {
-            //test.m_AmplitudeGain = 0.05f;
-            //test.m_FrequencyGain = 5f;
-        }
         
 	}
+
+    public IEnumerator ShakeCoroutine(float amplitude, float frequency, float time) {
+        CinemachineBasicMultiChannelPerlin noiseSettings = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        if (noiseSettings) {
+            noiseSettings.m_AmplitudeGain = amplitude;
+            noiseSettings.m_FrequencyGain = frequency;
+            yield return new WaitForSeconds(time);
+            noiseSettings.m_AmplitudeGain = 0.0f;
+            noiseSettings.m_FrequencyGain = 0.0f;
+        }
+       
+    }
+
+
 	
 	// Update is called once per frame
 	void Update () {

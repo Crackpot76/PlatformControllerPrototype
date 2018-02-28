@@ -14,7 +14,7 @@ namespace PlayerStates {
             dustEffect = Resources.Load(DUST_EFFECT_PREFAB_NAME);
         }
 
-        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
+        public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {            
             animationHasStopped = false;
             animator.SetBool(AnimPlayerParameters.LAND_IDLE, true);
             stateMachine.InstantiateEffect(dustEffect);
