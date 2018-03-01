@@ -37,10 +37,13 @@ namespace PlayerStates {
 
 
 
-            if (Input.GetKey(KeyCode.T) && playerController.IsGrounded()) {
-                //return PlayerStateMachine.attackingHeavyState;
+            if (stateMachine.inputController.StartHeavyAttack()) { //TODO erst "aufladen", dann angriff
+                return PlayerStateMachine.attackingHeavyState;
+            }
+            if (stateMachine.inputController.IsLightAttack()) {
                 return PlayerStateMachine.attackingCombo1State;
             }
+            
             return null;
         }
 

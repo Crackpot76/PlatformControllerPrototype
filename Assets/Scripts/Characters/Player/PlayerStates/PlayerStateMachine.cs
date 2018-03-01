@@ -22,6 +22,9 @@ namespace PlayerStates {
         public static DuckingUpState duckingUpState;
         public static AttackingHeavyState attackingHeavyState;
         public static AttackingCombo1State attackingCombo1State;
+        public static AttackingCombo2State attackingCombo2State;
+
+        public InputController inputController = new InputController();
 
         [HideInInspector]
         public float currentDirectionX;
@@ -61,13 +64,14 @@ namespace PlayerStates {
             duckingUpState = new DuckingUpState();
             attackingHeavyState = new AttackingHeavyState();
             attackingCombo1State = new AttackingCombo1State();
+            attackingCombo2State = new AttackingCombo2State();
 
             currentState = idleState;            
             currentDirectionX = 1;
         }
 
         public virtual void Update() {
-           // base.Update();
+            inputController.MonitorInput();
 
             if (!disableStateMovement) {
                 AbstractState newState = currentState.HandleUpdate(this, animator, movementController);

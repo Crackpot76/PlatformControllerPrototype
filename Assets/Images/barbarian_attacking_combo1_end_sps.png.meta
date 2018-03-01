@@ -1,20 +1,14 @@
 fileFormatVersion: 2
-guid: d5faec60f6c7c814c8e211240091dc04
-timeCreated: 1519934605
+guid: b778f160d48f7294a8c87c1cda46d713
+timeCreated: 1519934539
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: barbarian_attacking_combo1_sps_0
-    21300002: barbarian_attacking_combo1_sps_1
-    21300004: barbarian_attacking_combo1_sps_2
-    21300006: barbarian_attacking_combo1_sps_3
-    21300008: barbarian_attacking_combo1_sps_4
-    21300010: barbarian_attacking_combo1_sps_5
-    21300012: barbarian_attacking_combo1_sps_6
-    21300014: barbarian_attacking_combo1_sps_7
-    21300016: barbarian_attacking_combo1_sps_8
-    21300018: barbarian_attacking_combo1_sps_9
-    21300020: barbarian_attacking_combo1_sps_10
+    21300000: barbarian_attacking_combo1_end_sps_0
+    21300002: barbarian_attacking_combo1_end_sps_1
+    21300004: barbarian_attacking_combo1_end_sps_2
+    21300006: barbarian_attacking_combo1_end_sps_3
+    21300008: barbarian_attacking_combo1_end_sps_4
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -111,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: barbarian_attacking_combo1_sps_0
+      name: barbarian_attacking_combo1_end_sps_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,7 +119,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_attacking_combo1_sps_1
+      name: barbarian_attacking_combo1_end_sps_1
       rect:
         serializedVersion: 2
         x: 70
@@ -139,7 +133,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_attacking_combo1_sps_2
+      name: barbarian_attacking_combo1_end_sps_2
       rect:
         serializedVersion: 2
         x: 140
@@ -153,10 +147,24 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: barbarian_attacking_combo1_sps_3
+      name: barbarian_attacking_combo1_end_sps_3
       rect:
         serializedVersion: 2
         x: 210
+        y: 0
+        width: 70
+        height: 55
+      alignment: 9
+      pivot: {x: 0.385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: barbarian_attacking_combo1_end_sps_4
+      rect:
+        serializedVersion: 2
+        x: 280
         y: 0
         width: 70
         height: 55

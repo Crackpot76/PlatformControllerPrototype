@@ -2,17 +2,16 @@
 using System.Collections;
 
 namespace PlayerStates {
-    public class AttackingCombo1State: AbstractStateAttack {
+    public class AttackingCombo2State: AbstractStateAttack {
 
-        private const string DUST_EFFECT_PREFAB_NAME = "DustRunningGO";
+        private const string DUST_EFFECT_PREFAB_NAME = "DustStoppingGO";
 
         private Object dustEffect;
-        private bool doubleTabInAnim;
         private bool transitCombo;
         private bool animationHasStopped;
         private AttackDetails attack;
 
-        public AttackingCombo1State() {
+        public AttackingCombo2State() {
             //Init Effect Prefab
             dustEffect = Resources.Load(DUST_EFFECT_PREFAB_NAME);
 
@@ -24,25 +23,13 @@ namespace PlayerStates {
         }
 
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
-            doubleTabInAnim = false;
-            transitCombo = false;
+            Debug.Log("IN COMBO2");
             animationHasStopped = false;
-            animator.SetBool(AnimPlayerParameters.ATTACKING_COMBO1_START, true);
+            animator.SetBool(AnimPlayerParameters.ATTACKING_COMBO2, true);
             SoundManager.PlaySFX(stateMachine.sounds.baseAttack);
         }
 
         public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
-            if (!doubleTabInAnim) {
-                doubleTabInAnim = stateMachine.inputController.IsDoubleTabAttack();
-            }
-            if (transitCombo) {
-                if (doubleTabInAnim) {
-                    return PlayerStateMachine.attackingCombo2State;
-                } else {
-                    animator.SetBool(AnimPlayerParameters.ATTACKING_COMBO1_END, true);
-                }
-            }
-                
 
             if (animationHasStopped) {
                 return PlayerStateMachine.idleState;
@@ -51,15 +38,12 @@ namespace PlayerStates {
         }
 
         public override void OnExit(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
-            animator.SetBool(AnimPlayerParameters.ATTACKING_COMBO1_START, false);
-            animator.SetBool(AnimPlayerParameters.ATTACKING_COMBO1_END, false);
+            animator.SetBool(AnimPlayerParameters.ATTACKING_COMBO2, false);
         }
 
         public override void OnAnimEvent(PlayerStateMachine stateMachine, string parameter) {
             if (parameter.Equals("DUST_EFFECT")) {
                 stateMachine.InstantiateEffect(dustEffect);
-            } else if (parameter.Equals("END_COMBO1")) {
-                transitCombo = true;
             } else {
                 animationHasStopped = true;
             }

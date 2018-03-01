@@ -371,6 +371,11 @@ Prefab:
       propertyPath: m_Size.y
       value: 2.2916667
       objectReference: {fileID: 0}
+    - target: {fileID: 114438641755959082, guid: e98c610aeaeae4f4082d9297479244eb,
+        type: 2}
+      propertyPath: sounds.baseAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: 0e2c67ec08811b1439174283cd737874, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e98c610aeaeae4f4082d9297479244eb, type: 2}
   m_IsPrefabParent: 0
