@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace PlayerStates {
-    public class AttackingLightState: AbstractStateAttack {
+    public class AttackingHeavyState: AbstractStateAttack {
 
         private const string DUST_EFFECT_PREFAB_NAME = "DustStoppingGO";
 
@@ -10,7 +10,7 @@ namespace PlayerStates {
         private bool animationHasStopped;
         private AttackDetails attack;
 
-        public AttackingLightState() {
+        public AttackingHeavyState() {
             //Init Effect Prefab
             dustEffect = Resources.Load(DUST_EFFECT_PREFAB_NAME);
 
@@ -23,7 +23,7 @@ namespace PlayerStates {
 
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animationHasStopped = false;
-            animator.SetBool(AnimPlayerParameters.ATTACKING_LIGHT, true);
+            animator.SetBool(AnimPlayerParameters.ATTACKING_HEAVY, true);
             SoundManager.PlaySFX(stateMachine.sounds.heavyAttack);
         }
 
@@ -35,7 +35,7 @@ namespace PlayerStates {
         }
 
         public override void OnExit(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
-            animator.SetBool(AnimPlayerParameters.ATTACKING_LIGHT, false);
+            animator.SetBool(AnimPlayerParameters.ATTACKING_HEAVY, false);
         }
 
         public override void OnAnimEvent(PlayerStateMachine stateMachine, string parameter) {

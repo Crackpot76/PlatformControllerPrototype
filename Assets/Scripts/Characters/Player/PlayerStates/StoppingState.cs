@@ -24,10 +24,10 @@ namespace PlayerStates {
         public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController)
         {
             if (animationHasStopped) {
-        
+                
                 float directionX = Input.GetAxisRaw("Horizontal");
                 if (directionX == 0) {
-                   return PlayerStateMachine.idleState;
+                    return PlayerStateMachine.idleState;
                 } else {
                     return PlayerStateMachine.runningState;
                 }
@@ -35,7 +35,7 @@ namespace PlayerStates {
             return null;
         }
 
-        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
+        public override void OnExit(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {            
             animator.SetBool(AnimPlayerParameters.STOPPING, false);
         }
 

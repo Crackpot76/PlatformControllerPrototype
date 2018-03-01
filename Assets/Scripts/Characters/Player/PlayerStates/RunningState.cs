@@ -33,7 +33,8 @@ namespace PlayerStates {
             }
 
             if (Input.GetKey(KeyCode.T) && playerController.IsGrounded()) {
-                return PlayerStateMachine.attackingLightState;
+                //return PlayerStateMachine.attackingHeavyState;
+                return PlayerStateMachine.attackingCombo1State;
             }
 
             float directionX = Input.GetAxisRaw("Horizontal");

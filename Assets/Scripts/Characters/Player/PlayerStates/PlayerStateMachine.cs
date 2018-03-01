@@ -20,7 +20,8 @@ namespace PlayerStates {
         public static StoppingState stoppingState;
         public static DuckingState duckingState;
         public static DuckingUpState duckingUpState;
-        public static AttackingLightState attackingLightState;
+        public static AttackingHeavyState attackingHeavyState;
+        public static AttackingCombo1State attackingCombo1State;
 
         [HideInInspector]
         public float currentDirectionX;
@@ -43,11 +44,7 @@ namespace PlayerStates {
             }
             animator = GetComponent<Animator>();
             movementController = GetComponent<CharacterMovementController>();
-            camerascript = GameObject.FindObjectOfType<Cam>();
-
-            if (camerascript) {
-                Debug.Log("Cam found!");
-            }
+            camerascript = GameObject.FindObjectOfType<Cam>();            
 
             idleState = new IdleState();
             preJumpIdleState = new PreJumpIdleState();
@@ -62,7 +59,8 @@ namespace PlayerStates {
             stoppingState = new StoppingState();
             duckingState = new DuckingState();
             duckingUpState = new DuckingUpState();
-            attackingLightState = new AttackingLightState();
+            attackingHeavyState = new AttackingHeavyState();
+            attackingCombo1State = new AttackingCombo1State();
 
             currentState = idleState;            
             currentDirectionX = 1;
