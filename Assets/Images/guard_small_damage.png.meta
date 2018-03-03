@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 22932b92199e39946b67803fdc8d7fd0
-timeCreated: 1519243641
+timeCreated: 1520089926
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,8 @@ TextureImporter:
     21300002: guard_small_damage_1
     21300004: guard_small_damage_2
     21300006: guard_small_damage_3
+    21300008: guard_small_damage_4
+    21300010: guard_small_damage_5
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -150,6 +152,34 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 135
+        y: 0
+        width: 45
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guard_small_damage_4
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 45
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guard_small_damage_5
+      rect:
+        serializedVersion: 2
+        x: 225
         y: 0
         width: 45
         height: 40

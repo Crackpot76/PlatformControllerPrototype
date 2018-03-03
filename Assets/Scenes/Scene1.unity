@@ -472,12 +472,12 @@ Prefab:
     - target: {fileID: 114877102128137882, guid: e98c610aeaeae4f4082d9297479244eb,
         type: 2}
       propertyPath: maxHealth
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114877102128137882, guid: e98c610aeaeae4f4082d9297479244eb,
         type: 2}
       propertyPath: currentHealth
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 61575180540081076, guid: e98c610aeaeae4f4082d9297479244eb,
         type: 2}
@@ -2325,7 +2325,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1463376748534530, guid: 13a3a3b141594224dbbdd96ec1241b4d, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114260360915551766, guid: 13a3a3b141594224dbbdd96ec1241b4d,
+        type: 2}
+      propertyPath: attackDistance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 13a3a3b141594224dbbdd96ec1241b4d, type: 2}
