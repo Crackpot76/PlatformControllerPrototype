@@ -17,9 +17,10 @@ namespace PlayerStates {
         public static string LAND_ROLLING = "LAND_ROLLING";
         public static string DUCKING = "DUCKING";
         public static string ATTACKING_HEAVY = "ATTACKING_HEAVY";
-        public static string ATTACKING_COMBO1_START = "ATTACKING_COMBO1_START";
-        public static string ATTACKING_COMBO1_END = "ATTACKING_COMBO1_END";
+        public static string ATTACKING_COMBO1 = "ATTACKING_COMBO1";
         public static string ATTACKING_COMBO2 = "ATTACKING_COMBO2";
+
+        public static string DEATH = "DEATH";
 
     }
 }

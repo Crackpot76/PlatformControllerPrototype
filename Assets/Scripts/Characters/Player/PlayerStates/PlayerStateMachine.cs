@@ -103,10 +103,14 @@ namespace PlayerStates {
         public void EventTrigger(string parameter) {
             currentState.OnAnimEvent(this, parameter);
 
-            if (parameter.Equals(EventParameters.DAMAGE)) {
+            if (parameter == EventParameters.DEATH || parameter == EventParameters.DEATH_CRITICAL) {
+                disableStateMovement = true;
+                animator.SetBool(AnimPlayerParameters.DEATH, true);
+            } 
+            if (parameter == EventParameters.DAMAGE || parameter == EventParameters.DAMAGE_CRITICAL) {
                 disableStateMovement = true;
                 Invoke("ReenableStateMovement", .1f);
-            }
+            }            
         }
         // Enables state movement after certain time
         private void ReenableStateMovement() {

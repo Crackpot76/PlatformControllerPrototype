@@ -27,7 +27,7 @@ namespace PlayerStates {
             doubleTabInAnim = false;
             transitCombo = false;
             animationHasStopped = false;
-            animator.SetBool(AnimPlayerParameters.ATTACKING_COMBO1_START, true);
+            animator.SetBool(AnimPlayerParameters.ATTACKING_COMBO1, true);
             SoundManager.PlaySFX(stateMachine.sounds.baseAttack);
         }
 
@@ -38,9 +38,7 @@ namespace PlayerStates {
             if (transitCombo) {
                 if (doubleTabInAnim) {
                     return PlayerStateMachine.attackingCombo2State;
-                } else {
-                    animator.SetBool(AnimPlayerParameters.ATTACKING_COMBO1_END, true);
-                }
+                } 
             }
                 
 
@@ -51,8 +49,7 @@ namespace PlayerStates {
         }
 
         public override void OnExit(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
-            animator.SetBool(AnimPlayerParameters.ATTACKING_COMBO1_START, false);
-            animator.SetBool(AnimPlayerParameters.ATTACKING_COMBO1_END, false);
+            animator.SetBool(AnimPlayerParameters.ATTACKING_COMBO1, false);
         }
 
         public override void OnAnimEvent(PlayerStateMachine stateMachine, string parameter) {
