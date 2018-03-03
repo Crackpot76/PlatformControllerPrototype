@@ -18,28 +18,35 @@ public class AttackController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision) {
 
+        Debug.Log("CollisionEnter");
+
+        AttackDetails attack = parentStateMachine.GetCurrentAttackDetails();
+        if (attack == null) {
+            Debug.LogError("Parent CharacterController is not in state attacking!");
+            return;
+        }
+        float maxHitContactY = GetMaxHitContactY(collision);
+        float hitDirectionX = GetHitDirection(parentCharacterController.transform, collision);
+
         if (ListContainsTag(parentCharacterController.opponentTags, collision.gameObject.tag)) {
-
-            float maxHitContactY = GetMaxHitContactY(collision);
-            float hitDirectionX = GetHitDirection(parentCharacterController.transform, collision);
-
             AbstractCharacterController opponentCharacterController = collision.gameObject.GetComponent<AbstractCharacterController>();
 
             if (opponentCharacterController) {
-                AttackDetails attack = parentStateMachine.GetCurrentAttackDetails();
-                if (attack != null) {
-                    opponentCharacterController.ReceiveDamage(hitDirectionX, maxHitContactY, attack);
-                } else {
-                    Debug.LogError("Parent CharacterController is not in state attacking!");
-                }
+                opponentCharacterController.ReceiveDamage(hitDirectionX, maxHitContactY, attack);
             } else {
-                Debug.LogError("No PlayerController Script for player found. No damage served today!");
+                Debug.LogError("No AbstractCharacterController Script for player found. No damage served today!");
             }
         }
 
         if (ListContainsTag(parentCharacterController.destructableTags, collision.gameObject.tag))
-            {
-            //TODO handle destructable object code
+        {
+            AbstractDestructableController destructableController = collision.gameObject.GetComponent<AbstractDestructableController>();
+
+            if (destructableController) {
+                destructableController.ReceiveDamage(hitDirectionX, maxHitContactY, attack);
+            } else {
+                Debug.LogError("No AbstractDestructableController Script for player found. No damage served today!");
+            }
         }
     }
 

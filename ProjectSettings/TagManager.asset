@@ -8,6 +8,7 @@ TagManager:
   - Item
   - Ladder
   - Through
+  - Destructable
   layers:
   - Default
   - TransparentFX
