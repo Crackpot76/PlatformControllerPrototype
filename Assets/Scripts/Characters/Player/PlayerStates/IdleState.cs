@@ -13,14 +13,13 @@ namespace PlayerStates {
         {
 
             if (Input.GetKey(KeyCode.UpArrow) && playerController.LadderBelow()) {
-                playerController.OnClimbLadder(1);
+                return PlayerStateMachine.climbingState;
+            }
+            if (Input.GetKey(KeyCode.DownArrow) && playerController.LadderBelow() && !playerController.IsGroundBelow()) {
+                return PlayerStateMachine.climbingState;
             }
             if (Input.GetKey(KeyCode.DownArrow) && playerController.IsGrounded()) {
-                if (playerController.LadderBelow()) {
-                    playerController.OnClimbLadder(-1);
-                } else {
-                    return PlayerStateMachine.duckingState;
-                }
+                return PlayerStateMachine.duckingState;
             }
 
             if (Input.GetKey(KeyCode.Space) && playerController.IsJumpingPossible()) {

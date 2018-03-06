@@ -102,8 +102,8 @@ public class CharacterMovementController: MovementController {
         }
     }
 
-    public bool OnLadder() {
-        if (collisions.onLadder) {
+    public bool IsGroundBelow() {
+        if (collisions.groundbelow) {
             return true;
         } else {
             return false;
@@ -145,8 +145,6 @@ public class CharacterMovementController: MovementController {
 
     void CalculateVelocity() {
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelerationTime);
-
-        Debug.Log("velocity.x: " + velocity.x);
 
         if (collisions.onLadder) {
             velocity.y = targetVelocityY;

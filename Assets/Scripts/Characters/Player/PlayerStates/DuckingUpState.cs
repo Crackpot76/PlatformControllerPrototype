@@ -4,24 +4,15 @@ using System.Collections;
 namespace PlayerStates {
     public class DuckingUpState: AbstractState {
 
-        private bool animationHasStopped;
+        private bool animationHasStopped = false;
 
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
+            animationHasStopped = false;
         }
 
         public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             if (animationHasStopped) {
-
-                if (playerController.IsFalling()) {
-                    return PlayerStateMachine.fallingState;
-                }
-
-                float directionX = Input.GetAxisRaw("Horizontal");
-                if (directionX == 0) {
-                    return PlayerStateMachine.idleState;
-                } else {
-                    return PlayerStateMachine.runningState;
-                }
+                return PlayerStateMachine.idleState;
             }
             return null;
         }

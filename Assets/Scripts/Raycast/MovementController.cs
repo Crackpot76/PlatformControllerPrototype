@@ -44,6 +44,7 @@ public class MovementController: RaycastController {
 
         if (standingOnPlatform) {
             collisions.below = true;
+            collisions.groundbelow = true;
         }
     }
 
@@ -127,9 +128,12 @@ public class MovementController: RaycastController {
                     moveAmount.x = moveAmount.y / Mathf.Tan(collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign(moveAmount.x);
                 }
 
-                if (!collisions.onLadder) {
+                if (collisions.onLadder) {
                     // wenn auf Leiter, dann collision below bereits korrekt gesetzt
+                    collisions.groundbelow = directionY == -1;
+                } else {                     
                     collisions.below = directionY == -1;
+                    collisions.groundbelow = collisions.below;
                 }
                 collisions.above = directionY == 1;
             }
@@ -160,6 +164,7 @@ public class MovementController: RaycastController {
             moveAmount.y = climbmoveAmountY;
             moveAmount.x = Mathf.Cos(slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(moveAmount.x);
             collisions.below = true;
+            collisions.groundbelow = true;
             collisions.climbingSlope = true;
             collisions.slopeAngle = slopeAngle;
             collisions.slopeNormal = slopeNormal;
@@ -194,6 +199,7 @@ public class MovementController: RaycastController {
                             collisions.slopeAngle = slopeAngle;
                             collisions.descendingSlope = true;
                             collisions.below = true;
+                            collisions.groundbelow = true;
                             collisions.slopeNormal = hit.normal;
                         }
                     }
@@ -211,6 +217,7 @@ public class MovementController: RaycastController {
                 collisions.slopeAngle = slopeAngle;
                 collisions.slidingDownMaxSlope = true;
                 collisions.below = true;
+                collisions.groundbelow = true;
                 collisions.slopeNormal = hit.normal;
             }
         }

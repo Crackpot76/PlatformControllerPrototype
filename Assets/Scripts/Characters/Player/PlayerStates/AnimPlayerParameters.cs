@@ -16,6 +16,7 @@ namespace PlayerStates {
         public static string LAND_RUNNING = "LAND_RUNNING";
         public static string LAND_ROLLING = "LAND_ROLLING";
         public static string DUCKING = "DUCKING";
+        public static string CLIMBING = "CLIMBING";
         public static string ATTACKING_HEAVY = "ATTACKING_HEAVY";
         public static string ATTACKING_COMBO1 = "ATTACKING_COMBO1";
         public static string ATTACKING_COMBO2 = "ATTACKING_COMBO2";

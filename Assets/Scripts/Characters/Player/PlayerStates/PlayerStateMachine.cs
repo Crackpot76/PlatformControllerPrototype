@@ -6,6 +6,7 @@ namespace PlayerStates {
     public class PlayerStateMachine : MonoBehaviour, IStateMachine {
 
         public SoundProperties sounds;
+        public AttackDetails[] attacks;
 
         public static IdleState idleState;
         public static PreJumpIdleState preJumpIdleState;
@@ -20,6 +21,7 @@ namespace PlayerStates {
         public static StoppingState stoppingState;
         public static DuckingState duckingState;
         public static DuckingUpState duckingUpState;
+        public static ClimbingState climbingState;        
         public static AttackingHeavyState attackingHeavyState;
         public static AttackingCombo1State attackingCombo1State;
         public static AttackingCombo2State attackingCombo2State;
@@ -32,11 +34,11 @@ namespace PlayerStates {
         [HideInInspector]
         public CharacterMovementController movementController;
 
-        bool disableStateMovement = false;
-        AbstractState currentState;
-        Animator animator;
-        GameObject effectGO;
-        Cam camerascript;
+        private bool disableStateMovement = false;
+        private AbstractState currentState;
+        private Animator animator;
+        private GameObject effectGO;
+        private Cam camerascript;
 
 
 
@@ -62,6 +64,7 @@ namespace PlayerStates {
             stoppingState = new StoppingState();
             duckingState = new DuckingState();
             duckingUpState = new DuckingUpState();
+            climbingState = new ClimbingState();
             attackingHeavyState = new AttackingHeavyState();
             attackingCombo1State = new AttackingCombo1State();
             attackingCombo2State = new AttackingCombo2State();

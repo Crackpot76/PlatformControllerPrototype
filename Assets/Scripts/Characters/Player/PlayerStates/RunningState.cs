@@ -20,10 +20,18 @@ namespace PlayerStates {
             startX = stateMachine.transform.position.x;
             animator.SetBool(AnimPlayerParameters.RUNNING, true);
             MoveXGrounded(stateMachine, playerController);
+
+
+            float timeOfAnimation = animator.runtimeAnimatorController.animationClips[0].length;
+            Debug.Log(timeOfAnimation);
+            animator.runtimeAnimatorController.animationClips[0].wrapMode = WrapMode.ClampForever;
+            animator.SetFloat("PLAY_DIRECTION", -1);
         }
 
         public override AbstractState HandleUpdate(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController)
         {
+
+
             if (playerController.IsFalling()) {
                 return PlayerStateMachine.fallingState;
             }

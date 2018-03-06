@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class AttackDetails {
-    
 
+    public string name;
     public enum AttackType { Blunt, Sharp };
     public enum SideEffects {None, Stun, Bleed, Toxic, Fire, Ice};
 
