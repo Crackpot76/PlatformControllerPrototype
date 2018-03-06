@@ -86,8 +86,8 @@ public class CharacterMovementController: MovementController {
         this.accelerationTime = accelerationTime;
     }
 
-    public void OnPushed(float directionXPushedFrom, float pushSpeed) {
-        this.targetVelocityX += -directionXPushedFrom * pushSpeed;
+    public void OnPush(float directionX, float pushSpeed) {
+        this.targetVelocityX += directionX * pushSpeed;
         this.accelerationTime = 0f;
     }
 

@@ -6,8 +6,8 @@ namespace PlayerStates {
         
         public const float ACCELERATION_TIME_GROUNDED = 0.04f;
         public const float ACCELERATION_TIME_AIRBORNE = 0.1f;
-        public const float MIN_MOVE_FACTOR_AIR = 1.5f;
-        public const float MAX_MOVE_FACTOR_AIR = 2f;
+        public const float MIN_MOVE_FACTOR_AIR = 1f;
+        public const float MAX_MOVE_FACTOR_AIR = 1.5f;
         public const float MIDDLE_MOVE_FACTOR_AIR = (MAX_MOVE_FACTOR_AIR - MIN_MOVE_FACTOR_AIR) / 2 + MIN_MOVE_FACTOR_AIR;
 
 

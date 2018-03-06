@@ -725,6 +725,20 @@ Prefab:
       propertyPath: collisionMask.m_Bits
       value: 1280
       objectReference: {fileID: 0}
+    - target: {fileID: 1400734427654220, guid: e98c610aeaeae4f4082d9297479244eb, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114438641755959082, guid: e98c610aeaeae4f4082d9297479244eb,
+        type: 2}
+      propertyPath: sounds.comboLight2
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c06ba2dd9b29d0429d4b92cf06ec128, type: 3}
+    - target: {fileID: 114824276921605548, guid: e98c610aeaeae4f4082d9297479244eb,
+        type: 2}
+      propertyPath: comicFallFactor
+      value: 1.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e98c610aeaeae4f4082d9297479244eb, type: 2}
   m_IsPrefabParent: 0
@@ -772,20 +786,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 4
-  m_XDamping: 0
-  m_YDamping: 0
+  m_XDamping: 2.51
+  m_YDamping: 2.14
   m_ZDamping: 0
-  m_ScreenX: 0.41
-  m_ScreenY: 0.651
+  m_ScreenX: 0.49400002
+  m_ScreenY: 0.581
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.149
-  m_DeadZoneHeight: 0.3
+  m_DeadZoneWidth: 0.334
+  m_DeadZoneHeight: 0.54
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.92
-  m_SoftZoneHeight: 0.89
-  m_BiasX: 0.15299998
-  m_BiasY: -0.3049994
+  m_SoftZoneWidth: 0.891
+  m_SoftZoneHeight: 0.951
+  m_BiasX: 0.056999378
+  m_BiasY: -0.19099984
   m_GroupFramingMode: 2
   m_AdjustmentMode: 2
   m_GroupFramingSize: 0.8
@@ -1934,7 +1948,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 629059585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.9300003, y: 1.5160006, z: -10}
+  m_LocalPosition: {x: -7.423334, y: 0.8159997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 285547764}
@@ -2142,11 +2156,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4364900698833750, guid: 3f2cb14df7568ba4f8ba8c5b5c8e714f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.9300003
+      value: -7.423334
       objectReference: {fileID: 0}
     - target: {fileID: 4364900698833750, guid: 3f2cb14df7568ba4f8ba8c5b5c8e714f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.5160006
+      value: 0.8159997
       objectReference: {fileID: 0}
     - target: {fileID: 4364900698833750, guid: 3f2cb14df7568ba4f8ba8c5b5c8e714f, type: 2}
       propertyPath: m_LocalPosition.z

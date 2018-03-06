@@ -55,7 +55,7 @@ namespace PlayerStates {
 
         public override void OnAnimEvent(PlayerStateMachine stateMachine, string parameter) {
             if (parameter.Equals("MOVE_FORWARD")) {
-                MoveXRaw(stateMachine.movementController, stateMachine.currentDirectionX, 0, 2);
+                stateMachine.movementController.OnPush(stateMachine.currentDirectionX, 20f);
                 return;
             }
             if (parameter.Equals("DUST_EFFECT")) {

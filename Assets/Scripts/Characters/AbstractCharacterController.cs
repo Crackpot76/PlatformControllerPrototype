@@ -85,7 +85,7 @@ public abstract class AbstractCharacterController : MonoBehaviour {
     private IEnumerator MoveOnDamage(float directionHitX, float pushSpeed) {
         float time = Time.time;
         while ((time + 0.1f) > Time.time) {
-            movementController.OnPushed(directionHitX, pushSpeed); // Push back in oposite direction      
+            movementController.OnPush(-directionHitX, pushSpeed); // Push back in oposite direction      
             yield return new WaitForEndOfFrame();
         }
     }

@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace PlayerStates {
-    public class JumpStartIdleState: AbstractState {
+    public class JumpStartIdleState: AbstractStateAir {
 
         
         public override void OnEnter(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
@@ -17,18 +17,19 @@ namespace PlayerStates {
             }
 
             if (playerController.IsFalling() || playerController.IsGrounded()) {
-                                
+                PlayerStateMachine.fallingState.InitParameters(stateMachine.currentDirectionX, moveMultiplierAir);
                 return PlayerStateMachine.fallingState;
             }
 
             // Move while jumping
-            MoveXAirborne(stateMachine, playerController);
+            Move(stateMachine, playerController);
 
             return null;
         }
 
         public override void OnExit(PlayerStateMachine stateMachine, Animator animator, CharacterMovementController playerController) {
             animator.SetBool(AnimPlayerParameters.JUMP_START_IDLE, false);
+            ResetStateAir();
         }
         
     }
