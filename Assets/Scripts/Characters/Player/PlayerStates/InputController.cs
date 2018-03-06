@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputController {
 
     const float MAX_LIGHT_ATTACK = 0.2f;
-    const float MAX_ATTACK_DOUBLE_TAB_TIME = 0.2f;
+    const float MAX_ATTACK_DOUBLE_TAB_TIME = 0.22f;
 
     float timeLastAttackDown;
     float timeLastAttackUp;

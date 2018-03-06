@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 663964}
   - component: {fileID: 663963}
   - component: {fileID: 663962}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Crate1 (2)
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -562,7 +562,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4017222821778674, guid: e98c610aeaeae4f4082d9297479244eb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.15
+      value: 0.006
       objectReference: {fileID: 0}
     - target: {fileID: 4017222821778674, guid: e98c610aeaeae4f4082d9297479244eb, type: 2}
       propertyPath: m_LocalPosition.z
@@ -709,6 +709,21 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 61642137979592640, guid: e98c610aeaeae4f4082d9297479244eb,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 2.9166667
+      objectReference: {fileID: 0}
+    - target: {fileID: 61642137979592640, guid: e98c610aeaeae4f4082d9297479244eb,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 2.2916667
+      objectReference: {fileID: 0}
+    - target: {fileID: 114824276921605548, guid: e98c610aeaeae4f4082d9297479244eb,
+        type: 2}
+      propertyPath: collisionMask.m_Bits
+      value: 1280
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e98c610aeaeae4f4082d9297479244eb, type: 2}
@@ -1207,7 +1222,7 @@ GameObject:
   - component: {fileID: 424932839}
   - component: {fileID: 424932838}
   - component: {fileID: 424932837}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Crate1 (3)
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -1919,7 +1934,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 629059585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.9300003, y: 1.6600006, z: -10}
+  m_LocalPosition: {x: -5.9300003, y: 1.5160006, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 285547764}
@@ -2131,7 +2146,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4364900698833750, guid: 3f2cb14df7568ba4f8ba8c5b5c8e714f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.6600006
+      value: 1.5160006
       objectReference: {fileID: 0}
     - target: {fileID: 4364900698833750, guid: 3f2cb14df7568ba4f8ba8c5b5c8e714f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2301,7 +2316,7 @@ GameObject:
   - component: {fileID: 1076854454}
   - component: {fileID: 1076854453}
   - component: {fileID: 1076854452}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Crate1 (1)
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -3749,7 +3764,7 @@ GameObject:
   - component: {fileID: 1744096638}
   - component: {fileID: 1744096637}
   - component: {fileID: 1744096641}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Crate1
   m_TagString: Destructable
   m_Icon: {fileID: 0}

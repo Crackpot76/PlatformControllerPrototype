@@ -18,7 +18,7 @@ namespace PlayerStates {
             // Define Attack Details
             attack = new AttackDetails(); // default attack
             attack.type = AttackDetails.AttackType.Sharp;
-            attack.pushOnDamage = false; // light attack no push
+            attack.pushSpeed = 1.5f;
             attack.criticalHitPercent = 0.5f; // 50% crit
         }
 
@@ -42,11 +42,15 @@ namespace PlayerStates {
         }
 
         public override void OnAnimEvent(PlayerStateMachine stateMachine, string parameter) {
+            if (parameter.Equals("MOVE_FORWARD")) {
+                MoveXRaw(stateMachine.movementController, stateMachine.currentDirectionX, 0, 2);
+                return;
+            }
             if (parameter.Equals("DUST_EFFECT")) {
                 stateMachine.InstantiateEffect(dustEffect);
-            } else {
-                animationHasStopped = true;
+                return;
             }
+            animationHasStopped = true;
         }
 
         public override AttackDetails GetAttackDetails() {

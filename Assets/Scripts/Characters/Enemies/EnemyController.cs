@@ -24,6 +24,7 @@ public class EnemyController : AbstractCharacterController {
     void OnCollisionEnter2D(Collision2D collision) {
 
         // check for collision with an opponent
+        /*
         if (AttackController.ListContainsTag(opponentTags, collision.gameObject.tag)) {
             float hitDirectionX = AttackController.GetHitDirection(transform, collision);
 
@@ -34,6 +35,6 @@ public class EnemyController : AbstractCharacterController {
             } else {
                 Debug.LogError("No PlayerController Script for player found. No damage served today!");
             }
-        }
+        }*/
     }
 }
